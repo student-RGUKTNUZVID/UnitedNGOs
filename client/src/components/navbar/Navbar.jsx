@@ -11,7 +11,7 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-1">
           <img src="logo.png" alt="logo" className="h-13 w-auto" />
-          <h1 className="text-base text-[#00964D] font-inspiration">NGO CONNECT</h1>
+          <h1 className="text-base text-[#00964D] font-inspiration">UnitedNGOs</h1>
         </div>
 
         {/* Desktop Navigation */}
