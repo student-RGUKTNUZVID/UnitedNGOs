@@ -55,7 +55,7 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <nav className="md:hidden bg-white shadow-md flex flex-col items-center py-4 space-y-4">
-          <Link to="/home" className="text-black text-lg font-medium hover:text-gray-600">
+          <Link to="/" className="text-black text-lg font-medium hover:text-gray-600">
             Home
           </Link>
           <Link to="/ngos" className="text-black text-lg font-medium hover:text-gray-600">
@@ -70,9 +70,11 @@ export default function Navbar() {
           <button className="w-3/4 px-4 py-2 bg-[#00964D] text-white rounded-md font-medium hover:bg-green-700">
             Donate
           </button>
-          <button className="w-3/4 px-4 py-2 bg-[#004AAD] text-white rounded-md font-medium hover:bg-blue-700">
-            Login
-          </button>
+          <Link to='/login'>
+            <button className="w-3/4 px-4 py-2 bg-[#004AAD] text-white rounded-md font-medium hover:bg-blue-700">
+              Login
+            </button>
+          </Link>
         </nav>
       )}
     </header>
