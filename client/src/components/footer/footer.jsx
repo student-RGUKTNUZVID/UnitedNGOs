@@ -1,5 +1,6 @@
 import { FaFacebook, FaLinkedin ,FaCaretRight} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa6";
 
 const Footer = () => {
   return (
@@ -23,6 +24,7 @@ const Footer = () => {
             <FaXTwitter className="text-2xl w-[50px] h-[40px] cursor-pointer hover:text-gray-300" />
             <FaFacebook className="text-2xl w-[50px] h-[40px] cursor-pointer hover:text-gray-300" />
             <FaLinkedin className="text-2xl w-[50px] h-[40px] cursor-pointer hover:text-gray-300" />
+            <FaInstagram className="text-2xl w-[50px] h-[40px] cursor-pointer hover:text-gray-300" />
           </div>
         </div>
 

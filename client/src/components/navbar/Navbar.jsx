@@ -7,29 +7,29 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 w-full bg-white shadow-lg z-50 font-inter border-b border-amber-100">
-      <div className="container mx-auto flex justify-between items-center px-6 py-3">
+      <div className="container mx-auto flex justify-between items-center px-2 py-2">
         {/* Logo */}
-        <div className="flex items-center gap-1">
-          <img src="logo.png" alt="logo" className="h-13 w-auto" />
-          <h1 className="text-base text-[#00964D] font-inspiration">UnitedNGOs</h1>
+        <div className="flex items-center gap-1 pl-0">
+          <img src="LogoNew-3.png" alt="logo" className="h-16 w-auto" />
+          {/* <h1 className="text-base text-[#00964D] font-inspiration">UnitedNGOs</h1> */}
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 font-poppins">
-          <Link to="/home" className="text-black text-[20px]  font-semibold hover:text-gray-600">
+          <Link to="/" className="text-black text-[16px]  font-semibold hover:text-gray-600">
             Home
           </Link>
-          <Link to="/ngos" className="text-black text-[20px]  font-semibold  hover:text-gray-600">
+          <Link to="/ngos" className="text-black text-[16px]  font-semibold  hover:text-gray-600">
             NGOs
           </Link>
-          <Link to="/projects" className="text-black text-[20px]  font-semibold  hover:text-gray-600">
-            Projects
+          <Link to="/projects" className="text-black text-[16px]  font-semibold  hover:text-gray-600">
+            Ongoing Projects
           </Link>
-          <Link to="/complaint" className="text-black text-[20px]  font-semibold  hover:text-gray-600">
-            Complaint
+          <Link to="/complaint" className="text-black text-[16px]  font-semibold  hover:text-gray-600">
+            Upcoming Projects
           </Link>
-          <Link to="/complaint" className="text-black text-[20px]   font-semibold  hover:text-gray-600">
-            Complaint
+          <Link to="/complaint" className="text-black text-[16px]   font-semibold  hover:text-gray-600">
+            Raise Your Issue
           </Link>
         </nav>
 
@@ -38,9 +38,11 @@ export default function Navbar() {
           <button className="px-5  bg-[#00964D] text-white text-xl rounded-[10px] font-medium w-[130px] h-[40px] hover:bg-green-700">
             Donate
           </button>
+          <Link to='/login'>
           <button className="px-5 bg-[#0039A6] text-white text-xl rounded-[10px] font-medium  w-[130px] h-[40px] hover:bg-blue-700">
             Login
           </button>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
