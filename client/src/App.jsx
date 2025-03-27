@@ -15,19 +15,13 @@ function App() {
 
   return (
     <>
-     
-   
-     
-     <Routes>
-    <Route path='/home' element={<HomePage/>}/> 
-    <Route path='/login' element={<Login/>}/> 
-    <Route path='/register' element={<Register/>}/> 
-    <Route path='/search' element={<SearchUnite/>}/> 
-     </Routes>
-
-     
+      <Routes>
+        <Route path='/' element={<HomePage/>}/> 
+        <Route path='/login' element={<Login/>}/> 
+        <Route path='/register' element={<Register/>}/> 
+        <Route path='/search' element={<SearchUnite/>}/> 
+      </Routes>
     </>
   )
 }
-
-export default App
+export default App;
