@@ -4,7 +4,7 @@ import { FaInstagram } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-[#0058FF] to-[#001132] text-white py-8 px-6">
+    <footer className="bg-gray-900 text-white py-8 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start md:gap-[50px]">
         {/* Stay Connected Section */}
         <div className="md:w-1/2 text-center md:text-left">
@@ -15,7 +15,7 @@ const Footer = () => {
               placeholder="Email Address"
               className="p-2 w-[350px] h-[50px] text-gray-700 outline-none bg-white font-poppins"
             />
-            <button className="bg-green-600 text-[20px] ml-3 px-4  font-semibold w-[200px] h-[50px] font-poppins">
+            <button className="bg-gradient-to-b from-[#0058FF] to-[#001132] text-[20px] ml-3 px-4  font-semibold w-[200px] h-[50px] font-poppins hover:to-black">
               SignUp
             </button>
           </div>
