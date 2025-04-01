@@ -48,10 +48,10 @@ const Footer = () => {
       {/* Bottom Links */}
       <div className=" mt-6 pt-4 text-center text-sm font-poppins">
         <div className="flex justify-center gap-[100px]">
-          <a href="#" className="hover:underline font-semibold text-[15px]">Privacy policy</a>
-          <a href="#" className="hover:underline font-semibold text-[15px]">Sitemap</a>
+          {/* <a href="#" className="hover:underline font-semibold text-[15px]">Privacy policy</a>
+          <a href="#" className="hover:underline font-semibold text-[15px]">Sitemap</a> */}
         
-        <p className=" font-semibold text-[15px]">©Ngo connect</p>
+        <p className=" font-semibold text-[15px]">© 2025 UnitedNGOs. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
