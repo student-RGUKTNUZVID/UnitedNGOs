@@ -6,10 +6,9 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="  top-0 left-0 w-full z-50 font-inter  bg-black/30 backdrop-blur-md shadow-3xl">
-      <div className="container mx-auto flex justify-between items-center px-2 py-2">
-        {/* Logo */}
-        <div className="flex items-center gap-1 pl-0">
+    <header className="top-0 left-0 w-full z-50 bg-white shadow-3xl px-0">
+    <div className="w-full flex justify-between items-center py-2">
+      <div className="flex items-center gap-1 pl-0">
           <img src="logo3.png" alt="logo" className="h-15 w-auto" />
           {/* <h1 className="text-base text-[#00964D] font-inspiration">UnitedNGOs</h1> */}
         </div>
