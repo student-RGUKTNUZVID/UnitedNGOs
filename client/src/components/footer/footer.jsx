@@ -1,7 +1,7 @@
 import { FaFacebook, FaLinkedin ,FaCaretRight} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa6";
-
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-b from-[#0058FF] to-[#001132] text-white py-8 px-6">
@@ -37,10 +37,14 @@ const Footer = () => {
           <div className="grid grid-cols-2 gap-[30px] mt-2">
             <div className="flex items-center"><a href="#" className="hover:underline text-[20px] font-normal font-poppins">Portfolio</a><FaCaretRight className="w-5 h-5"/></div>
             <div className="flex items-center"><a href="#" className="hover:underline text-[20px] font-normal font-poppins">Projects</a><FaCaretRight className="w-5 h-5"/></div>
+            <Link to="/about">
             <div className="flex items-center"><a href="#" className="hover:underline text-[20px] font-normal font-poppins">About us</a><FaCaretRight className="w-5 h-5"/></div>
+            </Link>
             <div className="flex items-center"><a href="#" className="hover:underline text-[20px] font-normal font-poppins">NGOs</a><FaCaretRight className="w-5 h-5"/></div>
             <div className="flex items-center"><a href="#" className="hover:underline text-[20px] font-normal font-poppins">Our Team</a><FaCaretRight className="w-5 h-5"/></div>
+            <Link to="/contact">
            <div className="flex items-center"> <a href="#" className="hover:underline text-[20px] font-normal font-poppins">Contact us</a><FaCaretRight className="w-5 h-5"/></div>
+           </Link>
           </div>
         </div>
       </div>
