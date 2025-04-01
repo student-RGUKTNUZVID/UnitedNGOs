@@ -21,7 +21,7 @@ const HomePage = () => {
 
         {/* Testimonial Carousel Section */}
         <TestimonialCarousel />
-      
+        <Footer/>
     </div>
   );
 };
