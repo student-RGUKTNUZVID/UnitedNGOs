@@ -4,7 +4,7 @@ import Navbar from './navbar/Navbar';
 const HeroSection = () => {
   return (
     <>
-    <Navbar/>
+  
     <div className="relative w-full  mx-auto h-auto shadow-2xl">
       {/* Hero Section Wrapper with Small Gap */}
       <div className="relative w-full h-auto bg-gray-900 overflow-hidden p-6 md:p-8">
