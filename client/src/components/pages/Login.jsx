@@ -68,14 +68,14 @@ const Login = () => {
 
           <div className="mt-4 flex justify-center space-x-4">
             <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition">
-              <FcGoogle className="text-red-600 text-3xl" />
+              <FcGoogle className="text-red-600 text-5xl" />
             </button>
-            <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition">
+            {/* <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition">
               <FaXTwitter className="text-black text-3xl" />
             </button>
             <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition">
               <FaFacebook className="text-blue-600 text-3xl" />
-            </button>
+            </button> */}
           </div>
 
           <p className="mt-4 text-center text-gray-400">

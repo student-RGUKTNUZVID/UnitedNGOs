@@ -15,7 +15,7 @@ const HomePage = () => {
          <Projects/>
         <StatsComponent/>
         <TestimonialCarousel/>
-        <Footer/>
+        
     </div>
   );
 };
