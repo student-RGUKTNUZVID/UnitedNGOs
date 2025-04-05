@@ -21,7 +21,6 @@ export default function RaiseYourVoice() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleFileChange = (e) => {
     setFormData({ ...formData, file: e.target.files[0] });
   };
