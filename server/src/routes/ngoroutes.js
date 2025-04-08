@@ -1,6 +1,6 @@
-const express=require("express");
+import express from "express";
 const router=express.Router();
-const unitedngoController=require("../controllers/unitedngoController");
+import submitQuery from "../controllers/unitedngoController.js";
 //Routes
-router.post("/submit-query",unitedngoController.submitQuery);
-module.exports=router;
+router.post("/submit-query",submitQuery);
+export default router;

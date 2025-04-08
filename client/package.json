@@ -25,6 +25,8 @@
     "react-map-gl": "^8.0.1",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.1.5",
+    "react-toast": "^1.0.3",
+    "react-toastify": "^11.0.5",
     "swiper": "^11.2.4",
     "tailwindcss": "^4.0.6"
   },

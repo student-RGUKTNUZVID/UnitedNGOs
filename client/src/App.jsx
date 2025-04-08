@@ -10,10 +10,14 @@ import Register from "./components/pages/Register";
 import SearchUnite from "./components/SearchAndUnite";
 import CampaignBanner from "./components/campain/campaignBanner";
 import RaiseYourVoice from "./components/pages/Raise";
+import AuthSuccess from "./apicalls/AuthSuccess";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-   
+   <>
+   <ToastContainer />
       <Routes>
         {/* Routes with Navbar and Footer */}
         <Route
@@ -67,9 +71,10 @@ function App() {
 
         {/* Routes WITHOUT Navbar and Footer */}
         <Route path="/login" element={<Login />} />
+        <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-   
+      </>
   );
 }
 

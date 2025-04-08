@@ -1,29 +1,29 @@
-require("dotenv").config();
-const express = require('express')
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
 const app = express()
 //cross origin resource sharing
-const cors = require('cors')
+import cors from 'cors';
 app.use(express.json());
 app.use(cors(
     {
         origin:"*"
     }
 ));
+import passport from "passport"
+import session from 'express-session';
+import './src/config/passport.js'; // or wherever your config is
+import db from './src/models/database.js';
+import userRoute from "./src/routes/auth.js";
 //dotenv is a package that loads environment variables from a .env file into process.env
-const routes=require('./src/routes/ngoroutes.js')
+import routes from './src/routes/ngoroutes.js';
+app.use(session({ secret: 'your-secret', resave: false, saveUninitialized: true }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/auth', userRoute);
 app.use('/',routes);
-require('dotenv').config()
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['profile', 'email'] })
-);
-app.get('/auth/google/callback',
-  passport.authenticate('google', { session: false }),
-  (req, res) => {
-    const token = generateToken(req.user);
-    // You can return token or redirect to frontend with it
-    res.redirect(`http://localhost:5173/google-success?token=${token}`);
-  }
-);
+app.use('/api/auth',userRoute);
 app.listen(3000,()=>{
     console.log("server is running")
 });
