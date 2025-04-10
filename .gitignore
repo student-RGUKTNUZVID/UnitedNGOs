@@ -3,6 +3,4 @@ client/node_modules/
 # ignore env files
 .env
 server/.env
-server/.env
-server/.env
-server/.env
+
