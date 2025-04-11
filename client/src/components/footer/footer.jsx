@@ -1,4 +1,4 @@
-import { FaFacebook, FaLinkedin, FaCaretRight } from "react-icons/fa";
+import { FaFacebook, FaLinkedin, FaCaretRight,FaCaretDown } from "react-icons/fa";
 import { FaXTwitter, FaInstagram } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
@@ -25,10 +25,10 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex justify-center md:justify-start gap-4 mt-6 md:mt-[50px]">
-            <FaXTwitter className="text-xl md:text-2xl cursor-pointer hover:text-gray-300" />
-            <FaFacebook className="text-xl md:text-2xl cursor-pointer hover:text-gray-300" />
-            <FaLinkedin className="text-xl md:text-2xl cursor-pointer hover:text-gray-300" />
-            <FaInstagram className="text-xl md:text-2xl cursor-pointer hover:text-gray-300" />
+          <FaXTwitter className="text-2xl cursor-pointer hover:text-[#00acee] transition-all duration-150" />
+            <FaFacebook className="text-2xl cursor-pointer hover:text-[#1877f2] transition-all duration-150" />
+            <FaLinkedin className="text-2xl cursor-pointer hover:text-[#0a66c2] transition-all duration-150" />
+            <FaInstagram className="text-2xl cursor-pointer hover:text-[#e4405f] transition-all duration-150" />
           </div>
         </div>
 
@@ -46,11 +46,25 @@ const Footer = () => {
               { name: "NGOs", path: "#" },
               { name: "Our Team", path: "#" },
               { name: "Contact us", path: "/contact" },
-            ].map((link, index) => (
-              <Link key={index} to={link.path} className="flex items-center hover:underline text-[16px] md:text-[20px] font-normal font-poppins">
-                {link.name} <FaCaretRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
-              </Link>
-            ))}
+            ].map((link, index) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={index}
+                  to={link.path}
+                  className={`flex items-center text-[16px] md:text-[20px] font-poppins font-normal hover:underline ${
+                    isActive ? "text-[#00d9ff] font-semibold" : ""
+                  }`}
+                >
+                  {link.name}
+                  {isActive ? (
+                    <FaCaretDown className="ml-1 w-4 h-4 md:w-5 md:h-5" />
+                  ) : (
+                    <FaCaretRight className="ml-1 w-4 h-4 md:w-5 md:h-5" />
+                  )}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

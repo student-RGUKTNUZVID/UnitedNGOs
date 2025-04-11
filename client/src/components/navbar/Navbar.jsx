@@ -2,10 +2,27 @@ import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { HiOutlineMenu, HiX } from "react-icons/hi"; // Using react-icons
 import { motion } from "framer-motion";
-
+import { FaEllipsisV } from "react-icons/fa";
+import { useEffect, useRef } from "react";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showExtraMenu, setShowExtraMenu] = useState(false);
+  const [showDesktopMore, setShowDesktopMore] = useState(false);
+  const moreRef = useRef();
+
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (moreRef.current && !moreRef.current.contains(event.target)) {
+      setShowDesktopMore(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+
 
   return (
     <header className="top-0 left-0 w-full z-50 bg-white shadow-4xl px-0">
@@ -42,25 +59,45 @@ export default function Navbar() {
   ))}
 
   {/* More Dropdown */}
-  <div className="relative group">
-    <button className="text-gray-700 hover:text-[#00964D] transition duration-300">
-      More
-    </button>
-    <div className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white shadow-xl rounded-lg mt-2 py-2 w-[200px] z-50 animate-fade-in">
-      <NavLink to="/events" className="px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300">
+{/* More Dropdown with Icon */}
+{/* More Dropdown with Icon - Click based */}
+<div className="relative" ref={moreRef}>
+  <button
+    onClick={() => setShowDesktopMore((prev) => !prev)}
+    className="text-gray-700 hover:text-[#00964D] transition duration-300"
+  >
+    <FaEllipsisV size={18} />
+  </button>
+
+  {showDesktopMore && (
+    <div className="absolute left-0 top-full flex flex-col bg-white shadow-xl rounded-lg mt-2 py-2 w-[200px] z-50 animate-fade-in">
+      <NavLink
+        to="/events"
+        className="px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300"
+        onClick={() => setShowDesktopMore(false)}
+      >
         Events
       </NavLink>
-      <NavLink to="/volunteer" className="px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300">
+      <NavLink
+        to="/volunteer"
+        className="px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300"
+        onClick={() => setShowDesktopMore(false)}
+      >
         Volunteer
       </NavLink>
-      <NavLink to="/partners" className="px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300">
+      <NavLink
+        to="/partners"
+        className="px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300"
+        onClick={() => setShowDesktopMore(false)}
+      >
         Our Partners
       </NavLink>
     </div>
-  </div>
+  )}
+</div>
+
+
 </nav>
-
-
         {/* Buttons */}
         <div className="hidden md:flex space-x-4 font-poppins pr-4">
           <NavLink to="/login">
