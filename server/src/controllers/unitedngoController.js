@@ -1,7 +1,6 @@
-require("../models/database")
-const Contact=require("../models/contactModel")
-
-exports.submitQuery=async(req,res)=>{
+// require("../models/database");
+import Contact from "../models/contactModel.js";
+ const submitQuery=async(req,res)=>{
     try {
         const { name, email, message } = req.body;
         const newMessage = new Contact({ name, email, message });
@@ -19,3 +18,4 @@ exports.submitQuery=async(req,res)=>{
         })
       }
 }
+export default submitQuery;

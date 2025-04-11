@@ -1,9 +1,37 @@
-const mongoose=require('mongoose');
-mongoose.connect(process.env.MONGODB_URI);
-const db=mongoose.connection;
-db.on('error',console.error.bind(console,'connection error:'));
-db.once('open',function(){
-    console.log('Database Connected')
-})
-//models
-require('./contactModel')
+
+// Import mongoose
+import dotenv from 'dotenv'
+dotenv.config({path:"./.env"})
+import mongoose from "mongoose";
+
+// Get the connection string from environment variables
+const connectionString = process.env.MONGODB_URI;
+
+// if (!connectionString) {
+//     console.error("Connection string not found in environment variables!");
+//     process.exit(1); // Exit the application if the connection string is missing
+// }
+
+// Connect to MongoDB
+//const conn_string="mongodb+srv://rupak:rupak2003@cluster0.fcbka.mongodb.net/portifolio";
+mongoose.connect(connectionString);
+
+// Get the default connection
+const db = mongoose.connection;
+
+// Connection events
+db.on("connected", () => {
+    console.log("Database connection successful!");
+    console.log("rupak");
+});
+
+db.on("error", (error) => {
+    console.error("Database connection failed:", error);
+});
+
+db.on("disconnected", () => {
+    console.log("Database disconnected.");
+});
+
+// Export the connection
+export default db;

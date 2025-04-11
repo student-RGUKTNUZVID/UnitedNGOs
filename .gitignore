@@ -1,2 +1,6 @@
 server/node_modules/
 client/node_modules/
+# ignore env files
+.env
+server/.env
+

@@ -1,14 +1,34 @@
 import { useState } from "react";
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock, FaFacebook } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
-
+import { toast } from 'react-toastify';
+// GOOGLE_CLIENT_ID=905242983975-7isbllr4nh7umdsnbaomup9pk6fav7r4.apps.googleusercontent.com
+// GOOGLE_CLIENT_SECRET=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
 const Login = () => {
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
+  const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:3000/auth/google";
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault(); // ✅ stops default form submission
+    try {
+      const res = await axios.post('http://localhost:3000/api/auth/login', userData);
+      const { token, user } = res.data;
+      localStorage.setItem('token', token);
+      toast.success("login successful");
+      navigate('/');
+    } catch (error) {
+      console.error('Login failed:', error.response?.data?.message || error.message);
+      toast.error(error.response?.data?.msg || error.message);
+    }
+  }
 
   const navigate = useNavigate();
 
@@ -56,7 +76,8 @@ const Login = () => {
             <div className="text-left text-sm text-gray-400 hover:text-gray-200 cursor-pointer">Forgot Password?</div>
 
             <button
-              type="submit"
+              type="button"
+              onClick={handleLogin}
               className="w-full bg-[#003465]
               text-white py-3 rounded-lg hover:bg-blue-600 transition-all duration-300"
             >
@@ -67,7 +88,8 @@ const Login = () => {
           <div className="mt-6 text-center text-gray-400">or continue with</div>
 
           <div className="mt-4 flex justify-center space-x-4">
-            <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition">
+            <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition"
+            onClick={handleGoogleLogin}>
               <FcGoogle className="text-red-600 text-5xl" />
             </button>
             {/* <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition">
