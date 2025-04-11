@@ -5,6 +5,8 @@ import { FaEnvelope, FaLock, FaFacebook } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
+// GOOGLE_CLIENT_ID=905242983975-7isbllr4nh7umdsnbaomup9pk6fav7r4.apps.googleusercontent.com
+// GOOGLE_CLIENT_SECRET=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
 const Login = () => {
   const [userData, setUserData] = useState({
     email: "",
