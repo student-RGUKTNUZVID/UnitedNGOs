@@ -1,0 +1,5 @@
+
+MONGODB_URI=mongodb+srv://rupak:rupak2003@cluster0.fcbka.mongodb.net/NGO
+JWT_SECRET=Ngoconnections
+GOOGLE_CLIENT_ID=905242983975-7isbllr4nh7umdsnbaomup9pk6fav7r4.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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

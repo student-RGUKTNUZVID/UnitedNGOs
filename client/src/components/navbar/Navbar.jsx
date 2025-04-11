@@ -16,52 +16,58 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-8 font-poppins">
-          <NavLink to="/" className={({ isActive }) => isActive ? "text-[#00964D] font-bold" : "text-gray-700 hover:text-gray-600"}>
-            Home
-          </NavLink>
-          <NavLink to="/ngos" className={({ isActive }) => isActive ? "text-[#00964D] font-bold" : "text-gray-700 hover:text-gray-600"}>
-            NGOs
-          </NavLink>
-          <NavLink to="/ongoing-projects" className={({ isActive }) => isActive ? "text-[#00964D] font-bold" : "text-gray-700 hover:text-gray-600"}>
-            Ongoing Projects
-          </NavLink>
-          <NavLink to="/upcoming-projects" className={({ isActive }) => isActive ? "text-[#00964D] font-bold" : "text-gray-700 hover:text-gray-600"}>
-            Upcoming Projects
-          </NavLink>
-          <NavLink to="/about" className={({ isActive }) => isActive ? "text-[#00964D] font-bold" : "text-gray-700 hover:text-gray-600"}>
-            About Us
-          </NavLink>
-          <NavLink to="/raise-issue" className={({ isActive }) => isActive ? "text-[#00964D] font-bold" : "text-gray-700 hover:text-gray-600"}>
-            Raise Your Issue
-          </NavLink>
+        {/* Desktop Navigation */}
+<nav className="hidden md:flex space-x-8 font-poppins">
+  {[
+    { to: "/", label: "Home" },
+    { to: "/ngos", label: "NGOs" },
+    { to: "/ongoing-projects", label: "Ongoing Projects" },
+    { to: "/upcoming-projects", label: "Upcoming Projects" },
+    { to: "/about", label: "About Us" },
+    { to: "/raise-issue", label: "Raise Your Issue" },
+  ].map(({ to, label }) => (
+    <NavLink
+      key={label}
+      to={to}
+      className={({ isActive }) =>
+        `relative transition-all duration-300 ease-in-out transform hover:scale-105 ${
+          isActive
+            ? "text-[#00964D] font-bold"
+            : "text-gray-700 hover:text-[#00964D]"
+        }`
+      }
+    >
+      <span className="hover-underline">{label}</span>
+    </NavLink>
+  ))}
 
-          {/* More Dropdown Menu */}
- {/* More Dropdown Menu */}
-<div className="relative group">
-  <button className="text-gray-700 hover:text-gray-600">More</button>
-  <div className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white shadow-lg rounded-lg mt-2 py-2 w-[200px] z-50">
-    <NavLink to="/events" className="px-4 py-2 text-black hover:bg-gray-200">
-      Events
-    </NavLink>
-    <NavLink to="/volunteer" className="px-4 py-2 text-black hover:bg-gray-200">
-      Volunteer
-    </NavLink>
-    <NavLink to="/partners" className="px-4 py-2 text-black hover:bg-gray-200">
-      Our Partners
-    </NavLink>
+  {/* More Dropdown */}
+  <div className="relative group">
+    <button className="text-gray-700 hover:text-[#00964D] transition duration-300">
+      More
+    </button>
+    <div className="absolute left-0 top-full hidden group-hover:flex flex-col bg-white shadow-xl rounded-lg mt-2 py-2 w-[200px] z-50 animate-fade-in">
+      <NavLink to="/events" className="px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300">
+        Events
+      </NavLink>
+      <NavLink to="/volunteer" className="px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300">
+        Volunteer
+      </NavLink>
+      <NavLink to="/partners" className="px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300">
+        Our Partners
+      </NavLink>
+    </div>
   </div>
-</div>
+</nav>
 
-
-        </nav>
 
         {/* Buttons */}
         <div className="hidden md:flex space-x-4 font-poppins pr-4">
           <NavLink to="/login">
-            <button className="text-black text-[18px] rounded-[40px] font-medium w-[160px] h-[40px] hover:bg-black hover:text-white">
-              Login/Register
-            </button>
+          <button className="text-black text-[18px] rounded-[40px] font-medium w-[160px] h-[40px] hover:bg-[#00964D] hover:text-white hover:shadow-[0_0_12px_rgba(0,150,77,0.6)] transition-all duration-300">
+  Login/Register
+</button>
+
           </NavLink>
         </div>
 
