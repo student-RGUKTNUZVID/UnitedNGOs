@@ -2,7 +2,8 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { HiOutlineMenu, HiX } from "react-icons/hi"; // Using react-icons
 import { motion } from "framer-motion";
-
+import { FaEllipsisV } from "react-icons/fa";
+import { useEffect, useRef } from "react";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showExtraMenu, setShowExtraMenu] = useState(false);
@@ -16,11 +17,11 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="top-0 left-0 w-full z-50 bg-white shadow-4xl px-0">
+    <header className="top-0 left-0 w-full z-50 bg-white shadow-6xl px-0 border-b">
       <div className="w-full flex justify-between items-center py-2">
         {/* Logo */}
-        <div className="flex items-start gap-2 pl-0">
-          <img src="logo3.png" alt="logo" className="h-15 w-auto" />
+        <div className="flex items-start gap-2 pl-2">
+          <img src="LogoNew-3.png" alt="logo" className="h-15 w-[190px]" />
         </div>
 
         {/* Desktop Navigation */}
