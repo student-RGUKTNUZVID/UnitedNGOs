@@ -14,7 +14,7 @@ const Projects = () => {
           >
             <h3 className="text-2xl  mb-2 font-montserrat font-bold">Project-{index}</h3>
             <img
-              src="hero.png"
+              src="https://res.cloudinary.com/df4kolmw1/image/upload/v1744454203/issues_media/1744454199516-Veg%20Fried%20Rice.png"
               alt="Project"
               className="rounded-md mb-4"
             />

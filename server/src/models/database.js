@@ -18,11 +18,14 @@ mongoose.connect(connectionString);
 
 // Get the default connection
 const db = mongoose.connection;
+if (!connectionString) {
+    console.error("MongoDB URI not found in .env file!");
+    process.exit(1);
+}
 
 // Connection events
 db.on("connected", () => {
     console.log("Database connection successful!");
-    console.log("rupak");
 });
 
 db.on("error", (error) => {

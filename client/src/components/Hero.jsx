@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import Navbar from './navbar/Navbar';
-
+import {Link} from "react-router-dom";
 const HeroSection = () => {
   return (
     <>
@@ -47,15 +47,16 @@ const HeroSection = () => {
               >
                 Whether you're an organization seeking support, a volunteer looking to contribute, or a donor ready to make a difference, together, we can build a stronger, more compassionate world.
               </motion.p>
-
-              <motion.button
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-                className="mt-6 mb-10 px-6 py-3 bg-white text-black rounded-full text-lg font-medium shadow-lg hover:bg-gray-200 transition"
-              >
-                Explore Now
-              </motion.button>
+              <Link to="/about">
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="mt-6 mb-10 px-6 py-3 bg-white text-black rounded-full text-lg font-medium shadow-lg hover:bg-gray-200 transition"
+                >
+                  Know More
+                </motion.button>
+              </Link>
             </div>
           </div>
         </div>
