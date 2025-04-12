@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import { FaMicrophoneAlt, FaHandsHelping, FaComments, FaUsers, FaCloudUploadAlt, FaCheckCircle, FaMoon, FaSun } from "react-icons/fa";
 import { useState } from "react";
+// Import extra icons
+import { FaBalanceScale, FaGlobeAsia, FaHandshake, FaRegLightbulb, FaRegHeart } from "react-icons/fa";
+
 
 export default function RaiseYourVoice() {
   const [formData, setFormData] = useState({
