@@ -8,11 +8,11 @@ export default function Navbar() {
   const [showExtraMenu, setShowExtraMenu] = useState(false);
 
   return (
-    <header className="top-0 left-0 w-full z-50 bg-white shadow-4xl px-0">
+    <header className="top-0 left-0 w-full z-50 bg-white shadow-6xl px-0 border-b">
       <div className="w-full flex justify-between items-center py-2">
         {/* Logo */}
-        <div className="flex items-start gap-2 pl-0">
-          <img src="logo3.png" alt="logo" className="h-15 w-auto" />
+        <div className="flex items-start gap-2 pl-2">
+          <img src="LogoNew-3.png" alt="logo" className="h-15 w-[190px]" />
         </div>
 
         {/* Desktop Navigation */}
