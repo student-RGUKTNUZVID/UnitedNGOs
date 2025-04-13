@@ -52,6 +52,7 @@ router.get('/google/callback',
     const token = generateToken(req.user._id); // generate JWT
     res.redirect(`http://localhost:5173/auth/success?token=${token}`);
   }
+
 );
 
 export default router;
