@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { FaHeart } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import {  FaUsers, FaDonate } from "react-icons/fa";
 import "leaflet/dist/leaflet.css";
+import { useMap } from "react-leaflet";
 
 const SearchUnite = () => {
   const [filters, setFilters] = useState({
@@ -13,7 +14,15 @@ const SearchUnite = () => {
     timeline: "28/03/2025",
     city: "Nuzvid",
   });
-
+  const ChangeMapCenter = ({ center }) => {
+    const map = useMap();
+  
+    useEffect(() => {
+      map.setView(center, 12); // You can change zoom level here if needed
+    }, [center, map]);
+  
+    return null;
+  };
   const handleFilterChange = (e) => {
     setFilters({ ...filters, [e.target.name]: e.target.value });
   };
@@ -27,7 +36,37 @@ const SearchUnite = () => {
       city: "",
     });
   };
-
+  const ngos = [
+    {
+      title: "Nuzvid Animal Protection and Farm Cleaning",
+      city: "Nuzvid",
+      state: "Andhra Pradesh",
+      lat: 16.7885,
+      lng: 80.8463,
+    },
+    {
+      title: "Grokpeta River Cleaning",
+      city: "Nuzvid",
+      state: "Andhra Pradesh",
+      lat: 16.7,
+      lng: 80.85,
+    },
+    {
+      title: "Urban Waste Management",
+      city: "Vijayawada",
+      state: "Andhra Pradesh",
+      lat: 16.5193,
+      lng: 80.6305,
+    },
+    {
+      title: "Reforestation Initiative",
+      city: "Vijayawada",
+      state: "Andhra Pradesh",
+      lat: 16.5151,
+      lng: 80.6321,
+    },
+  ];
+  
   const projects = [
     {
       title: "Nuzvid Animal Protection and Farm Cleaning",
@@ -62,6 +101,25 @@ const SearchUnite = () => {
       image: "earth.png",
     },
   ];
+  const filteredNGOs = ngos.filter(
+    (ngo) =>
+      (filters.city === "" || ngo.city === filters.city) &&
+      (filters.state === "" || ngo.state === filters.state)
+  );
+  const [mapCenter, setMapCenter] = useState([16.7885, 80.8463]); // Default Nuzvid
+
+  useEffect(() => {
+    const selectedNgo = ngos.find(
+      (ngo) => ngo.city.toLowerCase() === filters.city.toLowerCase()
+    );
+    if (selectedNgo) {
+      setMapCenter([selectedNgo.lat, selectedNgo.lng]);
+    } else {
+      // Optional fallback for cities with no NGOs
+      setMapCenter([16.7885, 80.8463]); // maybe Vijayawada center?
+    }
+  }, [filters.city, ngos]);
+  
 
   return (
     <div className="min-h-screen bg-white p-4 md:p-8">
@@ -227,20 +285,19 @@ const SearchUnite = () => {
         <div className="w-full h-[300px] md:h-[775px] border rounded-lg overflow-hidden">
           <MapContainer
             key="static-map"
-            center={[16.7885, 80.8463]}
+            center={mapCenter}
             zoom={12}
             style={{ height: "100%", width: "100%" }}
             scrollWheelZoom={false}
           >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-
+            <ChangeMapCenter center={mapCenter} />
             {/* Markers for Locations */}
-            <Marker position={[16.7885, 80.8463]}>
-              <Popup>NUZVID ANIMAL PROTECTION</Popup>
-            </Marker>
-            <Marker position={[16.7, 80.85]}>
-              <Popup>GROKPETA RIVER CLEANING</Popup>
-            </Marker>
+            {filteredNGOs.map((ngo, idx) => (
+  <Marker key={idx} position={[ngo.lat, ngo.lng]}>
+    <Popup>{ngo.title}</Popup>
+  </Marker>
+))}
           </MapContainer>
         </div>
       </div>

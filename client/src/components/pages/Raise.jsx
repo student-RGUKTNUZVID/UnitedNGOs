@@ -40,8 +40,13 @@ export default function RaiseYourVoice() {
   };
 
   const handleFileChange = (e) => {
-    setFormData({ ...formData, files: Array.from(e.target.files) });
+    const newFiles = Array.from(e.target.files);
+    setFormData((prev) => ({
+      ...prev,
+      files: [...prev.files, ...newFiles],
+    }));
   };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
