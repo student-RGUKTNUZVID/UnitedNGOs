@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import {
   FaMicrophoneAlt,
@@ -6,15 +5,9 @@ import {
   FaCheckCircle,
   FaMoon,
   FaSun,
-  FaBalanceScale,
-  FaGlobeAsia,
-  FaHandshake,
-  FaRegLightbulb,
-  FaRegHeart,
 } from "react-icons/fa";
 import { useState } from "react";
-import axiosInstance from "../../utils/axiosInstance";
-
+import axiosInstance from "../../utils/axiosInstance.js";
 export default function RaiseYourVoice() {
   const [formData, setFormData] = useState({
     name: "",
@@ -46,13 +39,11 @@ export default function RaiseYourVoice() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // const handleFileChange = (e) => {
-  //   setFormData({ ...formData, file: e.target.files[0] });
-  // };
   const handleFileChange = (e) => {
     setFormData({ ...formData, files: Array.from(e.target.files) });
   };
-  const handleSubmit = async(e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     const data = new FormData();
@@ -62,18 +53,17 @@ export default function RaiseYourVoice() {
     data.append("message", formData.message);
     data.append("location", formData.location);
     formData.files.forEach((file) => {
-      data.append("media", file); // must match multer's field name
+      data.append("media", file);
     });
+
     try {
-      //console.log("Ganesh");
       const response = await axiosInstance.post("/raise-issue", data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
         timeout: 30000,
       });
-      // console.log(response);
-      // console.log("Newganesh");
+
       if (response.data) {
         setSuccessMessage("Thank you! Your issue has been submitted.");
         setFormData({
@@ -84,7 +74,6 @@ export default function RaiseYourVoice() {
           location: "",
           files: [],
         });
-  
         setTimeout(() => setSuccessMessage(""), 3000);
       }
     } catch (error) {
@@ -93,53 +82,37 @@ export default function RaiseYourVoice() {
     } finally {
       setIsSubmitting(false);
     }
-    // setTimeout(() => {
-    //   setIsSubmitting(false);
-    //   setSuccessMessage("Thank you! Your issue has been submitted.");
-    //   setFormData({
-    //     name: "",
-    //     email: "",
-    //     category: "General",
-    //     message: "",
-    //     location: "",
-    //     file:[],
-    //   });
-    //   setTimeout(() => setSuccessMessage(""), 3000);
-    // }, 2000);
   };
 
   return (
     <section
-      className={`${
-        darkMode ? "bg-[#0D0D0D] text-white" : "bg-white text-black"
-      } relative px-6 md:px-12 py-16 rounded-xl shadow-xl transition-all duration-500`}
+      className={`relative px-6 md:px-12 py-16 rounded-xl shadow-xl transition-all duration-500 ${darkMode ? "bg-black text-white" : "bg-gray-100 text-black"}`}
     >
-      {/* Theme Toggle */}
       <button
         onClick={() => setDarkMode(!darkMode)}
-        className="absolute top-4 right-4 p-2 rounded-full bg-gray-700 hover:bg-gray-500 text-white transition-all"
+        className="absolute top-4 right-4 p-2 rounded-full bg-gray-400 hover:bg-gray-200 text-white transition-all"
       >
         {darkMode ? <FaSun /> : <FaMoon />}
       </button>
 
       <div className="text-center">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
           Raise Your Issue
         </h1>
-        <p className="mt-4 text-lg">
+        <p className="text-lg opacity-70">
           Fill the form to raise your local issue. Add supporting media and location
           for better understanding.
         </p>
 
-        <div
-          className={`max-w-2xl mx-auto mt-10 p-6 rounded-lg shadow-lg ${
-            darkMode
-              ? "bg-[#1C1C1C] border border-yellow-400"
-              : "bg-gray-100 border border-gray-300"
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className={`max-w-2xl mx-auto mt-10 p-6 rounded-lg shadow-lg transition-all duration-500 ${
+            darkMode ? "bg-zinc-900 border border-gray-700" : "bg-gray-300 border border-gray-300"
           }`}
         >
           <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-            {/* Name */}
             <input
               type="text"
               name="name"
@@ -148,13 +121,10 @@ export default function RaiseYourVoice() {
               placeholder="Your Name"
               required
               className={`w-full px-4 py-2 rounded-md border focus:outline-none transition-all ${
-                darkMode
-                  ? "bg-gray-800 text-white border-gray-600 focus:border-yellow-400"
-                  : "bg-white text-black border-gray-300 focus:border-orange-400"
+                darkMode ? "bg-black text-white border-gray-600 focus:border-white" : "bg-white text-black border-gray-300 focus:border-black"
               }`}
             />
 
-            {/* Email */}
             <input
               type="email"
               name="email"
@@ -163,22 +133,17 @@ export default function RaiseYourVoice() {
               placeholder="Your Email"
               required
               className={`w-full px-4 py-2 rounded-md border focus:outline-none transition-all ${
-                darkMode
-                  ? "bg-gray-800 text-white border-gray-600 focus:border-yellow-400"
-                  : "bg-white text-black border-gray-300 focus:border-orange-400"
+                darkMode ? "bg-black text-white border-gray-600 focus:border-white" : "bg-white text-black border-gray-300 focus:border-black"
               }`}
             />
 
-            {/* Category */}
             <select
               name="category"
               value={formData.category}
               onChange={handleChange}
               required
               className={`w-full px-4 py-2 rounded-md border focus:outline-none transition-all ${
-                darkMode
-                  ? "bg-gray-800 text-white border-gray-600 focus:border-yellow-400"
-                  : "bg-white text-black border-gray-300 focus:border-orange-400"
+                darkMode ? "bg-black text-white border-gray-600 focus:border-white" : "bg-white text-black border-gray-300 focus:border-black"
               }`}
             >
               {categories.map((cat) => (
@@ -188,7 +153,6 @@ export default function RaiseYourVoice() {
               ))}
             </select>
 
-            {/* Location */}
             <input
               type="text"
               name="location"
@@ -197,13 +161,10 @@ export default function RaiseYourVoice() {
               placeholder="Location of the Issue (City, Area, Landmark)"
               required
               className={`w-full px-4 py-2 rounded-md border focus:outline-none transition-all ${
-                darkMode
-                  ? "bg-gray-800 text-white border-gray-600 focus:border-yellow-400"
-                  : "bg-white text-black border-gray-300 focus:border-orange-400"
+                darkMode ? "bg-black text-white border-gray-600 focus:border-white" : "bg-white text-black border-gray-300 focus:border-black"
               }`}
             />
 
-            {/* Message */}
             <textarea
               name="message"
               value={formData.message}
@@ -212,65 +173,44 @@ export default function RaiseYourVoice() {
               rows="5"
               required
               className={`w-full px-4 py-2 rounded-md border focus:outline-none transition-all resize-none ${
-                darkMode
-                  ? "bg-gray-800 text-white border-gray-600 focus:border-yellow-400"
-                  : "bg-white text-black border-gray-300 focus:border-orange-400"
+                darkMode ? "bg-black text-white border-gray-600 focus:border-white" : "bg-white text-black border-gray-300 focus:border-black"
               }`}
             ></textarea>
 
-            {/* Media Upload */}
             <label
               htmlFor="file-upload"
               className="flex items-center gap-3 cursor-pointer bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-md text-white"
             >
               <FaCloudUploadAlt /> Upload Images or Videos
-              {/* <input
+              <input
                 id="file-upload"
                 type="file"
-                accept="image/*,video/*"
+                accept="image/*,video/*,application/pdf"
                 onChange={handleFileChange}
+                multiple
                 className="hidden"
-              /> */}
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept="image/*,video/*,application/pdf"
-                  onChange={handleFileChange}
-                  multiple
-                  className="hidden"
-                />
+              />
             </label>
-            {/* {formData.file && (
-              <p className="text-sm text-green-400">
-                Selected: {formData.file.name}
-              </p>
-            )} */}{formData.files.length > 0 && (
-                    <ul className="text-sm text-green-400 list-disc pl-5">
-                      {formData.files.map((file, i) => (
-                        <li key={i}>{file.name}</li>
-                      ))}
-                    </ul>
-                  )}
 
-            {/* Submit */}
+            {formData.files.length > 0 && (
+              <ul className="text-sm text-green-500 list-disc pl-5">
+                {formData.files.map((file, i) => (
+                  <li key={i}>{file.name}</li>
+                ))}
+              </ul>
+            )}
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
               disabled={isSubmitting}
-              className="bg-yellow-400 text-black font-bold px-6 py-3 rounded-md shadow-md hover:bg-orange-500 transition-all"
+              className="bg-white text-black font-bold px-6 py-3 rounded-md shadow-md hover:bg-gray-200 transition-all"
             >
-              {isSubmitting ? (
-                "Submitting..."
-              ) : (
-                <>
-                  Submit Issue
-                </>
-              )}
+              {isSubmitting ? "Submitting..." : "Submit Issue"}
             </motion.button>
           </form>
 
-          {/* Success Message */}
           {successMessage && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -280,7 +220,7 @@ export default function RaiseYourVoice() {
               <FaCheckCircle className="inline-block mr-2" /> {successMessage}
             </motion.div>
           )}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
