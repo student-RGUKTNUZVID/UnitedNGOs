@@ -24,7 +24,18 @@ import NGOOngoingProjects from "./components/pages/NGOOngoingProjects";
 import NGOUpcomingProjects from "./components/pages/NGOUpcomingProjects";
 import ProjectView from "./components/pages/ProjectDetail"
 import "react-toastify/dist/ReactToastify.css";
-
+import CampaignCard from "./components/campain/RaiseCampaign";
+import DonatePage from "./components/pages/Donation";
+import CampaignsPage from "./components/campain/campainPage";
+import AwarenessPage from "./pages/Awareness";
+const DummyNgo = {
+  id: "1",
+  name: "Helping Hands",
+  description: "Support rural education and resources.",
+  targetAmount: 100000,
+  collectedAmount: 25000,
+  logo: { png: "/images/helpinghands-logo.png" },
+};
 function App() {
   return (
     <>
@@ -155,11 +166,16 @@ function App() {
             </MainLayout>
           }
         />
+        
 
         {/* Routes WITHOUT Navbar and Footer */}
         <Route path="/login" element={<Login />} />
         <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/donate/:id" element={<DonatePage />} />
+        <Route path="/raise-campaign" element={<CampaignsPage />} />
+        <Route path="/awareness" element={<AwarenessPage />} />
+      
       </Routes>
     </>
   );

@@ -1,19 +1,30 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect,useRef } from "react";
 import { HiOutlineMenu, HiX } from "react-icons/hi"; // Using react-icons
 import { motion } from "framer-motion";
-import { FaEllipsisV } from "react-icons/fa";
-import { useEffect, useRef } from "react";
+
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showExtraMenu, setShowExtraMenu] = useState(false);
   const [isNGO, setIsNGO] = useState(false);
+  const dropdownRef = useRef();
 
-  // Check if user is logged in as NGO
   useEffect(() => {
-    // This should be replaced with your actual authentication check
-    const userType = localStorage.getItem('userType');
-    setIsNGO(userType === 'ngo');
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowExtraMenu(false);
+      }
+    };
+  
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  
+  useEffect(() => {
+    const userType = localStorage.getItem("userType");
+    setIsNGO(userType === "ngo");
   }, []);
 
   return (
@@ -59,6 +70,7 @@ export default function Navbar() {
             </button>
             {showExtraMenu && (
               <motion.div
+               ref={dropdownRef}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
@@ -66,28 +78,28 @@ export default function Navbar() {
               >
                 <NavLink
                   to="/events"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                   onClick={() => setShowExtraMenu(false)}
                 >
                   Events
                 </NavLink>
                 <NavLink
                   to="/volunteer"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                   onClick={() => setShowExtraMenu(false)}
                 >
                   Volunteer
                 </NavLink>
                 <NavLink
                   to="/partners"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                   onClick={() => setShowExtraMenu(false)}
                 >
                   Our Partners
                 </NavLink>
                 <NavLink
                   to="/hackathons"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                   onClick={() => setShowExtraMenu(false)}
                 >
                   Hackathons
@@ -95,7 +107,7 @@ export default function Navbar() {
                 {isNGO && (
                   <NavLink
                     to="/register-hackathon"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                     onClick={() => setShowExtraMenu(false)}
                   >
                     Register Hackathon
@@ -103,7 +115,7 @@ export default function Navbar() {
                 )}
                 <NavLink
                   to="/success-stories"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition-all duration-300"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                   onClick={() => setShowExtraMenu(false)}
                 >
                   Success Stories
@@ -113,7 +125,7 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* Buttons */}
+        {/* Desktop Buttons */}
         <div className="hidden md:flex space-x-4 font-poppins pr-4">
           <NavLink to="/login">
             <button className="text-black text-[18px] rounded-[40px] font-medium w-[160px] h-[40px] hover:bg-[#00964D] hover:text-white hover:shadow-[0_0_12px_rgba(0,150,77,0.6)] transition-all duration-300">
@@ -134,72 +146,27 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <nav className="md:hidden shadow-md flex flex-col items-center py-4 space-y-4 bg-black/60 backdrop-blur-3xl">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#00964D] font-bold"
-                : "text-white hover:text-gray-400"
-            }
-            onClick={() => setIsOpen(false)}
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to="/ngos"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#00964D] font-bold"
-                : "text-white hover:text-gray-400"
-            }
-            onClick={() => setIsOpen(false)}
-          >
-            NGOs
-          </NavLink>
-          <NavLink
-            to="/ongoing-projects"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#00964D] font-bold"
-                : "text-white hover:text-gray-400"
-            }
-            onClick={() => setIsOpen(false)}
-          >
-            Ongoing Projects
-          </NavLink>
-          <NavLink
-            to="/upcoming-projects"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#00964D] font-bold"
-                : "text-white hover:text-gray-400"
-            }
-            onClick={() => setIsOpen(false)}
-          >
-            Upcoming Projects
-          </NavLink>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#00964D] font-bold"
-                : "text-white hover:text-gray-400"
-            }
-            onClick={() => setIsOpen(false)}
-          >
-            About Us
-          </NavLink>
-          <NavLink
-            to="/raise-issue"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#00964D] font-bold"
-                : "text-white hover:text-gray-400"
-            }
-            onClick={() => setIsOpen(false)}
-          >
-            Raise Your Issue
-          </NavLink>
+          {[
+            { to: "/", label: "Home" },
+            { to: "/ngos", label: "NGOs" },
+            { to: "/ongoing-projects", label: "Ongoing Projects" },
+            { to: "/upcoming-projects", label: "Upcoming Projects" },
+            { to: "/about", label: "About Us" },
+            { to: "/raise-issue", label: "Raise Your Issue" },
+          ].map(({ to, label }) => (
+            <NavLink
+              key={label}
+              to={to}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#00964D] font-bold"
+                  : "text-white hover:text-gray-400"
+              }
+              onClick={() => setIsOpen(false)}
+            >
+              {label}
+            </NavLink>
+          ))}
 
           {/* More Options */}
           <button
@@ -211,8 +178,8 @@ export default function Navbar() {
 
           {showExtraMenu && (
             <div className="flex flex-col space-y-2">
-              <NavLink 
-                to="/events" 
+              <NavLink
+                to="/events"
                 className="text-white hover:text-gray-400"
                 onClick={() => {
                   setIsOpen(false);
@@ -276,7 +243,7 @@ export default function Navbar() {
             </div>
           )}
 
-          {/* Login/Register Button */}
+          {/* Login Button */}
           <NavLink to="/login">
             <button className="w-[140px] px-4 py-2 bg-black text-white rounded-[40px] font-medium hover:bg-blue-700">
               Login/Register

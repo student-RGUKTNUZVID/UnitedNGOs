@@ -100,7 +100,7 @@ const TestimonialCarousel = () => {
           onClick={prevSlide}
           className="absolute left-2 top-[45%] transform -translate-y-1/2 bg-white p-2 shadow-lg rounded-full z-10"
         >
-          <FaChevronLeft className="text-xl text-gray-600" />
+      <FaChevronLeft className="text-xl text-gray-600" />
         </button>
         <button
           onClick={nextSlide}

@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { FaPhoneAlt,FaEnvelope, FaMapMarkerAlt, FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaComments, FaPaperPlane } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import axiosInstance from "../../utils/axiosInstance"
@@ -11,6 +11,26 @@ export default function ContactUs() {
   const [message,setMessage]=useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [locationUrl, setLocationUrl] = useState("");
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          const mapUrl = `https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`;
+          setLocationUrl(mapUrl);
+        },
+        (error) => {
+          console.error("Error fetching location:", error);
+          // fallback location (like a default city)
+          setLocationUrl("https://www.google.com/maps?q=Hyderabad&z=12&output=embed");
+        }
+      );
+    } else {
+      console.log("Geolocation is not supported by this browser.");
+      setLocationUrl("https://www.google.com/maps?q=Hyderabad&z=12&output=embed");
+    }
+  }, []);
   const addNewMessage=async()=>{
     try{
       const response=await axiosInstance.post("/submit-query",{
@@ -176,15 +196,18 @@ export default function ContactUs() {
   {/* Optional Earth Icon Footer */}
   <div className="mt-10 flex justify-center items-center text-green-500 text-xl">
     <FaGlobeAsia className="mr-2" />
-    <p>Spreading Connections Worldwide</p>
+    <p>Locate us</p>
   </div>
   <div className="mt-10">
-          <iframe
-            className="w-full h-64 rounded-lg shadow-lg"
-            src="https://www.google.com/maps/embed?..."
-            loading="lazy"
-          ></iframe>
-        </div>
+      {locationUrl && (
+        <iframe
+          className="w-full h-64 rounded-lg shadow-lg"
+          src={locationUrl}
+          loading="lazy"
+          allowFullScreen
+        ></iframe>
+      )}
+    </div>
 </div>
 </section>
   );
