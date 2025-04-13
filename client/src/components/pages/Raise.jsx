@@ -91,14 +91,14 @@ export default function RaiseYourVoice() {
 
   return (
     <section
-      className={`relative px-6 md:px-12 py-16 rounded-xl shadow-xl transition-all duration-500 ${darkMode ? "bg-black text-white" : "bg-gray-100 text-black"}`}
+      className="relative px-6 md:px-12 py-16 rounded-xl shadow-xl transition-all duration-500 bg-gray-100 text-black mt-2"
     >
-      <button
+      {/* <button
         onClick={() => setDarkMode(!darkMode)}
         className="absolute top-4 right-4 p-2 rounded-full bg-gray-400 hover:bg-gray-200 text-white transition-all"
       >
         {darkMode ? <FaSun /> : <FaMoon />}
-      </button>
+      </button> */}
 
       <div className="text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
@@ -113,9 +113,7 @@ export default function RaiseYourVoice() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className={`max-w-2xl mx-auto mt-10 p-6 rounded-lg shadow-lg transition-all duration-500 ${
-            darkMode ? "bg-zinc-900 border border-gray-700" : "bg-gray-300 border border-gray-300"
-          }`}
+          className="max-w-2xl mx-auto mt-10 p-6 rounded-lg shadow-lg transition-all duration-500 bg-gray-300 border border-gray-300"
         >
           <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
             <input
@@ -125,9 +123,8 @@ export default function RaiseYourVoice() {
               onChange={handleChange}
               placeholder="Your Name"
               required
-              className={`w-full px-4 py-2 rounded-md border focus:outline-none transition-all ${
-                darkMode ? "bg-black text-white border-gray-600 focus:border-white" : "bg-white text-black border-gray-300 focus:border-black"
-              }`}
+              className="w-full px-4 py-2 rounded-md border focus:outline-none transition-all bg-white text-black border-gray-300 focus:border-black"
+              
             />
 
             <input
@@ -137,9 +134,8 @@ export default function RaiseYourVoice() {
               onChange={handleChange}
               placeholder="Your Email"
               required
-              className={`w-full px-4 py-2 rounded-md border focus:outline-none transition-all ${
-                darkMode ? "bg-black text-white border-gray-600 focus:border-white" : "bg-white text-black border-gray-300 focus:border-black"
-              }`}
+              className="w-full px-4 py-2 rounded-md border focus:outline-none transition-all bg-white text-black border-gray-300 focus:border-black"
+              
             />
 
             <select
@@ -147,9 +143,9 @@ export default function RaiseYourVoice() {
               value={formData.category}
               onChange={handleChange}
               required
-              className={`w-full px-4 py-2 rounded-md border focus:outline-none transition-all ${
-                darkMode ? "bg-black text-white border-gray-600 focus:border-white" : "bg-white text-black border-gray-300 focus:border-black"
-              }`}
+              className="w-full px-4 py-2 rounded-md border focus:outline-none transition-all 
+              bg-white text-black border-gray-300 focus:border-black"
+              
             >
               {categories.map((cat) => (
                 <option key={cat} value={cat}>
@@ -165,9 +161,9 @@ export default function RaiseYourVoice() {
               onChange={handleChange}
               placeholder="Location of the Issue (City, Area, Landmark)"
               required
-              className={`w-full px-4 py-2 rounded-md border focus:outline-none transition-all ${
-                darkMode ? "bg-black text-white border-gray-600 focus:border-white" : "bg-white text-black border-gray-300 focus:border-black"
-              }`}
+              className="w-full px-4 py-2 rounded-md border focus:outline-none transition-all 
+          bg-white text-black border-gray-300 focus:border-black"
+          
             />
 
             <textarea
@@ -177,9 +173,9 @@ export default function RaiseYourVoice() {
               placeholder="Describe the issue in detail..."
               rows="5"
               required
-              className={`w-full px-4 py-2 rounded-md border focus:outline-none transition-all resize-none ${
-                darkMode ? "bg-black text-white border-gray-600 focus:border-white" : "bg-white text-black border-gray-300 focus:border-black"
-              }`}
+              className="w-full px-4 py-2 rounded-md border focus:outline-none transition-all resize-none 
+            bg-white text-black border-gray-300 focus:border-black"
+  
             ></textarea>
 
             <label
@@ -210,7 +206,7 @@ export default function RaiseYourVoice() {
               whileTap={{ scale: 0.95 }}
               type="submit"
               disabled={isSubmitting}
-              className="bg-white text-black font-bold px-6 py-3 rounded-md shadow-md hover:bg-gray-200 transition-all"
+              className="bg-white text-black font-bold px-6 py-3 rounded-md shadow-md hover:bg-gray-700 transition-all"
             >
               {isSubmitting ? "Submitting..." : "Submit Issue"}
             </motion.button>
