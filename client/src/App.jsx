@@ -11,13 +11,16 @@ import SearchUnite from "./components/SearchAndUnite";
 import CampaignBanner from "./components/campain/campaignBanner";
 import RaiseYourVoice from "./components/pages/Raise";
 import AuthSuccess from "./apicalls/AuthSuccess";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import Hackathons from "./components/pages/Hackathons";
+import RegisterHackathon from "./components/pages/RegisterHackathon";
+import SuccessStories from "./components/pages/SuccessStories";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-   <>
-   <ToastContainer />
+    <>
+      <ToastContainer />
       <Routes>
         {/* Routes with Navbar and Footer */}
         <Route
@@ -52,19 +55,43 @@ function App() {
             </MainLayout>
           }
         />
-         <Route
+        <Route
           path="/campaign"
           element={
             <MainLayout>
-              <CampaignBanner/>
+              <CampaignBanner />
             </MainLayout>
           }
         />
-         <Route
+        <Route
           path="/raise-issue"
           element={
             <MainLayout>
-              <RaiseYourVoice/>
+              <RaiseYourVoice />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/hackathons"
+          element={
+            <MainLayout>
+              <Hackathons />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/register-hackathon"
+          element={
+            <MainLayout>
+              <RegisterHackathon />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/success-stories"
+          element={
+            <MainLayout>
+              <SuccessStories />
             </MainLayout>
           }
         />
@@ -74,7 +101,7 @@ function App() {
         <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/register" element={<Register />} />
       </Routes>
-      </>
+    </>
   );
 }
 
