@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { HiOutlineMenu, HiX } from "react-icons/hi"; // Using react-icons
 import { motion } from "framer-motion";
 import { FaEllipsisV } from "react-icons/fa";
@@ -28,7 +28,7 @@ export default function Navbar() {
         <nav className="hidden md:flex space-x-8 font-poppins">
           {[
             { to: "/", label: "Home" },
-            { to: "/ngos", label: "NGOs" },
+            { to: "/getallngos", label: "NGOs" },
             { to: "/ongoing-projects", label: "Ongoing Projects" },
             { to: "/upcoming-projects", label: "Upcoming Projects" },
             { to: "/about", label: "About Us" },

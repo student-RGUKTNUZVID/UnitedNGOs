@@ -15,6 +15,14 @@ import Hackathons from "./components/pages/Hackathons";
 import RegisterHackathon from "./components/pages/RegisterHackathon";
 import SuccessStories from "./components/pages/SuccessStories";
 import { ToastContainer } from "react-toastify";
+import AllNGOsPage from "./components/pages/allNGOs";
+import NGODetailPage from "./components/pages/NGODetailPage";
+import OngoingProjects from "./components/pages/OngoingProjects";
+import UpcomingProjects from "./components/pages/UpcomingProjects";
+import NGOCompletedProjects from "./components/pages/NGOCompletedProjects";
+import NGOOngoingProjects from "./components/pages/NGOOngoingProjects";
+import NGOUpcomingProjects from "./components/pages/NGOUpcomingProjects";
+import ProjectView from "./components/pages/ProjectDetail"
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -92,6 +100,58 @@ function App() {
           element={
             <MainLayout>
               <SuccessStories />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/getallngos"
+          element={
+            <MainLayout>
+              <AllNGOsPage />
+            </MainLayout>
+          }
+        />
+        <Route path="/ngo/:id" element={
+          <MainLayout>
+          <NGODetailPage />
+          </MainLayout>
+          } />
+        <Route path="/ngo/completed-projects/:id" element={
+          <MainLayout>
+          <NGOCompletedProjects/>
+          </MainLayout>
+          } />
+        <Route path="/ngo/ongoing-projects/:id" element={
+          <MainLayout>
+          <NGOOngoingProjects />
+          </MainLayout>
+          } />
+        <Route path="/ngo/upcoming-projects/:id" element={
+          <MainLayout>
+          <NGOUpcomingProjects />
+          </MainLayout>
+          } />
+        <Route
+          path="/ongoing-projects"
+          element={
+            <MainLayout>
+              <OngoingProjects/>
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/upcoming-projects"
+          element={
+            <MainLayout>
+              <UpcomingProjects/>
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/project-view"
+          element={
+            <MainLayout>
+              <ProjectView/>
             </MainLayout>
           }
         />
