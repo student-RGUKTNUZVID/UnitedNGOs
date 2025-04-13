@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useState, useEffect,useRef } from "react";
-import { HiOutlineMenu, HiX } from "react-icons/hi";
+import { HiOutlineMenu, HiX } from "react-icons/hi"; // Using react-icons
 import { motion } from "framer-motion";
 
 export default function Navbar() {
@@ -39,7 +39,7 @@ export default function Navbar() {
         <nav className="hidden md:flex space-x-8 font-poppins">
           {[
             { to: "/", label: "Home" },
-            { to: "/ngos", label: "NGOs" },
+            { to: "/getallngos", label: "NGOs" },
             { to: "/ongoing-projects", label: "Ongoing Projects" },
             { to: "/upcoming-projects", label: "Upcoming Projects" },
             { to: "/about", label: "About Us" },
