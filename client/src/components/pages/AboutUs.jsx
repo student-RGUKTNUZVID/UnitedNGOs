@@ -4,7 +4,7 @@ import { ChevronUpIcon } from "@heroicons/react/24/outline";
 
 const AboutUs = () => {
   return (
-    <div className="bg-gray-100 min-h-screen overflow-hidden">
+    <div className="bg-gray-100 min-h-screen overflow-hidden mt-2">
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center justify-between py-12 md:py-16 bg-white shadow-lg px-6 md:px-12">
         {/* Left Content */}

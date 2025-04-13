@@ -28,7 +28,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="top-0 left-0 w-full z-50 bg-white shadow-6xl px-0 border-b">
+    <header className="top-0 left-0 w-full z-50 bg-white  drop-shadow-xl px-0">
       <div className="w-full flex justify-between items-center py-2">
         {/* Logo */}
         <div className="flex items-start gap-2 pl-2">
@@ -42,7 +42,7 @@ export default function Navbar() {
             { to: "/getallngos", label: "NGOs" },
             { to: "/ongoing-projects", label: "Ongoing Projects" },
             { to: "/upcoming-projects", label: "Upcoming Projects" },
-            { to: "/about", label: "About Us" },
+            // { to: "/about", label: "About Us" },
             { to: "/raise-issue", label: "Raise Your Issue" },
           ].map(({ to, label }) => (
             <NavLink
@@ -151,7 +151,7 @@ export default function Navbar() {
             { to: "/ngos", label: "NGOs" },
             { to: "/ongoing-projects", label: "Ongoing Projects" },
             { to: "/upcoming-projects", label: "Upcoming Projects" },
-            { to: "/about", label: "About Us" },
+            // { to: "/about", label: "About Us" },
             { to: "/raise-issue", label: "Raise Your Issue" },
           ].map(({ to, label }) => (
             <NavLink
