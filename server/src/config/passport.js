@@ -23,6 +23,7 @@ passport.use(
             googleId: profile.id,
             userName: profile.displayName,
             email: profile.emails[0].value,
+            photo: profile.photos[0].value,
             role: req.session.role || 'volunteer'
              // add other fields if necessary
           });

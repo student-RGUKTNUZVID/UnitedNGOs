@@ -41,25 +41,64 @@ const AwarenessPage = () => {
       </section>
 
       <section className="bg-gray-100 py-12">
-        <h2 className="text-3xl font-bold text-center mb-8">Stories of Impact</h2>
-        <div className="max-w-4xl mx-auto px-4 grid gap-6 md:grid-cols-2">
-          {/* Replace with dynamic data later */}
-          <motion.div
-            className="bg-white p-6 rounded-xl shadow-lg"
-            whileHover={{ scale: 1.02 }}
-          >
-            <p className="italic">"Thanks to Green Earth NGO, our village now has a community garden!"</p>
-            <p className="text-right mt-4 font-semibold text-green-700">– Ramesh, Farmer</p>
-          </motion.div>
-          <motion.div
-            className="bg-white p-6 rounded-xl shadow-lg"
-            whileHover={{ scale: 1.02 }}
-          >
-            <p className="italic">"Helping Hands provided scholarships to 20 girls in our town."</p>
-            <p className="text-right mt-4 font-semibold text-green-700">– Aarti, Volunteer</p>
-          </motion.div>
-        </div>
-      </section>
+  <h2 className="text-3xl font-bold text-center mb-8">Stories of Impact</h2>
+  <div className="max-w-6xl mx-auto px-4 grid gap-8 md:grid-cols-2">
+    {/* Video 1 */}
+    <motion.div
+      className="bg-white p-4 rounded-xl shadow-lg"
+      whileHover={{ scale: 1.02 }}
+    >
+      <div className="aspect-video">
+        <iframe
+          className="w-full h-full rounded-md"
+          src="https://www.youtube.com/embed/DUTG63pxVpA"
+          title="Story 1"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    </motion.div>
+
+    {/* Video 2 */}
+    <motion.div
+      className="bg-white p-4 rounded-xl shadow-lg"
+      whileHover={{ scale: 1.02 }}
+    >
+      <div className="aspect-video">
+        <iframe
+          className="w-full h-full rounded-md"
+          src="https://www.youtube.com/embed/DUTG63pxVpA"
+          title="Story 2"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    </motion.div>
+
+    {/* Video 3 */}
+    <motion.div
+      className="bg-white p-4 rounded-xl shadow-lg"
+      whileHover={{ scale: 1.02 }}
+    >
+      <div className="aspect-video">
+        <iframe
+          className="w-full h-full rounded-md"
+          src="https://www.youtube.com/embed/ARMDqv98ak8"
+          title="Story 3"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
+    </motion.div>
+    
+  </div>
+</section>
+
+
+
 
       <section className="py-12 text-center bg-white">
         <h2 className="text-3xl font-bold mb-6">How You Can Help</h2>

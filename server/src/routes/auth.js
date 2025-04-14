@@ -48,16 +48,19 @@ router.post('/login', async (req, res) => {
 // GET /user/profile
 router.get('/profile', authMiddleWare, async (req, res) => {
   try {
-    const userId = req.body.userId; // comes from your token
-    const user = await User.findById(userId).select('-password'); // exclude password
+    const userId = req.user.id; // correctly retrieved from middleware
+
+    const user = await User.findById(userId).select('-password');
 
     if (!user) return res.status(404).json({ msg: 'User not found' });
 
     res.status(200).json(user);
   } catch (err) {
+    console.error(err);
     res.status(500).json({ msg: 'Server error' });
   }
 });
+
 router.get('/google', 
 (req,res,next)=>{
   req.session.role = req.query.role || 'volunteer';
