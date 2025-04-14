@@ -1,5 +1,5 @@
 import Footer from '../footer/footer'
-//import Navbar from '../navbar/Navbar';
+import Navbar from '../navbar/Navbar';
 import Projects from '../../layouts/projects';
 import StatsComponent from '../../layouts/Stats';
 import TestimonialCarousel from '../../layouts/Stories';
@@ -14,7 +14,6 @@ const HomePage = () => {
          <Projects/>
         <StatsComponent/>
         <TestimonialCarousel/>
-        
     </div>
   );
 };

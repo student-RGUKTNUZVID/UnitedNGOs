@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import CampaignCard from "./RaiseCampaign";
-
-
 const CampaignList = ({ ngos }) => {
   const [searchTerm, setSearchTerm] = useState("");
 

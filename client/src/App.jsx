@@ -30,6 +30,8 @@ import CampaignsPage from "./components/campain/campainPage";
 import AwarenessPage from "./pages/Awareness";
 import Team from "./components/pages/Team";
 import ProfilePage from "./pages/Profile";
+import VolunteerForm from "./pages/volunteer";
+import CollaboratorForm from "./pages/collaborator";
 const DummyNgo = {
   id: "1",
   name: "Helping Hands",
@@ -186,6 +188,9 @@ function App() {
         <Route path="/raise-campaign" element={<CampaignsPage />} />
         <Route path="/awareness" element={<AwarenessPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/volunteer-form" element={<VolunteerForm />} />
+        <Route path="/collaborator-form" element={<CollaboratorForm />} />
+
       
       </Routes>
     </>

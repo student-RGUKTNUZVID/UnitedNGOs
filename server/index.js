@@ -7,6 +7,7 @@ import session from 'express-session';
 import './src/config/passport.js'; // or wherever your config is
 import db from './src/models/database.js';
 import userRoute from "./src/routes/auth.js";
+import volunteerRoute from "./src/routes/volunteerRoute.js";
 //dotenv is a package that loads environment variables from a .env file into process.env
 import routes from './src/routes/ngoroutes.js';
 import hackathonRoutes from './src/routes/hackathonRoutes.js';
@@ -35,7 +36,7 @@ app.use(passport.session());
 app.use('/auth', userRoute);
 app.use('/',routes);
 app.use('/api/auth',userRoute);
-
+app.use('/api',volunteerRoute);
 // Routes
 app.use('/api/hackathons', hackathonRoutes);
 

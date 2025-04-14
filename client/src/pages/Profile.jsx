@@ -30,7 +30,6 @@ console.log(user?.photo);
   if (!user) {
     return <div className="text-center mt-10 text-gray-600">Loading...</div>;
   }
-
   return (
     <div className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-md rounded-2xl">
       <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
