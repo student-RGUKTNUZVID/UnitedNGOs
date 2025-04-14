@@ -7,7 +7,7 @@ const HeroSection = () => {
   
     <div className="relative w-full  mx-auto h-auto ">
       {/* Hero Section Wrapper with Small Gap */}
-      <div className="relative w-full h-auto bg-gray-900 overflow-hidden p-6 md:p-8">
+      <div className="relative w-full h-auto bg-gray-900 overflow-visible p-6 md:p-8">
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center rounded-[12px]" 

@@ -29,6 +29,7 @@ import DonatePage from "./components/pages/Donation";
 import CampaignsPage from "./components/campain/campainPage";
 import AwarenessPage from "./pages/Awareness";
 import Team from "./components/pages/Team";
+import ProfilePage from "./pages/Profile";
 const DummyNgo = {
   id: "1",
   name: "Helping Hands",
@@ -184,6 +185,7 @@ function App() {
         <Route path="/donate/:id" element={<DonatePage />} />
         <Route path="/raise-campaign" element={<CampaignsPage />} />
         <Route path="/awareness" element={<AwarenessPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       
       </Routes>
     </>

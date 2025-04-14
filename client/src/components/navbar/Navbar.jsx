@@ -28,13 +28,12 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="top-0 left-0 w-full z-50 bg-white  drop-shadow-xl px-0">
+    <header className="top-0 left-0 w-full bg-white  drop-shadow-xl">
       <div className="w-full flex justify-between items-center py-2">
         {/* Logo */}
         <div className="flex items-start gap-2 pl-2">
           <img src="LogoNew-3.png" alt="logo" className="h-15 w-[190px]" />
         </div>
-
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 font-poppins">
           {[
@@ -61,7 +60,7 @@ export default function Navbar() {
           ))}
 
           {/* More Dropdown */}
-          <div className="relative">
+          <div className="relative overflow-visible z-50">
             <button
               className="text-gray-700 hover:text-[#00964D] transition duration-300"
               onClick={() => setShowExtraMenu(!showExtraMenu)}
@@ -74,7 +73,7 @@ export default function Navbar() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="absolute left-0 top-full bg-white shadow-xl rounded-lg mt-2 py-2 w-[200px] z-50"
+                className="absolute left-0 top-full bg-green-300 shadow-xl rounded-lg mt-2 py-2 w-[200px] z-[100]"
               >
                 <NavLink
                   to="/events"

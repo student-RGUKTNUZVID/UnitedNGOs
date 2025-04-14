@@ -64,7 +64,7 @@ export default function ContactUs() {
 
   return (
    
-<section className="relative bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 md:px-12 py-16 rounded-xl shadow-2xl overflow-hidden border border-green-700 ring-1 ring-green-500/20">
+<section className="relative bg-gradient-to-br from-black via-gray-900 to-black text-white px-6 md:px-12 py-16 rounded-xl shadow-2xl  border border-green-700 ring-1 ring-green-500/20">
 
 {/* Sparkle Background Effect */}
 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-green-900/10 via-transparent to-transparent pointer-events-none z-0"></div>
