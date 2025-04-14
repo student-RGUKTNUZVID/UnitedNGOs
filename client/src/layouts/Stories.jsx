@@ -1,117 +1,108 @@
-import React, { useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-
-const testimonials = [
-  {
-    quote: "I didn’t just visit Norway—I experienced its soul. A magical journey through fjords and mountains.",
-    author: "H. Sai Kumar",
-    role: "Co-Founder, UNGO",
-    image: "/profile1.jpg",
-  },
-  {
-    quote: "With this platform, I discovered hidden gems, from Arctic landscapes to cozy Scandinavian villages.",
-    author: "Chinta Ganesh",
-    role: "Founder, UNGO",
-    image: "/profile2.jpg",
-  },
-  {
-    quote: "Exploring the vibrant culture of Norway opened my eyes to new traditions and culinary delights.",
-    author: "Shivanarayan Sir",
-    role: "Asst Prof, RGUKT",
-    image: "logo.png",
-  },
-  {
-    quote: "This journey was breathtaking. Every moment was a new discovery!",
-    author: "John Doe",
-    role: "Traveler",
-    image: "/profile4.jpg",
-  },
-  {
-    quote: "A once-in-a-lifetime experience that changed my perspective on life.",
-    author: "Jane Smith",
-    role: "Explorer",
-    image: "/profile5.jpg",
-  },
-  {
-    quote: "I never thought travel could be this immersive. Highly recommended!",
-    author: "Michael Lee",
-    role: "Blogger",
-    image: "/profile6.jpg",
-  },
-];
+import { useEffect, useState, useRef } from "react";
 
 const TestimonialCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const testimonials = [
+    {
+      quote:
+        "I was impressed by the food — every dish is bursting with flavor! And I could really tell that they use high-quality ingredients. The staff was friendly and attentive, going the extra mile. I'll definitely be back for more!",
+      name: "Tamar Mendelson",
+      designation: "Restaurant Critic",
+    },
+    {
+      quote:
+        "This place exceeded all expectations! The atmosphere is inviting, and the staff truly goes above and beyond to ensure a fantastic visit. I'll definitely keep returning for more exceptional dining experience.",
+      name: "Joe Charlescraft",
+      designation: "Frequent Visitor",
+    },
+    {
+      quote:
+        "Shining Yam is a hidden gem! From the moment I walked in, I knew I was in for a treat. The impeccable service and overall attention to detail created a memorable experience. I highly recommend it!",
+      name: "Martina Edelweist",
+      designation: "Satisfied Customer",
+    },
+  ];
 
-  const itemsPerPage = window.innerWidth < 640 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const intervalRef = useRef(null);
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? testimonials.length - itemsPerPage : prevIndex - itemsPerPage
-    );
-  };
+  const handleNext = () =>
+    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  const handlePrev = () =>
+    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + itemsPerPage >= testimonials.length ? 0 : prevIndex + itemsPerPage
-    );
-  };
+  useEffect(() => {
+    intervalRef.current = setInterval(handleNext, 5000);
+    return () => clearInterval(intervalRef.current);
+  }, [activeIndex]);
 
   return (
-    <div className="w-full max-w-5xl mx-auto text-center py-10 px-4 relative">
-      <h2 className="text-[28px] md:text-[35px] font-bold font-montserrat">
-        Hear the Success Stories from Team United Ngos
-      </h2>
+    <div className="relative w-full p-10 bg-white rounded-lg shadow-lg">
+      <div className="text-center mx-auto w-full max-w-[1200px]">
+        {/* Testimonial Content */}
+        <div>
+          <p className="text-xl text-[#444444] italic mb-6">
+            "{testimonials[activeIndex].quote}"
+          </p>
+          <h3 className="text-2xl font-bold text-[#333333] mb-1">
+            {testimonials[activeIndex].name}
+          </h3>
+          <p className="text-sm text-[#6b6b6b] mb-4">
+            {testimonials[activeIndex].designation}
+          </p>
+        </div>
 
-      {/* Carousel Container */}
-      <div className="relative overflow-hidden w-full mt-6">
-        <div
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{
-            transform: `translateX(-${(currentIndex / itemsPerPage) * 100}%)`,
-            display: 'flex',
-          }}
-        >
-          {testimonials.map((item, index) => (
+        {/* Dot Navigation */}
+        <div className="flex justify-center gap-4 mb-6">
+          {testimonials.map((_, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 px-4 flex justify-center min-w-0"
-            >
-              <div className="bg-white p-6 shadow-lg rounded-lg text-left w-full min-h-[300px] flex flex-col justify-between border border-gray-200">
-                <p className="text-gray-700 text-lg italic">{`"${item.quote}"`}</p>
-                <div className="flex items-center mt-4">
-                  <img
-                    src={item.image}
-                    alt={item.author}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div className="ml-4">
-                    <p className="font-semibold text-lg">{item.author}</p>
-                    <p className="text-gray-500 text-sm">{item.role}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              onClick={() => setActiveIndex(index)}
+              className={`w-3 h-3 rounded-full cursor-pointer transition-all duration-300 ${
+                activeIndex === index ? "bg-[#4CAF50]" : "bg-[#e0e0e0]"
+              }`}
+            ></div>
           ))}
         </div>
 
-        {/* Navigation Buttons */}
+        {/* View All Button */}
+        <div className="mt-8">
+          <a
+            href="#all-testimonials" // You can replace this with your actual URL or an anchor tag to scroll to a section
+            className="inline-block px-8 py-2 text-lg font-semibold text-[#4CAF50] bg-white border-2 border-[#4CAF50] rounded-full hover:bg-[#4CAF50] hover:text-white transition duration-300"
+          >
+            View All Testimonials
+          </a>
+        </div>
+      </div>
+
+      {/* Left and Right Arrow Controls */}
+      <div className="absolute top-1/2 left-4 transform -translate-y-1/2">
         <button
-          onClick={prevSlide}
-          className="absolute left-2 top-[45%] transform -translate-y-1/2 bg-white p-2 shadow-lg rounded-full z-10"
+          onClick={handlePrev}
+          className="w-10 h-10 rounded-full bg-[#4CAF50] hover:bg-[#388E3C] transition flex items-center justify-center"
         >
-      <FaChevronLeft className="text-xl text-gray-600" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute right-2 top-[45%] transform -translate-y-1/2 bg-white p-2 shadow-lg rounded-full z-10"
-        >
-          <FaChevronRight className="text-xl text-gray-600" />
+          <svg
+            className="w-5 h-5 fill-[#FFFFFF] transform hover:-rotate-12"
+            viewBox="0 0 24 24"
+          >
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+          </svg>
         </button>
       </div>
 
-      {/* Donation Section */}
-      
+      <div className="absolute top-1/2 right-4 transform -translate-y-1/2">
+        <button
+          onClick={handleNext}
+          className="w-10 h-10 rounded-full bg-[#4CAF50] hover:bg-[#388E3C] transition flex items-center justify-center"
+        >
+          <svg
+            className="w-5 h-5 fill-[#FFFFFF] transform hover:rotate-12"
+            viewBox="0 0 24 24"
+          >
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 };

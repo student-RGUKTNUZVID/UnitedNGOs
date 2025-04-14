@@ -133,9 +133,9 @@
 // };
 
 // export default AboutUs;
-import React from 'react';
+import React from "react";
 
-const AboutUs = () => {
+const AboutSection = () => {
   return (
     <div className="bg-white text-gray-800 min-h-screen py-12 px-6 md:px-20">
       <div className="max-w-4xl mx-auto space-y-10">
@@ -175,7 +175,70 @@ const AboutUs = () => {
         </section>
       </div>
     </div>
+    <section className="relative bg-white py-20 px-6 md:px-12 overflow-hidden">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+        {/* Content Column */}
+        <div className="order-2 md:order-1 relative z-10">
+          <div className="mb-6">
+            <span className="text-green-600 text-lg font-semibold uppercase">About United NGOs</span>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mt-4 mb-6">
+              Uniting for Change <br /> Empowering Lives Since 1992
+            </h2>
+            <p className="text-gray-600 leading-7 mb-6">
+              United NGOs is a coalition of committed organizations striving to uplift communities
+              across India through education, healthcare, empowerment, and sustainable development.
+              We believe in the power of unity to create a lasting impact and bring positive change
+              to society.
+            </p>
+            <ul className="space-y-3 mb-8">
+              <li className="pl-8 relative text-gray-800">
+                <span className="absolute left-0 top-0 text-green-600 text-lg">&#10003;</span>
+                Supporting 500+ grassroots NGOs nationwide
+              </li>
+              <li className="pl-8 relative text-gray-800">
+                <span className="absolute left-0 top-0 text-green-600 text-lg">&#10003;</span>
+                Driving change through collaboration & innovation
+              </li>
+              <li className="pl-8 relative text-gray-800">
+                <span className="absolute left-0 top-0 text-green-600 text-lg">&#10003;</span>
+                Focused on education, health, and women empowerment
+              </li>
+            </ul>
+            <a
+              href="#"
+              className="inline-block bg-green-600 text-white py-3 px-6 font-semibold rounded hover:bg-green-700 transition"
+            >
+              Contact Us
+            </a>
+          </div>
+        </div>
+
+        {/* Image Column */}
+        <div className="relative order-1 md:order-2">
+          {/* Green circular background design */}
+          <div className="absolute -top-16 -left-16 w-[450px] h-[450px] rounded-full bg-green-100 z-0"></div>
+
+          <div className="relative z-10 pl-10 pb-10">
+            {/* Reduce size of large image */}
+            <div className="relative z-20 shadow-lg rounded overflow-hidden mb-4">
+              <img
+                src="https://i.ibb.co/QP6Nmpf/image-1-about.jpg"
+                alt="About Image 1"
+                className="w-[80%] object-cover"
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 w-[220px] z-20 shadow-lg rounded overflow-hidden">
+              <img
+                src="https://i.ibb.co/JvN0NVB/image-2-about.jpg"
+                alt="About Image 2"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default AboutUs;
+export default AboutSection;
