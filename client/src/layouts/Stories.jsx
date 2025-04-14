@@ -111,18 +111,7 @@ const TestimonialCarousel = () => {
       </div>
 
       {/* Donation Section */}
-      <div className="bg-gray-100 p-6 rounded-lg mt-10 flex flex-col md:flex-row justify-between items-center">
-        <div className="text-left">
-          <p className="text-lg font-semibold">Want to Donate?</p>
-          <p className="text-gray-500 text-sm">
-            Your small contribution can create a big impact — donate now and be the change.
-          </p>
-        </div>
-        <div className="flex gap-4 mt-4 md:mt-0">
-          <button className="px-4 py-2 border border-black rounded-lg">Learn more</button>
-          <button className="px-4 py-2 bg-black text-white rounded-lg">Donate Us!</button>
-        </div>
-      </div>
+      
     </div>
   );
 };

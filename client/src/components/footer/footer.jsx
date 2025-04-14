@@ -44,7 +44,7 @@ const Footer = () => {
               { name: "Projects", path: "#" },
               { name: "About us", path: "/about" },
               { name: "NGOs", path: "#" },
-              { name: "Our Team", path: "#" },
+              { name: "Our Team", path: "/team" },
               { name: "Contact us", path: "/contact" },
             ].map((link, index) => {
               const isActive = location.pathname === link.path;
