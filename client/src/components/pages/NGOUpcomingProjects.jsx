@@ -26,7 +26,7 @@ const NGOUpcomingProjects = () => {
           fetchNGOUpcomingProjects();
     },[])
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
+    <div className="min-h-screen bg-gray-50 pt-20 py-10 px-4">
       <h2 className="text-3xl md:text-4xl font-semibold text-center text-gray-800 relative mb-12">
         Upcoming Projects
         <span className="block w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></span>
