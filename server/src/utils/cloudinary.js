@@ -12,8 +12,9 @@ const storage = new CloudinaryStorage({
   allowedFormats: ['jpg', 'png', 'mp4', 'mov', 'pdf'],
   params: async (req, file) => {
     let resourceType = 'auto'; // auto-detect image, video, pdf
+    const folder = req.originalUrl.includes('/hackathons') ? 'hackathons_media' : 'issues_media';
     return {
-      folder: 'issues_media',
+      folder,
       resource_type: resourceType,
       format: file.mimetype.split('/')[1], // get file extension
       public_id: `${Date.now()}-${file.originalname.split('.')[0]}`,

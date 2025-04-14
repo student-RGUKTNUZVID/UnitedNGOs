@@ -1,7 +1,7 @@
-// require("../models/database");
 import Contact from "../models/contactModel.js";
 import Issue from "../models/issueModel.js";
 import NGO from "../models/ngoModel.js";
+import Hackathon from "../models/Hackathon.js";
 import CompletedProject from "../models/completedProjectModel.js";
 import OngoingProject from "../models/ongoingProjectModel.js";
 import UpcomingProject from "../models/upcomingProjectModel.js";
@@ -153,7 +153,54 @@ const getNgoUpcomingProjects=async(req,res)=>{
     res.status(500).json({ message: "Internal Server Error" });
   }
 }
-export {submitQuery,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects}
+
+const submitHackathon=async(req,res)=>{
+  try {
+    const {
+      title,
+      description,
+      startDate,
+      endDate,
+      location,
+      maxParticipants,
+      prize,
+      contactEmail,
+      requirements,
+    } = req.body;
+
+    let imageUrl = null;
+
+    // Check if file was uploaded
+    if (req.file) {
+      // Get the file URL from Cloudinary's response
+      imageUrl = req.file.path;  // Cloudinary file URL
+    }
+
+    const newHackathon = new Hackathon({
+      title,
+      description,
+      startDate,
+      endDate,
+      location,
+      maxParticipants: parseInt(maxParticipants),
+      prize,
+      contactEmail,
+      requirements,
+      image: imageUrl,
+    });
+
+    await newHackathon.save();
+
+    res.status(201).json({
+      message: "Hackathon created successfully",
+      hackathon: newHackathon,
+    });
+  } catch (error) {
+    console.error("Error submitting hackathon:", error);
+    res.status(500).json({ message: "Failed to create hackathon" });
+  }
+}
+export {submitQuery,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitHackathon}
 
 // async function insertOngoingProjectData(){
 //   try{

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import axiosInstance from "../../utils/axiosInstance";
 
 const RegisterHackathon = () => {
   const navigate = useNavigate();
@@ -46,13 +47,12 @@ const RegisterHackathon = () => {
         }
       });
 
-      const response = await axios.post("/api/hackathons", formDataToSend, {
+      const response = await axiosInstance.post("/register-hackathon", formDataToSend, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-
+      console.log(response);
       if (response.status === 201) {
         alert("Hackathon registered successfully!");
         navigate("/hackathons");
