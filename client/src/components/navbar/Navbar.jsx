@@ -2,20 +2,19 @@ import { NavLink } from "react-router-dom";
 import { useState, useEffect,useRef } from "react";
 import { HiOutlineMenu, HiX } from "react-icons/hi"; // Using react-icons
 import { motion } from "framer-motion";
-
+import ProfileWidget from "../../pages/profileWidget";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showExtraMenu, setShowExtraMenu] = useState(false);
   const [isNGO, setIsNGO] = useState(false);
   const dropdownRef = useRef();
-
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowExtraMenu(false);
       }
-    };
-  
+    }; 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -26,7 +25,10 @@ export default function Navbar() {
     const userType = localStorage.getItem("userType");
     setIsNGO(userType === "ngo");
   }, []);
-
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token);
+  }, []);
   return (
     <header className="top-0 left-0 w-full bg-white  drop-shadow-xl">
       <div className="w-full flex justify-between items-center py-2">
@@ -126,11 +128,15 @@ export default function Navbar() {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex space-x-4 font-poppins pr-4">
-          <NavLink to="/login">
-            <button className="text-black text-[18px] rounded-[40px] font-medium w-[160px] h-[40px] hover:bg-[#00964D] hover:text-white hover:shadow-[0_0_12px_rgba(0,150,77,0.6)] transition-all duration-300">
+        {isLoggedIn ? (
+        <ProfileWidget />
+      ) : (
+        <NavLink to="/login">
+         <button className="text-black text-[18px] rounded-[40px] font-medium w-[160px] h-[40px] hover:bg-[#00964D] hover:text-white hover:shadow-[0_0_12px_rgba(0,150,77,0.6)] transition-all duration-300">
               Login/Register
             </button>
-          </NavLink>
+        </NavLink>
+      )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -243,6 +249,7 @@ export default function Navbar() {
           )}
 
           {/* Login Button */}
+          
           <NavLink to="/login">
             <button className="w-[140px] px-4 py-2 bg-black text-white rounded-[40px] font-medium hover:bg-blue-700">
               Login/Register

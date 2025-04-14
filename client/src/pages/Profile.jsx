@@ -1,61 +1,84 @@
-import React from 'react';
-import axiosInstance from '../utils/axiosInstance';
-import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { FiLogOut } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../utils/axiosInstance'; // uses token automatically if configured
+import { toast } from 'react-toastify';
+
 const ProfilePage = () => {
-    const fetchUserProfile = async () => {
-        try {
-          const token = localStorage.getItem('token');
-          if (!token) {
-            console.warn('No token found in localStorage');
-            return;
-          }
-      
-          const res = await axios.get('http://localhost:3000/api/auth/profile', {
-            headers: {
-              Authorization: `Bearer ${token}`, // ✅ must start with Bearer
-            },
-          });
-      
-          console.log('User profile:', res.data);
-          return res.data;
-        } catch (err) {
-          console.error('Error fetching user profile:', err);
-        }
-      };
-      
-   const user=fetchUserProfile(); 
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await axiosInstance.get('/api/auth/profile'); // Your backend endpoint
+        setUser(res.data); // assuming res.data is the user object
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+        toast.error("Failed to fetch user profile.");
+      }
+    };
+
+    fetchProfile();
+  }, []);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // ✅ Remove token
+    navigate('/login'); // ✅ Redirect to login page
+  };
+
+console.log(user?.photo);
+  if (!user) {
+    return <div className="text-center mt-10 text-gray-600">Loading...</div>;
+  }
+
   return (
-    <div className="max-w-4xl mx-auto mt-10 p-6 bg-white shadow-md rounded-2xl">
+    <div className="max-w-5xl mx-auto mt-10 p-6 bg-white shadow-md rounded-2xl">
       <div className="flex flex-col md:flex-row gap-6 items-center md:items-start">
+      {user.photo ? (
         <img
-          src={user.image || 'https://via.placeholder.com/150'}
-          alt="Profile"
-          className="w-32 h-32 rounded-full border-4 border-indigo-500 object-cover"
-        />
+  src={user.photo}
+  alt="Profile"
+  className="w-32 h-32 rounded-full bg-amber-400 border-4 border-indigo-500 object-cover"
+/>
+) : (
+    <div className="w-32 h-32 rounded-full bg-gray-300 flex items-center justify-center text-white text-3xl font-bold">
+    {user?.userName
+      ? user.userName
+          .split(' ')
+          .map(word => word[0])
+          .join('')
+          .toUpperCase()
+      : ''}
+  </div>
+  
+)}
         <div className="flex-1">
           <h1 className="text-2xl font-bold text-gray-800">
-            {user.name} <span className="text-sm text-indigo-600">({user.role})</span>
+            {user.userName} <span className="text-sm text-indigo-600">({user.role})</span>
           </h1>
           <p className="text-gray-600 mt-1">{user.email}</p>
-          <p className="text-sm text-gray-400 mt-1">📍 {user.location}</p>
-          <div className="mt-4">
-            <h2 className="text-lg font-semibold text-indigo-700">About</h2>
-            <p className="text-gray-700 mt-1">{user.bio}</p>
-          </div>
-
-          <div className="mt-4">
-            <h2 className="text-lg font-semibold text-indigo-700">Skills / Causes</h2>
-            <ul className="flex flex-wrap gap-2 mt-1">
-              {user.skills.map((skill, idx) => (
-                <li key={idx} className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">
-                  {skill}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <button className="mt-6 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
-            Edit Profile
+          {user.location && <p className="text-sm text-gray-400 mt-1">📍 {user.location}</p>}
+          {user.bio && (
+            <div className="mt-4">
+              <h2 className="text-lg font-semibold text-indigo-700">About</h2>
+              <p className="text-gray-700 mt-1">{user.bio}</p>
+            </div>
+          )}
+          {user.skills?.length > 0 && (
+            <div className="mt-4">
+              <h2 className="text-lg font-semibold text-indigo-700">Skills / Causes</h2>
+              <ul className="flex flex-wrap gap-2 mt-1">
+                {user.skills.map((skill, idx) => (
+                  <li key={idx} className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">
+                    {skill}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          <button className="mt-6 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-orange-700"
+          onClick={handleLogout}>
+            Log out
           </button>
         </div>
       </div>
