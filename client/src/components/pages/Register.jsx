@@ -1,21 +1,26 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock, FaUser, FaFacebook } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
+import { useLocation } from 'react-router-dom';
+import Navbar from "../navbar/Navbar";
 const Register = () => {
+  const { search } = useLocation();
+  const params = new URLSearchParams(search);
+  const defaultRole = params.get('role') || 'volunteer';
   const [userData, setUserData] = useState({
     userName: "",
     email: "",
     password: "",
     confirmPassword: "",
+    role: defaultRole,
   });
-  const handleGoogleRegister = () => {
-    window.location.href = "http://localhost:3000/auth/google";
+  const handleGoogleRegister = (role) => {
+    window.location.href = `http://localhost:3000/auth/google?role=${role}`;
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault(); // ✅ stops default form submission
     try {
@@ -35,8 +40,15 @@ const Register = () => {
   const handleInputChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
-
+  useEffect(() => {
+    setUserData(prev => ({
+      ...prev,
+      role: defaultRole,
+    }));
+  }, [defaultRole]);
   return (
+    <>
+    <Navbar/>
     <div className="bg-black min-h-screen flex justify-center items-center font-dmsans">
       <div className="bg-[#1E2A3A] flex justify-center items-center rounded-2xl border-2 border-[#0A192F] p-8 shadow-lg w-[1322px]">
         <div className="p-8 rounded-xl shadow-lg w-full max-w-md text-white transform hover:scale-105 transition-all duration-300">
@@ -56,6 +68,21 @@ const Register = () => {
                 className="w-full pl-10 p-3 border rounded-lg bg-white text-neutral-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
+            <div className="relative">
+  <label className="block text-sm font-medium mb-1">Register As</label>
+  <select
+    name="role"
+    value={userData.role}
+        onChange={(e) =>
+          setFormData({ ...userData, role: e.target.value })
+        }
+    className="w-full px-4 py-3 border rounded-lg bg-white text-neutral-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+  >
+    <option value="volunteer">Volunteer</option>
+    <option value="ngo">NGO</option>
+  </select>
+</div>
+
 
             {/* Email Field */}
             {/* Email Field */}
@@ -119,7 +146,7 @@ const Register = () => {
           <div className="mt-6 text-center text-gray-400">or continue with</div>
           <div className="mt-4 flex justify-center space-x-4">
             <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition"
-            onClick={handleGoogleRegister}>
+            onClick={handleGoogleRegister(userData.role)}>
               <FcGoogle className="text-red-600 text-5xl" />
             </button>
             {/* <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition">
@@ -143,7 +170,7 @@ const Register = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
-
 export default Register;

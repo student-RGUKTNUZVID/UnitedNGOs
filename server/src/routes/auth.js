@@ -3,12 +3,13 @@ import bcrypt from 'bcryptjs';
 import User from '../models/user.js';
 import generateToken from '../utils/generateToken.js';
 import passport from 'passport';
+import authMiddleWare from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
 // Signup
 router.post('/signup', async (req, res) => {
-  const { email, password, userName } = req.body;
+  const { email, password, userName ,role} = req.body;
 
   const existingUser = await User.findOne({ email });
   if (existingUser) return res.status(400).json({ msg: 'User already exists' });
@@ -18,7 +19,8 @@ router.post('/signup', async (req, res) => {
   const newUser = await User.create({
     email,
     password: hashedPassword,
-   userName
+   userName,
+   role
   });
 
   // const token = generateToken(newUser);
@@ -43,7 +45,25 @@ router.post('/login', async (req, res) => {
   res.status(201).json({ user, token });
 
 });
-router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+// GET /user/profile
+router.get('/profile', authMiddleWare, async (req, res) => {
+  try {
+    const userId = req.body.userId; // comes from your token
+    const user = await User.findById(userId).select('-password'); // exclude password
+
+    if (!user) return res.status(404).json({ msg: 'User not found' });
+
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(500).json({ msg: 'Server error' });
+  }
+});
+router.get('/google', 
+(req,res,next)=>{
+  req.session.role = req.query.role || 'volunteer';
+  next();
+},
+passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 // Step 2: Callback route
 router.get('/google/callback',
@@ -52,7 +72,6 @@ router.get('/google/callback',
     const token = generateToken(req.user._id); // generate JWT
     res.redirect(`http://localhost:5173/auth/success?token=${token}`);
   }
-
 );
 
 export default router;

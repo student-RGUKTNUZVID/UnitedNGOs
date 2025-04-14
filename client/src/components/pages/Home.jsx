@@ -10,7 +10,6 @@ const HomePage = () => {
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       {/* Navbar at the top */}
       {/* <Navbar /> */}
-      
        <HeroSection/>
          <Projects/>
         <StatsComponent/>
