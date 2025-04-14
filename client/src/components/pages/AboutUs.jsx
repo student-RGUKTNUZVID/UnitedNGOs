@@ -82,9 +82,9 @@ const AboutSection = () => {
               
             </p>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-3">Our Vission</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-3">Our Vision</h2>
             <p className="text-gray-700 text-lg leading-relaxed">
-            To become India’s leading collaborative platform where every NGO, regardless of size or location,
+            To become India's leading collaborative platform where every NGO, regardless of size or location,
               and every volunteer, regardless of background, can work together seamlessly to drive sustainable
               and inclusive development.
             </p>

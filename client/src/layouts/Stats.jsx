@@ -66,7 +66,7 @@ const StatsComponent = () => {
 
       {/* Stat 2 */}
       <div className="flex flex-col items-center px-6 text-center mt-6 md:mt-0">
-        <span className="text-green-700 font-bold text-5xl md:text-6xl">
+        <span className="font-bold text-5xl md:text-7xl text-[#388E3C]">
           {projects}+
         </span>
         <p className="text-gray-400 text-lg md:text-xl mt-2">Completed Projects</p>
@@ -77,7 +77,7 @@ const StatsComponent = () => {
 
       {/* Stat 3 */}
       <div className="flex flex-col items-center px-6 text-center mt-6 md:mt-0">
-        <span className="text-green-700 font-bold text-5xl md:text-6xl">
+        <span className="font-bold text-5xl md:text-7xl text-[#388E3C]">
           {beneficiaries}+
         </span>
         <p className="text-gray-400 text-lg md:text-xl mt-2">Beneficiaries</p>
