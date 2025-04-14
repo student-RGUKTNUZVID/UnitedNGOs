@@ -11,18 +11,20 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: '/auth/google/callback',
       scope: ['profile', 'email'],
+      passReqToCallback: true,
       prompt: 'select_account' 
     },
-    async (accessToken, refreshToken, profile, done) => {
+    async (req,accessToken, refreshToken, profile, done) => {
       try {
         // find or create the user
         let user = await User.findOne({ googleId: profile.id });
         if (!user) {
           user = await User.create({
             googleId: profile.id,
-            name: profile.displayName,
+            userName: profile.displayName,
             email: profile.emails[0].value,
-            // add other fields if necessary
+            role: req.session.role || 'volunteer'
+             // add other fields if necessary
           });
         }
         return done(null, user);
