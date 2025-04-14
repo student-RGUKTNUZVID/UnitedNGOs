@@ -25,7 +25,7 @@ const ProjectView = () => {
     <div className="max-w-3xl mx-auto p-6 mt-10 bg-white shadow-lg rounded-xl">
       <h1 className="text-3xl font-bold text-blue-600 mb-4">{project.title}</h1>
       <p className="text-gray-700 mb-4">{project.description}</p>
-      <div className="text-sm text-gray-600">
+      <div className="text-sm text-gray-600 mb-6">
         <p>
           <strong>Start Date:</strong>{" "}
           {project.startDate ? new Date(project.startDate).toLocaleDateString() : "N/A"}
@@ -34,6 +34,22 @@ const ProjectView = () => {
           <strong>End Date:</strong>{" "}
           {project.endDate ? new Date(project.endDate).toLocaleDateString() : "N/A"}
         </p>
+      </div>
+
+      <div className="flex gap-4">
+        <button
+          onClick={() => navigate("/volunteer-form", { state: { projectId: project._id,
+            ngoId: project.ngo } })}
+          className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+        >
+          Join as Volunteer
+        </button>
+        <button
+          onClick={() => navigate("/collaborator-form", { state: { projectId: project._id } })}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+        >
+          Join as Collaborator
+        </button>
       </div>
     </div>
   );

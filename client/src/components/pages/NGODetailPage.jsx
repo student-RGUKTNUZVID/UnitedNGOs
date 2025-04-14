@@ -112,7 +112,9 @@ const navigate = useNavigate();
 
           {/* Volunteer Button */}
           <div className="mt-8">
-            <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full text-sm shadow-md transition">
+            <button className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-full text-sm shadow-md transition"
+            onClick={() => navigate('/volunteer-form', { state: { ngoId:id } })}
+            >
               Join As Volunteer
             </button>
           </div>
@@ -121,5 +123,4 @@ const navigate = useNavigate();
     </div>
   );
 };
-
 export default NGODetailPage;

@@ -45,6 +45,11 @@ const ngoSchema = new mongoose.Schema({
     upcoming: [{ type: mongoose.Schema.Types.ObjectId, ref: 'UpcomingProject' }]
   },
   volunteers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Volunteer' }],
+  ngoHead:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'NGOHead',
+    unique: true,
+  }
 });
 
 const NGO = mongoose.model('NGO', ngoSchema);
