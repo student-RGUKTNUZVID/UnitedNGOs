@@ -88,7 +88,7 @@ const AllNGOsPage = () => {
       {(filteredNGOs.length ? filteredNGOs : ngos.slice(0, 6)).map((ngo) => (
         <div
           key={ngo._id || ngo.name}
-          className="bg-white rounded-xl shadow-md p-4 border-l-4 border-green-500 transition duration-300 hover:shadow-lg flex flex-col h-full"
+          className="mb-5 bg-white rounded-xl shadow-md p-4 border-l-4 border-green-500 transition duration-300 hover:shadow-lg flex flex-col h-full"
         >
           <img
             src={ngo.logoURL}

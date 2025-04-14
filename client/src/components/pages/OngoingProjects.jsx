@@ -32,20 +32,25 @@ const OngoingProjects = () => {
           <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-green-500 border-opacity-50"></div>
         </div>
       ) : (
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl ml-[45px]">
           {data.map((project) => (
             <div
               key={project.id}
-              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
+              className="bg-white w-[250px] h-[300px] md:h-[400px] md:w-[350px] rounded-2xl shadow-lg p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
             >
+              <div className="flex justify-center items-center h-auto w-auto rounded-full">
+                <img src="logo.png" alt="project"
+                className="w-auto h-auto rounded-full border-2" />
+              </div>
+
               <div>
                 <h3 className="text-xl font-bold text-gray-800 mb-2">
                   {project.title}
                 </h3>
                 <p className="text-gray-600">{project.description}</p>
               </div>
-              <div className="mt-6">
-                <button className="w-full bg-blue-500 text-white font-medium py-2 rounded-xl hover:bg-blue-600 transition duration-300"
+              <div className="mt-6 text-center">
+                <button className=" text-center w-32 bg-green-500 text-white font-medium py-2 rounded-xl hover:bg-green-700 transition duration-300"
                 onClick={()=>navigate("/project-view",{state:{ project }})}>
                   View
                 </button>

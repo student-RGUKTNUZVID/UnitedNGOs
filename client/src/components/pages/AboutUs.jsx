@@ -137,6 +137,7 @@ import React from "react";
 
 const AboutSection = () => {
   return (
+    <>
     <div className="bg-white text-gray-800 min-h-screen py-12 px-6 md:px-20">
       <div className="max-w-4xl mx-auto space-y-10">
         {/* Header */}
@@ -238,6 +239,7 @@ const AboutSection = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 
