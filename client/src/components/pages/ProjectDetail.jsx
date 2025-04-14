@@ -22,7 +22,7 @@ const ProjectView = () => {
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-6 mt-10 bg-white shadow-lg rounded-xl">
+    <div className="max-w-3xl mx-auto p-6  bg-white shadow-lg rounded-xl mt-20">
       <h1 className="text-3xl font-bold text-blue-600 mb-4">{project.title}</h1>
       <p className="text-gray-700 mb-4">{project.description}</p>
       <div className="text-sm text-gray-600 mb-6">

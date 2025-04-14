@@ -91,7 +91,7 @@ export default function RaiseYourVoice() {
 
   return (
     <section
-      className="-z-50  px-6 md:px-12 py-16 rounded-xl shadow-xl transition-all duration-500 bg-gray-100 text-black"
+      className="-z-50  px-6 md:px-12 py-16 rounded-xl shadow-xl transition-all duration-500 bg-gray-100 text-black mt-16"
     >
       {/* <button
         onClick={() => setDarkMode(!darkMode)}

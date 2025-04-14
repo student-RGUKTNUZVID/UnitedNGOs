@@ -6,7 +6,7 @@ const NGODetailPage = () => {
   const { id } = useParams();
   const [ngo, setNgo] = useState(null);
   const [loading, setLoading] = useState(true);
-const navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchNGO = async () => {
       try {
@@ -34,7 +34,7 @@ const navigate = useNavigate();
   const { logoURL, name, description, state, city, theme, contactEmail, projects } = ngo;
 
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-white text-gray-800 min-h-screen rounded-xl shadow-sm">
+    <div className="max-w-6xl mx-auto p-6 bg-white text-gray-800 min-h-screen rounded-xl shadow-sm mt-16">
       <div className="flex flex-col md:flex-row gap-6 items-start">
         {/* Logo */}
         <div className="w-full md:w-1/3 flex justify-center md:justify-start">

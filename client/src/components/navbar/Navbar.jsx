@@ -30,7 +30,7 @@ export default function Navbar() {
     setIsLoggedIn(!!token);
   }, []);
   return (
-    <header className="top-0 left-0 w-full bg-white  drop-shadow-xl">
+    <header className=" fixed top-0 left-0 w-full bg-white  drop-shadow-xl z-50">
       <div className="w-full flex justify-between items-center py-2">
         {/* Logo */}
         <div className="flex items-start gap-2 pl-2">
