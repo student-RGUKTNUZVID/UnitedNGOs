@@ -43,7 +43,6 @@ export default function Navbar() {
             { to: "/getallngos", label: "NGOs" },
             { to: "/ongoing-projects", label: "Ongoing Projects" },
             { to: "/upcoming-projects", label: "Upcoming Projects" },
-            // { to: "/about", label: "About Us" },
             { to: "/raise-issue", label: "Raise Your Issue" },
           ].map(({ to, label }) => (
             <NavLink
@@ -164,7 +163,6 @@ export default function Navbar() {
             { to: "/ngos", label: "NGOs" },
             { to: "/ongoing-projects", label: "Ongoing Projects" },
             { to: "/upcoming-projects", label: "Upcoming Projects" },
-            // { to: "/about", label: "About Us" },
             { to: "/raise-issue", label: "Raise Your Issue" },
           ].map(({ to, label }) => (
             <NavLink
@@ -192,37 +190,27 @@ export default function Navbar() {
           {showExtraMenu && (
             <div className="flex flex-col space-y-2">
               <NavLink
-                to="/events"
+                to="/about"
                 className="text-white hover:text-gray-400"
                 onClick={() => {
                   setIsOpen(false);
                   setShowExtraMenu(false);
                 }}
               >
-                Events
+                About Us
               </NavLink>
               <NavLink
-                to="/volunteer"
+                to="/awareness"
                 className="text-white hover:text-gray-400"
                 onClick={() => {
                   setIsOpen(false);
                   setShowExtraMenu(false);
                 }}
               >
-                Volunteer
+                Awareness Sessions
               </NavLink>
               <NavLink
-                to="/partners"
-                className="text-white hover:text-gray-400"
-                onClick={() => {
-                  setIsOpen(false);
-                  setShowExtraMenu(false);
-                }}
-              >
-                Our Partners
-              </NavLink>
-              <NavLink
-                to="/hackathons"
+                to="/getAllHackthons"
                 className="text-white hover:text-gray-400"
                 onClick={() => {
                   setIsOpen(false);
@@ -253,6 +241,20 @@ export default function Navbar() {
               >
                 Success Stories
               </NavLink>
+              <NavLink
+                  to="/campaigns"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  onClick={() => setShowExtraMenu(false)}
+                >
+                  Campaigns
+                </NavLink>
+                <NavLink
+                  to="/contact"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  onClick={() => setShowExtraMenu(false)}
+                >
+                  Contact Us
+                </NavLink>
             </div>
           )}
 

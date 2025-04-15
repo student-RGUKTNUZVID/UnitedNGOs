@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaUsers, FaCalendarAlt, FaMapMarkerAlt, FaArrowUp } from "react-icons/fa";
-
 const stories = [
   {
     id: 1,
@@ -51,7 +50,6 @@ const stories = [
 
 const SuccessStories = () => {
   const [showTopBtn, setShowTopBtn] = useState(false);
-
   useEffect(() => {
     const handleScroll = () => {
       setShowTopBtn(window.scrollY > 300);
@@ -59,7 +57,6 @@ const SuccessStories = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };

@@ -5,8 +5,6 @@ import { FaEnvelope, FaLock, FaFacebook } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
-// GOOGLE_CLIENT_ID=905242983975-7isbllr4nh7umdsnbaomup9pk6fav7r4.apps.googleusercontent.com
-// GOOGLE_CLIENT_SECRET=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
 const Login = () => {
   const [userData, setUserData] = useState({
     email: "",
@@ -94,31 +92,25 @@ const Login = () => {
             onClick={handleGoogleLogin}>
               <FcGoogle className="text-red-600 text-5xl" />
             </button>
-            {/* <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition">
-              <FaXTwitter className="text-black text-3xl" />
-            </button>
-            <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition">
-              <FaFacebook className="text-blue-600 text-3xl" />
-            </button> */}
           </div>
 
           <p className="mt-4 text-center text-gray-400">
-  Don't have an account?
-</p>
-<div className="mt-2 flex flex-col sm:flex-row justify-center items-center gap-4">
-  <button
-    onClick={() => navigate("/register?role=volunteer")}
-    className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-  >
-    Register as Volunteer
-  </button>
-  <button
-    onClick={() => navigate("/register?role=ngo")}
-    className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition"
-  >
-    Register as NGO
-  </button>
-</div>
+              Don't have an account?
+            </p>
+            <div className="mt-2 flex flex-col sm:flex-row justify-center items-center gap-4">
+              <button
+                onClick={() => navigate("/register?role=volunteer")}
+                className="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+              >
+                Register as Volunteer
+              </button>
+              <button
+                onClick={() => navigate("/register?role=ngo")}
+                className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+              >
+                Register as NGO
+              </button>
+            </div>
 
         </div>
       </div>

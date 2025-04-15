@@ -1,12 +1,9 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-
 const ProjectView = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-
   const project = state?.project;
-
   if (!project) {
     return (
       <div className="text-center mt-10">
@@ -20,7 +17,6 @@ const ProjectView = () => {
       </div>
     );
   }
-
   return (
     <div className="max-w-3xl mx-auto p-6  bg-white shadow-lg rounded-xl mt-20">
       <h1 className="text-3xl font-bold text-blue-600 mb-4">{project.title}</h1>

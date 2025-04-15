@@ -30,11 +30,9 @@ const NGODetailPage = () => {
     );
   }
   if (!ngo) return <p className="text-center mt-10">NGO not found.</p>;
-
   const { logoURL, name, description, state, city, theme, contactEmail, projects } = ngo;
-
   return (
-    <div className="max-w-6xl mx-auto p-6 bg-white text-gray-800 min-h-screen rounded-xl shadow-sm mt-16">
+    <div className="max-w-6xl mx-auto py-16 bg-white text-gray-800 min-h-screen rounded-xl shadow-sm mt-16">
       <div className="flex flex-col md:flex-row gap-6 items-start">
         {/* Logo */}
         <div className="w-full md:w-1/3 flex justify-center md:justify-start">
@@ -57,19 +55,6 @@ const NGODetailPage = () => {
 
           {/* Project Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-            {/* {["completed", "ongoing", "upcoming"].map((status) => (
-              <div
-                key={status}
-                className="border p-4 rounded-lg flex justify-between items-center shadow-sm"
-              >
-                <div className="text-xl font-bold">
-                  {projects?.[status]?.length || 0}
-                </div>
-                <button className="text-blue-600 text-sm underline hover:text-blue-800">
-                  View {status.charAt(0).toUpperCase() + status.slice(1)}
-                </button>
-              </div>
-            ))} */}
             {/* Completed Projects */}
                 <div className="border border-green-200 p-4 rounded-lg flex justify-between items-center shadow-sm bg-green-50 hover:shadow-md transition duration-300">
                     <div className="text-xl font-bold">

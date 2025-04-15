@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import axiosInstance from "../../utils/axiosInstance";
-
 const RegisterHackathon = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -284,5 +283,4 @@ const RegisterHackathon = () => {
     </div>
   );
 };
-
 export default RegisterHackathon;
