@@ -21,6 +21,9 @@ const RaiseCampaign = () => {
       const formatted = res.data.map((campaign) => ({
         id: campaign._id, // Ensure _id is correctly mapped to id
         name: campaign.ngoName,
+        title:campaign.title,
+        startDate:campaign.startDate,
+        endDate:campaign.endDate,
         description: campaign.description,
         targetAmount: campaign.fundraisingTarget,
         collectedAmount: campaign.collectedAmount,
@@ -33,7 +36,6 @@ const RaiseCampaign = () => {
       setLoading(false);
     }
   };
-
   const handleDonateClick = (campaign) => {
     console.log("Selected campaign:", campaign); // Verify the campaign selected
     setSelectedCampaign(campaign);
@@ -55,7 +57,6 @@ const RaiseCampaign = () => {
         },
         body: JSON.stringify({ amount: Number(donateAmount) * 100 }),
       });
-
       const orderData = await orderRes.json();
 
       // Step 2: Razorpay Payment Options
@@ -128,48 +129,73 @@ const RaiseCampaign = () => {
               (ngo.collectedAmount / ngo.targetAmount) * 100,
               100
             ).toFixed(2);
-
+            const today = new Date();
+            const endDate = new Date(ngo.endDate);
+            const status = endDate >= today ? "Ongoing" : "Completed";
             return (
               <motion.div
-                key={ngo.id}
-                whileHover={{ scale: 1.03 }}
-                className="bg-white/20 dark:bg-white/10 backdrop-blur-md border border-gray-300 dark:border-gray-600 rounded-2xl shadow-2xl p-6 w-full transition-transform"
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src={ngo.logo}
-                    alt={ngo.name}
-                    className="w-14 h-14 rounded-full border"
-                  />
-                  <div>
-                    <h1>{ngo.title}</h1>
-                    <h2 className="text-2xl font-bold text-black dark:text-white">{ngo.name}</h2>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">{ngo.description}</p>
-                  </div>
-                </div>
-                <div className="mb-3">
-                  <div className="text-sm font-medium text-gray-800 dark:text-gray-200">
-                    Raised: ₹{ngo.collectedAmount} / ₹{ngo.targetAmount}
-                  </div>
-                  <div className="w-full bg-gray-300 dark:bg-gray-700 h-3 rounded-full mt-1">
-                    <div
-                      className="h-3 rounded-full bg-gradient-to-r from-green-400 to-green-600 transition-all duration-500"
-                      style={{ width: `${percentage}%` }}
-                    ></div>
-                  </div>
-                  <p className="text-xs mt-1 text-right text-gray-700 dark:text-gray-300">
-                    {percentage}% funded
-                  </p>
-                </div>
-                <div className=" ml-10 flext justify-center items-center text-center">
-                <button
-                  onClick={() => handleDonateClick(ngo)}
-                  className="mt-4 flex w-64  bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-xl text-center font-semibold items-center justify-center gap-2 transition"
-                >
-                  <FaDonate /> Donate Now
-                </button>
-                </div>
-              </motion.div>
+  key={ngo.id}
+  whileHover={{ scale: 1.03 }}
+  className="min-h-[500px] max-w-[420px] w-full mx-auto flex flex-col justify-between bg-white/20 dark:bg-white/10 backdrop-blur-md border border-gray-300 dark:border-gray-600 rounded-2xl shadow-2xl p-6 transition-transform"
+>
+  {/* Image Section */}
+  <div className="w-full h-48 mb-4 overflow-hidden rounded-xl">
+    <img
+      src={ngo.logo}
+      alt={ngo.name}
+      className="w-full h-full object-cover"
+    />
+  </div>
+
+  {/* Text Section */}
+  <div className="flex-1 flex flex-col justify-start">
+    <h1 className="text-lg font-semibold text-gray-700 dark:text-gray-300 line-clamp-1">
+      {ngo.title}
+    </h1>
+    <h2 className="text-2xl font-bold text-black dark:text-white line-clamp-1">
+      {ngo.name}
+    </h2>
+    <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 line-clamp-3">
+      {ngo.description}
+      <br /><a href="/view-more" className="text-green-500">Read More</a>
+    </p>
+  </div>
+
+  {/* Progress Bar */}
+  <div className="mt-4">
+  <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 mt-2">
+        Status: <span className={status === "Completed" ? "text-red-600" : "text-green-600"}>{status}</span>
+      </p>
+
+    <div className="text-sm font-medium text-gray-800 dark:text-gray-200">
+      Raised: ₹{ngo.collectedAmount} / ₹{ngo.targetAmount}
+    </div>
+    <div className="w-full bg-gray-300 dark:bg-gray-700 h-3 rounded-full mt-1">
+      <div
+        className="h-3 rounded-full bg-gradient-to-r from-green-400 to-green-600 transition-all duration-500"
+        style={{ width: `${percentage}%` }}
+      ></div>
+    </div>
+    
+    <p className="text-xs mt-1 text-right text-gray-700 dark:text-gray-300">
+      {percentage}% funded
+    </p>
+  </div>
+
+  {/* Donate Button */}
+  <div className="mt-4 flex justify-center">
+  <button
+  onClick={() => handleDonateClick(ngo)}
+  disabled={status === "Completed"}
+  className={`flex w-64 py-2 px-4 rounded-xl text-center font-semibold items-center justify-center gap-2 transition 
+    ${status === "Completed" ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700 text-white"}`}
+>
+  <FaDonate /> {status === "Completed" ? "Campaign Ended" : "Donate Now"}
+</button>
+
+  </div>
+</motion.div>
+
             );
           })}
         </div>

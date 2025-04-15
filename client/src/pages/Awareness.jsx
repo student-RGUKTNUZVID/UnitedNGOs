@@ -2,7 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaHandsHelping, FaGlobe, FaHeartbeat } from "react-icons/fa";
 import MainLayout from "../layouts/MainLayout";
+import { IoNavigateOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 const AwarenessPage = () => {
+  const navigate=useNavigate();
   return (
     <MainLayout>
       <section className="bg-gradient-to-br from-green-100 via-white to-green-50 py-26 px-4 text-center">
@@ -101,14 +104,14 @@ const AwarenessPage = () => {
 
 
 
-      <section className="py-12 text-center bg-white">
+      {/* <section className="py-12 text-center bg-white">
         <h2 className="text-3xl font-bold mb-6">How You Can Help</h2>
         <div className="flex flex-wrap justify-center gap-6 px-4">
           <button className="bg-green-600 text-white px-6 py-3 rounded-full hover:bg-green-700 transition">Donate Now</button>
           <button className="bg-green-200 text-green-800 px-6 py-3 rounded-full hover:bg-green-300 transition">Volunteer</button>
           <button className="bg-yellow-200 text-yellow-900 px-6 py-3 rounded-full hover:bg-yellow-300 transition">Partner With Us</button>
         </div>
-      </section>
+      </section> */}
 
       <section className="bg-green-100 py-12 text-center">
         <motion.h2
@@ -122,7 +125,8 @@ const AwarenessPage = () => {
         <p className="text-gray-700 mb-6 max-w-xl mx-auto">
           Your involvement can ignite hope and spark change across countless communities.
         </p>
-        <button className="bg-green-700 text-white px-8 py-3 rounded-xl hover:bg-green-800 transition">
+        <button className="bg-green-700 text-white px-8 py-3 rounded-xl hover:bg-green-800 transition"
+        onClick={()=>{navigate('/raise-campaign')}}>
           Explore Campaigns
         </button>
       </section>

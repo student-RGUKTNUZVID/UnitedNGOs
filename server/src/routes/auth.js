@@ -1,6 +1,7 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import User from '../models/user.js';
+import volunteer from '../models/volunteer.js';
 import generateToken from '../utils/generateToken.js';
 import passport from 'passport';
 import authMiddleWare from '../middlewares/authMiddleware.js';
@@ -51,10 +52,13 @@ router.get('/profile', authMiddleWare, async (req, res) => {
     const userId = req.user.id; // correctly retrieved from middleware
 
     const user = await User.findById(userId).select('-password');
+    const Volunteer=await volunteer.findOne({user:userId}).populate('ngos').populate('projects');
 
     if (!user) return res.status(404).json({ msg: 'User not found' });
+    if(!Volunteer)return res.status(404).json({msg:'volunteer data not found'});
 
-    res.status(200).json(user);
+
+    res.status(200).json({ user, volunteer: Volunteer });
   } catch (err) {
     console.error(err);
     res.status(500).json({ msg: 'Server error' });
