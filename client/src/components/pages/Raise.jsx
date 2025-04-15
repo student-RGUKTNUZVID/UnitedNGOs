@@ -17,11 +17,9 @@ export default function RaiseYourVoice() {
     location: "",
     files: [],
   });
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [darkMode, setDarkMode] = useState(true);
-
   const categories = [
     "General",
     "Education",
@@ -33,12 +31,10 @@ export default function RaiseYourVoice() {
     "Infrastructure",
     "Public Safety",
   ];
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
   const handleFileChange = (e) => {
     const newFiles = Array.from(e.target.files);
     setFormData((prev) => ({
@@ -46,8 +42,6 @@ export default function RaiseYourVoice() {
       files: [...prev.files, ...newFiles],
     }));
   };
-  
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -93,14 +87,7 @@ export default function RaiseYourVoice() {
     <section
       className="-z-50  px-6 md:px-12 py-16 rounded-xl shadow-xl transition-all duration-500 bg-gray-100 text-black mt-16"
     >
-      {/* <button
-        onClick={() => setDarkMode(!darkMode)}
-        className="absolute top-4 right-4 p-2 rounded-full bg-gray-400 hover:bg-gray-200 text-white transition-all"
-      >
-        {darkMode ? <FaSun /> : <FaMoon />}
-      </button> */}
-
-      <div className="text-center">
+    <div className="text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
           Raise Your Issue
         </h1>

@@ -149,12 +149,6 @@ const Register = () => {
             onClick={handleGoogleRegister(userData.role)}>
               <FcGoogle className="text-red-600 text-5xl" />
             </button>
-            {/* <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition">
-              <FaXTwitter className="text-black text-3xl" />
-            </button>
-            <button className="bg-white p-2 rounded-full shadow-md hover:scale-110 transition">
-              <FaFacebook className="text-blue-600 text-3xl" />
-            </button> */}
           </div>
 
           {/* Already have an account? */}

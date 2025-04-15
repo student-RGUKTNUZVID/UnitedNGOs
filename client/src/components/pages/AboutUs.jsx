@@ -1,9 +1,7 @@
 import React from "react";
-
 const AboutSection = () => {
   return (
     <>
-      {/* ✅ Top Section: Do Not Modify */}
       <section className="relative bg-white py-15 px-7 md:px-11 overflow-hidden mt-[100px]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
           {/* Content Column */}
@@ -91,8 +89,6 @@ const AboutSection = () => {
           </div>
         </div>
       </section>
-
-      {/* ✅ Platform Features Section - Expanded */}
       <section className="bg-white py-20 px-6 md:px-12">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-green-800 mb-6">Our Platform Features</h2>
@@ -145,8 +141,6 @@ const AboutSection = () => {
           </div>
         </div>
       </section>
-
-      
     </>
   );
 };

@@ -11,7 +11,6 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import { FaHandsHelping, FaGlobeAsia, FaUsers } from "react-icons/fa";
 import axiosInstance from "../../utils/axiosInstance";
-
 export default function ContactUs() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,7 +18,6 @@ export default function ContactUs() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [locationUrl, setLocationUrl] = useState("");
-
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(

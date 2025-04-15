@@ -22,13 +22,6 @@ const AllNGOsPage = () => {
     };
 
     fetchNGOs();
-    // Show back-to-top button after scrolling
-    // const handleScroll = () => {
-    //   setShowTopBtn(window.scrollY > 300);
-    // };
-
-    // window.addEventListener("scroll", handleScroll);
-    // return () => window.removeEventListener("scroll", handleScroll);
     const handleScroll = () => {
       const section = sectionRef.current;
       if (!section) return;
@@ -120,7 +113,6 @@ const AllNGOsPage = () => {
         ↑
       </button>
   )}
-
   </div>
   </div>
   );

@@ -8,7 +8,6 @@ import {
 } from "react-icons/fa";
 import { FaXTwitter, FaInstagram } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-
 const Footer = () => {
   return (
     <footer className="bg-white text-green-900 py-10 px-6 border-t border-green-200 shadow-inner">
@@ -26,7 +25,7 @@ const Footer = () => {
             </h3>
             <div className="text-sm md:text-base font-poppins space-y-2 text-green-800">
               <p>RGUKT NUZVID, I3 First Floor</p>
-              <p>ELURU District, Pin-Code 400123</p>
+              <p>ELURU District, Pin-Code 521202</p>
               <p className="flex justify-center md:justify-start items-center gap-2">
                 <FaEnvelope className="text-green-600" />
                 contact@unitedngos.org

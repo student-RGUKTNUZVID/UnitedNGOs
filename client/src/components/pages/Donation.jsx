@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-
 const DonatePage = () => {
   const { id } = useParams();
   const [amount, setAmount] = useState("");
-
   const handlePayment = async () => {
     // Basic validation
     if (!amount || isNaN(amount) || Number(amount) <= 0) {
       alert("Please enter a valid donation amount");
       return;
     }
-
     try {
       // Step 1: Create Razorpay order
       const res = await fetch("http://localhost:3000/api/payment/orders", {

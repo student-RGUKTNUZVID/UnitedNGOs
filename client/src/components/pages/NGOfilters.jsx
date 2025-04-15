@@ -1,6 +1,4 @@
-// NGOFilters.jsx
 import React from "react";
-
 const NGOFilters = ({ filters, setFilters, unique }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import axiosInstance from "../utils/axiosInstance";
 
 const VolunteerForm = ({ onClose }) => {
   const { state } = useLocation();
@@ -34,7 +35,7 @@ const VolunteerForm = ({ onClose }) => {
         projectId: projectId,
       };
 
-      const res = await axios.post("http://127.0.0.1:3000/api/join-volunteer", payload);
+      const res = await axiosInstance.post("/api/join-volunteer", payload);
       if (res.data.success) {
         toast.success("Thank you for volunteering!");
         setTimeout(() => navigate('/upcoming-projects'), 2000); // go back
