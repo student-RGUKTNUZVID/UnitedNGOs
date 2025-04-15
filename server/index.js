@@ -50,7 +50,7 @@ app.use('/',routes);
 app.use('/api/auth',userRoute);
 app.use('/api',volunteerRoute);
 // Routes
-app.use('/api/hackathons', hackathonRoutes);
+// app.use('/api/hackathons', hackathonRoutes);
 
 // ✅ Razorpay Routes
 const razorpay = new Razorpay({

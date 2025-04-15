@@ -29,13 +29,18 @@ router.post('/join-volunteer', async (req, res) => {
       if (projectId) {
         const updatedProject = await UpcomingProject.findByIdAndUpdate(
           {_id:projectId},
-          { $push: { volunteers: newVolunteer._id } }, // add the volunteer ID to the project
+          { $push: { volunteers: newVolunteer._id?[newVolunteer._id]:[] } }, // add the volunteer ID to the project
           { new: true }
         );
       if(ngoId){
         const updatedngo = await NGO.findByIdAndUpdate(
             {_id:ngoId},
-            { $push: { volunteers: newVolunteer._id } }, // add the volunteer ID to the project
+            {
+              $push: {
+                volunteers: newVolunteer._id ? [newVolunteer._id] : []
+              }
+            }
+            , // add the volunteer ID to the project
             { new: true }
           );
       }
