@@ -25,12 +25,20 @@ const volunteerSchema = new mongoose.Schema({
 
   ngos: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'NGO' // assuming your NGO model is named 'NGO'
+    ref: 'NGO'
   }],
+
   projects: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'UpcomingProject' // assuming your NGO model is named 'NGO'
-  }]
+    ref: 'UpcomingProject'
+  }],
+
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',  // Replace 'User' with your actual user model name
+    required: false // set true if every volunteer must be linked to a user
+  }
+
 }, {
   timestamps: true
 });

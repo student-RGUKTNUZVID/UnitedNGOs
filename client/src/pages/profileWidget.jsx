@@ -12,7 +12,7 @@ const ProfileWidget = () => {
     const fetchProfile = async () => {
       try {
         const res = await axiosInstance.get('/api/auth/profile');
-        setUser(res.data);
+        setUser(res.data.user);
       } catch (err) {
         console.error("Failed to fetch profile");
       }

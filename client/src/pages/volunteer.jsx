@@ -3,8 +3,31 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/axiosInstance";
+<<<<<<< HEAD
+// Assuming you stored the token after login
+
+
+// Decode the token to get userId (if needed)
+import {jwtDecode} from "jwt-decode";
+=======
+>>>>>>> 9111be892d392903f86f4a867dde03b80ae8c727
 
 const VolunteerForm = ({ onClose }) => {
+  const token = localStorage.getItem("token");
+  let userId = null;
+
+  if (token && typeof token === "string") {
+    try {
+      const decoded = jwtDecode(token);
+      console.log(decoded);
+      userId = decoded.id;
+      console.log(userId);// Adjust based on your token payload
+    } catch (error) {
+      console.error("Invalid token", error);
+    }
+  } else {
+    console.warn("Token not found or not a string");
+  }
   const { state } = useLocation();
   const navigate = useNavigate();
   const projectId = state?.projectId;
@@ -33,6 +56,7 @@ const VolunteerForm = ({ onClose }) => {
         skills: formData.skills.split(",").map((skill) => skill.trim()),
         ngoId: ngoId,
         projectId: projectId,
+        userId
       };
 
       const res = await axiosInstance.post("/api/join-volunteer", payload);

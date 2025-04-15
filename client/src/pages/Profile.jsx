@@ -6,17 +6,19 @@ import { toast } from 'react-toastify';
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
+  const [volunteer,setVolunteer]=useState(null);
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const res = await axiosInstance.get('/api/auth/profile'); // Your backend endpoint
-        setUser(res.data); // assuming res.data is the user object
+        setUser(res.data.user);
+        setVolunteer(res.data.volunteer);
+        //console.log("volunteer dtaa",res.data.volunteer); // assuming res.data is the user object
       } catch (error) {
         console.error("Error fetching profile:", error);
         toast.error("Failed to fetch user profile.");
       }
     };
-
     fetchProfile();
   }, []);
   const navigate = useNavigate();
@@ -26,7 +28,30 @@ const ProfilePage = () => {
     navigate('/login'); // ✅ Redirect to login page
   };
 
-console.log(user?.photo);
+  const [upcomingProjects, setUpcomingProjects] = useState([]);
+  const [ongoingProjects, setOngoingProjects] = useState([]);
+
+  useEffect(() => {
+    const currentDate = new Date();
+    
+    const upcoming = [];
+    const ongoing = [];
+
+    volunteer?.projects.forEach((project) => {
+      const startDate = new Date(project.startDate);
+      const endDate = new Date(project.endDate);
+
+      if (startDate > currentDate) {
+        upcoming.push(project); // Project is upcoming
+      } else if (currentDate >= startDate && currentDate <= endDate) {
+        ongoing.push(project); // Project is ongoing
+      }
+    });
+
+    setUpcomingProjects(upcoming);
+    setOngoingProjects(ongoing);
+  }, [volunteer]);
+
   if (!user) {
     return <div className="text-center mt-10 text-gray-600">Loading...</div>;
   }
@@ -75,6 +100,38 @@ console.log(user?.photo);
               </ul>
             </div>
           )}
+          {
+            volunteer.ngos?.length>0&& (
+              <div className="mt-4">
+              <h2 className="text-lg font-semibold text-indigo-700">Ngos and projects</h2>
+              <h3 className='text-red'>Projects</h3>
+              <h2 className="font-semibold text-lg">Upcoming Projects</h2>
+      <ul className="flex flex-wrap gap-2 mt-1">
+        {upcomingProjects.map((project, idx) => (
+          <li key={idx} className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">
+            {project.title}
+          </li>
+        ))}
+      </ul>
+      <h2 className="font-semibold text-lg mt-4">Ongoing Projects</h2>
+      <ul className="flex flex-wrap gap-2 mt-1">
+        {ongoingProjects.map((project, idx) => (
+          <li key={idx} className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm">
+            {project.title}
+          </li>
+        ))}
+      </ul>
+              <h2>Ngos</h2>
+              <ul className="flex flex-wrap gap-2 mt-1">
+                {volunteer?.ngos?.map((ngo, idx) => (
+                  <li key={idx} className="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm">
+                    {ngo.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            )
+          }
           <button className="mt-6 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-orange-700"
           onClick={handleLogout}>
             Log out
