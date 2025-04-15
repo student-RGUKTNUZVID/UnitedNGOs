@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const UploadCampaign = () => {
+  const navigate=useNavigate();
   const [formData, setFormData] = useState({
     title: "",
     ngoName: "",
@@ -45,7 +48,7 @@ const UploadCampaign = () => {
       formPayload.append("banner", formData.banner);
       formPayload.append("document", formData.document);
   
-      const res = await axiosInstance.post("/upload-campaign", formPayload, {
+      const res = await axios.post("http://localhost:3000/upload-campaign", formPayload, {
         headers: {
           "Content-Type": "multipart/form-data",
         }});
@@ -252,6 +255,7 @@ const UploadCampaign = () => {
           {/* Submit */}
           <button
             type="submit"
+            onClick={navigate('/raise-campaign')}
             className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded-lg transition duration-300"
           >
             Submit Campaign

@@ -1,8 +1,8 @@
+// require("../models/database");
 import Contact from "../models/contactModel.js";
 import Issue from "../models/issueModel.js";
 import NGO from "../models/ngoModel.js";
-import Hackathon from "../models/Hackathon.js";
-import Campaign from "../models/campaignModel.js"
+import Campaign from "../models/campaignModel.js";
 import CompletedProject from "../models/completedProjectModel.js";
 import OngoingProject from "../models/ongoingProjectModel.js";
 import UpcomingProject from "../models/upcomingProjectModel.js";
@@ -25,53 +25,6 @@ import UpcomingProject from "../models/upcomingProjectModel.js";
       }
 }
 
-const submitCampaign=async(req,res)=>{
-  try {
-    const {
-      title,
-      ngoName,
-      description,
-      state,
-      city,
-      startDate,
-      endDate,
-      targetImpact,
-      fundraisingTarget,
-      agreedToTerms
-    } = req.body;
-
-    // Look up NGO ID by name
-    const ngo = await NGO.findOne({ name: ngoName });
-    if (!ngo) {
-      return res.status(404).json({ message: "NGO not found with the given name" });
-    }
-
-    const bannerUrl = req.files.banner[0].path;
-    const documentUrl = req.files.document[0].path;
-
-    const campaign = new Campaign({
-      title,
-      ngoName,
-      ngoId: ngo._id, // Automatically added from lookup
-      description,
-      state,
-      city,
-      startDate,
-      endDate,
-      targetImpact,
-      fundraisingTarget,
-      bannerUrl,
-      documentUrl,
-      agreedToTerms
-    });
-
-    await campaign.save();
-    res.status(201).json({ message: "Campaign created successfully", campaign });
-  } catch (error) {
-    console.error("Error creating campaign:", error);
-    res.status(500).json({ message: "Server error" });
-  }
-}
 
 const raiseIssue=async(req,res)=>{
   try {
@@ -114,7 +67,6 @@ const getNGOs=async(req,res)=>{
     console.error('Error fetching NGOs:', error);
     res.status(500).json({ message: 'Server error while fetching NGOs' });
   }
-  
 }
 
 const getNGObyId=async(req,res)=>{
@@ -150,7 +102,6 @@ const getUpcomingProjects=async(req,res)=>{
     res.status(500).json({ message: 'Server error while fetching upcoming projects' });
   }
 }
-
 const getNgoCompletedProjects=async(req,res)=>{
   try {
     const { id } = req.params;
@@ -201,84 +152,101 @@ const getNgoUpcomingProjects=async(req,res)=>{
     res.status(500).json({ message: "Internal Server Error" });
   }
 }
+// Import your Campaign model
 
-const submitHackathon=async(req,res)=>{
+const submitCampaign = async (req, res) => {
   try {
     const {
       title,
+      ngoName,
       description,
+      state,
+      city,
       startDate,
       endDate,
-      location,
-      maxParticipants,
-      prize,
-      contactEmail,
-      requirements,
+      targetImpact,
+      fundraisingTarget,
+      ngoEmail,
+      contactNumber,
+      agreedToTerms,
     } = req.body;
 
-    let imageUrl = null;
-
-    // Check if file was uploaded
-    if (req.file) {
-      // Get the file URL from Cloudinary's response
-      imageUrl = req.file.path;  // Cloudinary file URL
+    // Make sure files are uploaded
+    if (!req.files || !req.files.banner || !req.files.document) {
+      return res.status(400).json({ error: "Banner and document are required" });
     }
 
-    const newHackathon = new Hackathon({
+    const bannerUrl = req.files.banner[0].filename;
+    const documentUrl = req.files.document[0].filename;
+
+    const newCampaign = new Campaign({
       title,
+      ngoName,
       description,
+      state,
+      city,
       startDate,
       endDate,
-      location,
-      maxParticipants: parseInt(maxParticipants),
-      prize,
-      contactEmail,
-      requirements,
-      image: imageUrl,
+      targetImpact,
+      fundraisingTarget,
+      ngoEmail,
+      contactNumber,
+      agreedToTerms,
+      collectedAmount: 0,
+      bannerUrl,   // Ensure you're assigning the right field
+      documentUrl, // Same here
     });
 
-    await newHackathon.save();
-
-    res.status(201).json({
-      message: "Hackathon created successfully",
-      hackathon: newHackathon,
-    });
+    await newCampaign.save();
+    res.status(201).json({ message: "Campaign uploaded successfully", campaign: newCampaign });
   } catch (error) {
-    console.error("Error submitting hackathon:", error);
-    res.status(500).json({ message: "Failed to create hackathon" });
-  }
-}
-
-const getAllHackathons = async (req, res) => {
-  try {
-    const hackathons = await Hackathon.find().sort({ startDate: 1 }); // Sort by start date
-
-    // ✅ Wrap the response in an object with key 'hackathons'
-    res.status(200).json({ hackathons });
-  } catch (error) {
-    console.error('Error fetching hackathons:', error.message);
-    res.status(500).json({ message: 'Server error while fetching hackathons' });
+    console.error("Error submitting campaign:", error);
+    res.status(500).json({ error: "Internal server error", details: error.message });
   }
 };
-const getHackathonById = async (req, res) => {
+
+
+//get all campaign
+const getAllCampaigns = async (req, res) => {
+  try {
+    const campaigns = await Campaign.find().sort({ createdAt: -1 });
+    res.status(200).json(campaigns);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch campaigns' });
+  }
+};
+// controllers/campaignController.js (continued)
+
+const donateToCampaign = async (req, res) => {
   try {
     const { id } = req.params;
-    const hackathon = await Hackathon.findById(id);
+    const { collectedAmount } = req.body;
+    console.log("Campaign ID:", id);
+    console.log("Received collectedAmount:", collectedAmount);
 
-    if (!hackathon) {
-      return res.status(404).json({ message: 'Hackathon not found' });
+    if (collectedAmount == null || isNaN(collectedAmount)) {
+      return res.status(400).json({ message: "Invalid collectedAmount" });
     }
 
-    res.status(200).json({ hackathon });
-  } catch (error) {
-    console.error('Error fetching hackathon:', error.message);
-    res.status(500).json({ message: 'Server error while fetching hackathon details' });
+    const campaign = await Campaign.findByIdAndUpdate(
+      id,
+      { $set: { collectedAmount } },
+      { new: true }
+    );
+
+    if (!campaign) {
+      return res.status(404).json({ message: "Campaign not found" });
+    }
+
+    res.json(campaign);
+  } catch (err) {
+    console.error("Error updating campaign:", err);
+    res.status(500).json({ message: "Internal server error" });
   }
 };
 
 
-
-export {submitQuery,getHackathonById,getAllHackathons,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitHackathon,submitCampaign}
+export {submitQuery,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitCampaign,getAllCampaigns,donateToCampaign}
 
 // async function insertOngoingProjectData(){
 //   try{

@@ -34,6 +34,7 @@ import HackathonDetails from "./pages/HackathonDetails";
 import VolunteerForm from "./pages/volunteer";
 import CollaboratorForm from "./pages/collaborator";
 import UploadCampaign from "./components/campain/UploadCampaign";
+import RaiseCampaign from "./components/campain/RaiseCampaign";
 const DummyNgo = {
   id: "1",
   name: "Helping Hands",
@@ -212,7 +213,7 @@ function App() {
         <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/register" element={<Register />} />
         <Route path="/donate/:id" element={<DonatePage />} />
-        <Route path="/raise-campaign" element={<CampaignsPage />} />
+        <Route path="/raise-campaign" element={<RaiseCampaign />} />
         <Route path="/awareness" element={<AwarenessPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/volunteer-form" element={<VolunteerForm />} />
