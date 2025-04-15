@@ -4,12 +4,12 @@ const AboutSection = () => {
   return (
     <>
       {/* ✅ Top Section: Do Not Modify */}
-      <section className="relative bg-white py-15 px-7 md:px-11 overflow-hidden">
+      <section className="relative bg-white py-15 px-7 md:px-11 overflow-hidden mt-[100px]">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
           {/* Content Column */}
           <div className="order-2 md:order-1 relative z-10">
             <div className="mb-6">
-              <span className="text-green-600 text-2xl font-semibold uppercase">About-Us</span>
+              <span className="text-green-600 text-4xl font-semibold uppercase">About-Us</span>
               <h2 className="text-4xl md:text-3xl font-bold text-gray-900 mt-4 mb-6">
               Connecting NGOs, Empowering Volunteers, and <br /> Building a Better Tomorrow.
               </h2>

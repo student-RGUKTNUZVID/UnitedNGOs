@@ -19,7 +19,7 @@ const AwarenessPage = () => {
         </p>
       </section>
 
-      <section className="py-12 bg-white text-gray-800">
+      {/* <section className="py-12 bg-white text-gray-800">
         <h2 className="text-3xl font-bold text-center mb-10">Why NGOs Matter</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto">
           {[
@@ -38,7 +38,7 @@ const AwarenessPage = () => {
             </motion.div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       <section className="bg-gray-100 py-12">
   <h2 className="text-3xl font-bold text-center mb-8">Stories of Impact</h2>
@@ -57,6 +57,7 @@ const AwarenessPage = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
+        <p>Akruthi Ngo</p>
       </div>
     </motion.div>
 

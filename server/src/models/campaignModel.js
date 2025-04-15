@@ -13,6 +13,10 @@ const campaignSchema = new mongoose.Schema({
   targetImpact: { type: String, required: true },
   fundraisingTarget: { type: Number, required: true },
   bannerUrl: { type: String, required: true },
+  collectedAmount: {
+    type: Number,
+    default: 0,
+  },
   documentUrl: { type: String, required: true },
   agreedToTerms: { type: Boolean, required: true },
 }, { timestamps: true });

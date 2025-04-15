@@ -75,7 +75,7 @@ app.post("/api/payment/orders", async (req, res) => {
 
 app.post("/api/payment/verify", (req, res) => {
   console.log("Payment Verified: ", req.body);
-  res.send({ status: "success" });
+  res.send({ success: true });
 });
 
 // ✅ Error Handling
