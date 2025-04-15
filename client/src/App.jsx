@@ -11,7 +11,6 @@ import SearchUnite from "./components/SearchAndUnite";
 import CampaignBanner from "./components/campain/campaignBanner";
 import RaiseYourVoice from "./components/pages/Raise";
 import AuthSuccess from "./apicalls/AuthSuccess";
-import Hackathons from "./components/pages/Hackathons";
 import RegisterHackathon from "./components/pages/RegisterHackathon";
 import SuccessStories from "./components/pages/SuccessStories";
 import { ToastContainer } from "react-toastify";
@@ -30,6 +29,8 @@ import CampaignsPage from "./components/campain/campainPage";
 import AwarenessPage from "./pages/Awareness";
 import Team from "./components/pages/Team";
 import ProfilePage from "./pages/Profile";
+import AllHackathons from "./pages/AllHackthons";
+import HackathonDetails from "./pages/HackathonDetails";
 const DummyNgo = {
   id: "1",
   name: "Helping Hands",
@@ -92,14 +93,14 @@ function App() {
             </MainLayout>
           }
         />
-        <Route
+        {/* <Route
           path="/hackathons"
           element={
             <MainLayout>
               <Hackathons />
             </MainLayout>
           }
-        />
+        /> */}
         <Route
           path="/register-hackathon"
           element={
@@ -176,6 +177,23 @@ function App() {
             </MainLayout>
           }
         />
+         <Route
+          path="/getAllHackthons"
+          element={
+            <MainLayout>
+              <AllHackathons/>
+            </MainLayout>
+          }
+        />
+        <Route
+            path="/hackathon/:id"
+            element={
+              <MainLayout>
+                <HackathonDetails />
+              </MainLayout>
+            }
+          />
+
         
 
         {/* Routes WITHOUT Navbar and Footer */}
