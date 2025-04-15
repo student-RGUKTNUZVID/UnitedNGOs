@@ -17,7 +17,7 @@ const Footer = () => {
         <div className="w-full md:w-1/2 text-center md:text-left flex flex-col justify-between">
           <div>
             <img
-              src="logo2.png"
+              src="LogoNew-3.png"
               alt="Company Logo"
               className="mx-auto md:mx-0 w-[240px] h-auto mb-4 transition-transform duration-300 hover:scale-110 hover:drop-shadow-lg"
             />

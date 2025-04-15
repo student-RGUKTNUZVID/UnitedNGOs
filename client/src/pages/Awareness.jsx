@@ -5,7 +5,7 @@ import MainLayout from "../layouts/MainLayout";
 const AwarenessPage = () => {
   return (
     <MainLayout>
-      <section className="bg-gradient-to-br from-green-100 via-white to-green-50 py-16 px-4 text-center">
+      <section className="bg-gradient-to-br from-green-100 via-white to-green-50 py-26 px-4 text-center">
         <motion.h1
           className="text-4xl md:text-5xl font-bold text-green-800"
           initial={{ opacity: 0, y: -40 }}

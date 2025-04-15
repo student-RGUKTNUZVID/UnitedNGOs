@@ -65,7 +65,7 @@ const SuccessStories = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white py-16 px-4 md:px-20 relative">
+    <div className="min-h-screen bg-white py-26 px-4 md:px-20 relative">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

@@ -2,6 +2,7 @@ import Contact from "../models/contactModel.js";
 import Issue from "../models/issueModel.js";
 import NGO from "../models/ngoModel.js";
 import Hackathon from "../models/Hackathon.js";
+import Campaign from "../models/campaignModel.js"
 import CompletedProject from "../models/completedProjectModel.js";
 import OngoingProject from "../models/ongoingProjectModel.js";
 import UpcomingProject from "../models/upcomingProjectModel.js";
@@ -24,6 +25,53 @@ import UpcomingProject from "../models/upcomingProjectModel.js";
       }
 }
 
+const submitCampaign=async(req,res)=>{
+  try {
+    const {
+      title,
+      ngoName,
+      description,
+      state,
+      city,
+      startDate,
+      endDate,
+      targetImpact,
+      fundraisingTarget,
+      agreedToTerms
+    } = req.body;
+
+    // Look up NGO ID by name
+    const ngo = await NGO.findOne({ name: ngoName });
+    if (!ngo) {
+      return res.status(404).json({ message: "NGO not found with the given name" });
+    }
+
+    const bannerUrl = req.files.banner[0].path;
+    const documentUrl = req.files.document[0].path;
+
+    const campaign = new Campaign({
+      title,
+      ngoName,
+      ngoId: ngo._id, // Automatically added from lookup
+      description,
+      state,
+      city,
+      startDate,
+      endDate,
+      targetImpact,
+      fundraisingTarget,
+      bannerUrl,
+      documentUrl,
+      agreedToTerms
+    });
+
+    await campaign.save();
+    res.status(201).json({ message: "Campaign created successfully", campaign });
+  } catch (error) {
+    console.error("Error creating campaign:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+}
 
 const raiseIssue=async(req,res)=>{
   try {
@@ -230,7 +278,7 @@ const getHackathonById = async (req, res) => {
 
 
 
-export {submitQuery,getHackathonById,getAllHackathons,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitHackathon}
+export {submitQuery,getHackathonById,getAllHackathons,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitHackathon,submitCampaign}
 
 // async function insertOngoingProjectData(){
 //   try{

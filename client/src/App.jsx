@@ -33,6 +33,7 @@ import AllHackathons from "./pages/AllHackthons";
 import HackathonDetails from "./pages/HackathonDetails";
 import VolunteerForm from "./pages/volunteer";
 import CollaboratorForm from "./pages/collaborator";
+import UploadCampaign from "./components/campain/UploadCampaign";
 const DummyNgo = {
   id: "1",
   name: "Helping Hands",
@@ -92,6 +93,14 @@ function App() {
           element={
             <MainLayout>
               <RaiseYourVoice />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/upload-campaign"
+          element={
+            <MainLayout>
+              <UploadCampaign/>
             </MainLayout>
           }
         />

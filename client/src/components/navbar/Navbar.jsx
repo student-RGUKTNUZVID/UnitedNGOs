@@ -34,7 +34,7 @@ export default function Navbar() {
       <div className="w-full flex justify-between items-center py-2">
         {/* Logo */}
         <div className="flex items-start gap-2 pl-2">
-          <img src="LogoNew-3.png" alt="logo" className="h-15 w-[190px]" />
+          <img src="LogoNew-3.png" alt="logo" className="h-auto w-[240px]" />
         </div>
         {/* Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 font-poppins">
@@ -78,28 +78,22 @@ export default function Navbar() {
                 className="absolute left-0 top-full bg-green-300 shadow-xl rounded-lg mt-2 py-2 w-[200px] z-[100]"
               >
                 <NavLink
-                  to="/events"
+                  to="/about"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                   onClick={() => setShowExtraMenu(false)}
                 >
-                  Events
+                  About Us
                 </NavLink>
                 <NavLink
-                  to="/volunteer"
+                  to="/awareness"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                   onClick={() => setShowExtraMenu(false)}
                 >
-                  Volunteer
+                  Awareness Sessions
                 </NavLink>
+                
                 <NavLink
-                  to="/partners"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                  onClick={() => setShowExtraMenu(false)}
-                >
-                  Our Partners
-                </NavLink>
-                <NavLink
-                  to="/hackathons"
+                  to="/getAllHackthons"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
                   onClick={() => setShowExtraMenu(false)}
                 >
@@ -120,6 +114,20 @@ export default function Navbar() {
                   onClick={() => setShowExtraMenu(false)}
                 >
                   Success Stories
+                </NavLink>
+                <NavLink
+                  to="/campaigns"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  onClick={() => setShowExtraMenu(false)}
+                >
+                  Campaigns
+                </NavLink>
+                <NavLink
+                  to="/contact"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  onClick={() => setShowExtraMenu(false)}
+                >
+                  Contact Us
                 </NavLink>
               </motion.div>
             )}

@@ -62,7 +62,7 @@ const HeroSection = () => {
         </div>
 
         {/* Stats Section - Stretched Across Entire Width */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 1 }}
@@ -86,7 +86,7 @@ const HeroSection = () => {
               <p className="text-md drop-shadow-md">User Rating</p>
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </div>
     </>

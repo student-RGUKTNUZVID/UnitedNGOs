@@ -35,7 +35,6 @@ const VolunteerForm = ({ onClose }) => {
       };
 
       const res = await axios.post("http://127.0.0.1:3000/api/join-volunteer", payload);
-
       if (res.data.success) {
         toast.success("Thank you for volunteering!");
         setTimeout(() => navigate('/upcoming-projects'), 2000); // go back

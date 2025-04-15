@@ -11,6 +11,7 @@ import {getNgoCompletedProjects} from "../controllers/unitedngoController.js"
 import {getNgoOngoingProjects} from "../controllers/unitedngoController.js"
 import {getNgoUpcomingProjects} from "../controllers/unitedngoController.js"
 import {submitHackathon} from "../controllers/unitedngoController.js"
+import {submitCampaign} from "../controllers/unitedngoController.js"
 const upload = multer({ storage });
 const router=express.Router();
 
@@ -27,5 +28,6 @@ router.get("/ngo/upcoming-projects/:id",getNgoUpcomingProjects);
 router.post("/register-hackathon",upload.single("image"),submitHackathon);
 router.get("/getAllHackathons",getAllHackathons);
 router.get('/hackathon/:id', getHackathonById);
+router.post('/upload-campaign',upload.fields([{ name: "banner" }, { name: "document" }]),submitCampaign);
 
 export default router;

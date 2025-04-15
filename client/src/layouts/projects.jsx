@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import ProjectCard from "./ProjectCard";
-
+import { Link } from "react-router-dom";
 const Projects = () => {
   const [ongoingProjects, setOngoingProjects] = useState([]);
   const [upcomingProjects, setUpcomingProjects] = useState([]);
@@ -44,9 +44,11 @@ const Projects = () => {
         </div>
 
         <div className="text-center mt-8">
-          <button className="font-poppins font-medium px-8 bg-green-800 text-white text-[20px] text-center rounded-[30px] w-[200px] h-[60px] shadow-md hover:bg-green-600 transition">
-            View All
-          </button>
+          <Link to="/ongoing-projects">
+            <button className="font-poppins font-medium px-8 bg-green-800 text-white text-[20px] text-center rounded-[30px] w-[200px] h-[60px] shadow-md hover:bg-green-600 transition">
+              View All
+            </button>
+          </Link>
         </div>
       </section>
 
@@ -69,9 +71,11 @@ const Projects = () => {
         </div>
 
         <div className="text-center mt-8">
-          <button className="font-poppins font-medium px-8 bg-green-800 text-white text-[20px] text-center rounded-[30px] w-[200px] h-[60px] shadow-md hover:bg-green-600 transition">
-            View All
-          </button>
+          <Link to="/upcoming-projects">
+            <button className="font-poppins font-medium px-8 bg-green-800 text-white text-[20px] text-center rounded-[30px] w-[200px] h-[60px] shadow-md hover:bg-green-600 transition">
+              View All
+            </button>
+          </Link>
         </div>
       </section>
     </>
