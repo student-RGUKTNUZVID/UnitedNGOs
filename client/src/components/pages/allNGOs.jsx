@@ -68,7 +68,7 @@ const AllNGOsPage = () => {
     );
   });
 
-  return (<div className="border-t-4 border-green-100">
+  return (<div className=" border-green-100 mt-20">
     <div ref={sectionRef} className="p-6 max-w-7xl mx-auto bg-white text-gray-800 min-h-screen relative">
   <h1 className="text-3xl font-bold text-green-600 mb-6 border-b-4 border-green-500 inline-block pb-1">
     NGOs Directory

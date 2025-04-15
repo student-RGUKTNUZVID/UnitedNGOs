@@ -7,6 +7,8 @@ import session from 'express-session';
 import './src/config/passport.js';
 import db from './src/models/database.js';
 import userRoute from "./src/routes/auth.js";
+import volunteerRoute from "./src/routes/volunteerRoute.js";
+//dotenv is a package that loads environment variables from a .env file into process.env
 import routes from './src/routes/ngoroutes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -44,6 +46,11 @@ app.get('/getAllHackathons', async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch hackathons' });
   }
 });
+app.use('/',routes);
+app.use('/api/auth',userRoute);
+app.use('/api',volunteerRoute);
+// Routes
+app.use('/api/hackathons', hackathonRoutes);
 
 // ✅ Razorpay Routes
 const razorpay = new Razorpay({
