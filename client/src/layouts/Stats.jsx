@@ -48,7 +48,7 @@ const StatsComponent = () => {
   return (
     <div
       ref={statsRef}
-      className="flex flex-col md:flex-row gap-32 justify-center items-center text-black p-6 md:p-12 md:m-5 rounded-lg border border-green-200 bg-white"
+      className="flex flex-col md:flex-row gap-32 justify-center items-center text-black p-6 md:p-12 md:m-5 rounded-lg  bg-white"
       style={{
         boxShadow: "0 10px 20px rgba(76, 175, 80, 0.2)", // Light green shadow
       }}

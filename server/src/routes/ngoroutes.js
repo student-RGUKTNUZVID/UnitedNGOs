@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import {storage} from "../utils/cloudinary.js";
-import {submitQuery} from "../controllers/unitedngoController.js";
+import {getAllHackathons, getHackathonById, submitQuery} from "../controllers/unitedngoController.js";
 import {raiseIssue} from "../controllers/unitedngoController.js"
 import {getNGOs} from "../controllers/unitedngoController.js"
 import {getNGObyId} from "../controllers/unitedngoController.js"
@@ -25,4 +25,7 @@ router.get("/ngo/completed-projects/:id",getNgoCompletedProjects);
 router.get("/ngo/ongoing-projects/:id",getNgoOngoingProjects);
 router.get("/ngo/upcoming-projects/:id",getNgoUpcomingProjects);
 router.post("/register-hackathon",upload.single("image"),submitHackathon);
+router.get("/getAllHackathons",getAllHackathons);
+router.get('/hackathon/:id', getHackathonById);
+
 export default router;

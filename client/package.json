@@ -17,6 +17,7 @@
     "axios": "^1.7.9",
     "framer-motion": "^12.6.3",
     "leaflet": "^1.9.4",
+    "lucide-react": "^0.488.0",
     "mapbox-gl": "^3.10.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

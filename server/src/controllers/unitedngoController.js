@@ -200,7 +200,37 @@ const submitHackathon=async(req,res)=>{
     res.status(500).json({ message: "Failed to create hackathon" });
   }
 }
-export {submitQuery,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitHackathon}
+
+const getAllHackathons = async (req, res) => {
+  try {
+    const hackathons = await Hackathon.find().sort({ startDate: 1 }); // Sort by start date
+
+    // ✅ Wrap the response in an object with key 'hackathons'
+    res.status(200).json({ hackathons });
+  } catch (error) {
+    console.error('Error fetching hackathons:', error.message);
+    res.status(500).json({ message: 'Server error while fetching hackathons' });
+  }
+};
+const getHackathonById = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const hackathon = await Hackathon.findById(id);
+
+    if (!hackathon) {
+      return res.status(404).json({ message: 'Hackathon not found' });
+    }
+
+    res.status(200).json({ hackathon });
+  } catch (error) {
+    console.error('Error fetching hackathon:', error.message);
+    res.status(500).json({ message: 'Server error while fetching hackathon details' });
+  }
+};
+
+
+
+export {submitQuery,getHackathonById,getAllHackathons,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitHackathon}
 
 // async function insertOngoingProjectData(){
 //   try{
