@@ -12,7 +12,7 @@ const ProfilePage = () => {
       try {
         const res = await axiosInstance.get('/api/auth/profile'); // Your backend endpoint
         setUser(res.data.user);
-        setVolunteer(res.data.volunteer);
+        setVolunteer(res.data?.volunteer);
         //console.log("volunteer dtaa",res.data.volunteer); // assuming res.data is the user object
       } catch (error) {
         console.error("Error fetching profile:", error);
@@ -101,7 +101,7 @@ const ProfilePage = () => {
             </div>
           )}
           {
-            volunteer.ngos?.length>0&& (
+            volunteer?.ngos?.length>0&& (
               <div className="mt-4">
               <h2 className="text-lg font-semibold text-indigo-700">Ngos and projects</h2>
               <h3 className='text-red'>Projects</h3>
