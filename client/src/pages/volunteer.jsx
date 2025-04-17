@@ -54,7 +54,6 @@ const VolunteerForm = ({ onClose }) => {
         projectId: projectId,
         userId,
       };
-
       const res = await axiosInstance.post("/api/join-volunteer", payload);
       if (res.data.success) {
         toast.success("Thank you for volunteering!");
