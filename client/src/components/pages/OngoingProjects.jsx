@@ -2,6 +2,7 @@ import React from "react";
 import {useState,useEffect} from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import {useLocation,useNavigate} from "react-router-dom";
+import { motion } from "framer-motion";
 const OngoingProjects = () => {
     const [data,setData]=useState([]);
     const [loading,setLoading]=useState(true);
@@ -34,8 +35,9 @@ const OngoingProjects = () => {
       ) : (
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl ml-[45px]">
           {data.map((project) => (
-            <div
+            <motion.div
               key={project.id}
+              whileHover={{ scale: 1.02 }}
               className="bg-white w-[250px] h-[300px] md:h-[400px] md:w-[350px] rounded-2xl shadow-lg p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
             >
               <div className="flex justify-center items-center h-auto w-auto rounded-full">
@@ -55,7 +57,7 @@ const OngoingProjects = () => {
                   View
                 </button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       )}

@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { HiOutlineMenu, HiX } from "react-icons/hi"; // Using react-icons
 import { motion } from "framer-motion";
 import ProfileWidget from "../../pages/profileWidget";
@@ -17,13 +17,13 @@ export default function Navbar() {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowExtraMenu(false);
       }
-    }; 
+    };
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
+
   useEffect(() => {
     const userType = localStorage.getItem("userType");
     setIsNGO(userType === "ngo");
@@ -85,7 +85,7 @@ export default function Navbar() {
             </button>
             {showExtraMenu && (
               <motion.div
-               ref={dropdownRef}
+                ref={dropdownRef}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
@@ -105,7 +105,7 @@ export default function Navbar() {
                 >
                   Awareness Sessions
                 </NavLink>
-                
+
                 <NavLink
                   to="/getAllHackthons"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
@@ -169,15 +169,15 @@ export default function Navbar() {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex space-x-4 font-poppins pr-4">
-        {isLoggedIn ? (
-        <ProfileWidget />
-      ) : (
-        <NavLink to="/login">
-         <button className="text-black text-[18px] rounded-[40px] font-medium w-[160px] h-[40px] hover:bg-[#00964D] hover:text-white hover:shadow-[0_0_12px_rgba(0,150,77,0.6)] transition-all duration-300">
-              Login/Register
-            </button>
-        </NavLink>
-      )}
+          {isLoggedIn ? (
+            <ProfileWidget />
+          ) : (
+            <NavLink to="/login">
+              <button className="text-black text-[18px] rounded-[40px] font-medium w-[160px] h-[40px] hover:bg-[#00964D] hover:text-white hover:shadow-[0_0_12px_rgba(0,150,77,0.6)] transition-all duration-300">
+                Login/Register
+              </button>
+            </NavLink>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -276,24 +276,24 @@ export default function Navbar() {
                 Success Stories
               </NavLink>
               <NavLink
-                  to="/campaigns"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                  onClick={() => setShowExtraMenu(false)}
-                >
-                  Campaigns
-                </NavLink>
-                <NavLink
-                  to="/contact"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                  onClick={() => setShowExtraMenu(false)}
-                >
-                  Contact Us
-                </NavLink>
+                to="/campaigns"
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                onClick={() => setShowExtraMenu(false)}
+              >
+                Campaigns
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                onClick={() => setShowExtraMenu(false)}
+              >
+                Contact Us
+              </NavLink>
             </div>
           )}
 
           {/* Login Button */}
-          
+
           <NavLink to="/login">
             <button className="w-[140px] px-4 py-2 bg-black text-white rounded-[40px] font-medium hover:bg-blue-700">
               Login/Register

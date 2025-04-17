@@ -3,11 +3,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/axiosInstance";
-// Assuming you stored the token after login
-
 
 // Decode the token to get userId (if needed)
 import {jwtDecode} from "jwt-decode";
+
 
 const VolunteerForm = ({ onClose }) => {
   const token = localStorage.getItem("token");
@@ -18,7 +17,7 @@ const VolunteerForm = ({ onClose }) => {
       const decoded = jwtDecode(token);
       console.log(decoded);
       userId = decoded.id;
-      console.log(userId);// Adjust based on your token payload
+      console.log(userId); // Adjust based on your token payload
     } catch (error) {
       console.error("Invalid token", error);
     }
@@ -53,13 +52,13 @@ const VolunteerForm = ({ onClose }) => {
         skills: formData.skills.split(",").map((skill) => skill.trim()),
         ngoId: ngoId,
         projectId: projectId,
-        userId
+        userId,
       };
 
       const res = await axiosInstance.post("/api/join-volunteer", payload);
       if (res.data.success) {
         toast.success("Thank you for volunteering!");
-        setTimeout(() => navigate('/upcoming-projects'), 2000); // go back
+        setTimeout(() => navigate("/upcoming-projects"), 2000); // go back
       }
     } catch (err) {
       console.error("Error submitting volunteer form", err);
@@ -78,7 +77,9 @@ const VolunteerForm = ({ onClose }) => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-sm">
-        <h2 className="text-2xl font-semibold text-center text-green-600 mb-6">Volunteer Form</h2>
+        <h2 className="text-2xl font-semibold text-center text-green-600 mb-6">
+          Volunteer Form
+        </h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <input
             name="name"
