@@ -37,6 +37,9 @@ import UploadCampaign from "./components/campain/UploadCampaign";
 import RaiseCampaign from "./components/campain/RaiseCampaign";
 import ViewMore from "./pages/viewMore";
 import ProtectedRoute from "./layouts/ProtectedRoute";
+import AdminLogin from "./apicalls/AdminLogin";
+import AdminProtectedRoute from "./apicalls/AdminProtected";
+import AdminDashboard from "./apicalls/AdminDashBoard";
 const DummyNgo = {
   id: "1",
   name: "Helping Hands",
@@ -215,16 +218,22 @@ function App() {
               </MainLayout>
             }
           />
-                <Route path="/raise-campaign" element={
+          <Route path="/raise-campaign" element={
            <MainLayout>
               <ProtectedRoute><RaiseCampaign />
               </ProtectedRoute>
            </MainLayout>} />
-
-        
-
         {/* Routes WITHOUT Navbar and Footer */}
         <Route path="/login" element={<Login />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
+        <Route
+        path="/admin-dashboard"
+        element={
+          <AdminProtectedRoute>
+            <AdminDashboard />
+          </AdminProtectedRoute>
+        }
+      />
         <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/register" element={<Register />} />
         <Route path="/donate/:id" element={<DonatePage />} />

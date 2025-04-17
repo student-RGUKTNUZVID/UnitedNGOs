@@ -15,10 +15,10 @@ const AwarenessPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          Together, We Empower Change 🌍
+          Awareness Videos
         </motion.h1>
         <p className="mt-4 max-w-2xl mx-auto text-gray-700 text-lg">
-          Learn how NGOs are transforming lives and how your connection can make a difference.
+          Here are some videos in order to get some awreness related to NGOS
         </p>
       </section>
 
@@ -44,7 +44,7 @@ const AwarenessPage = () => {
       </section> */}
 
       <section className="bg-gray-100 py-12">
-  <h2 className="text-3xl font-bold text-center mb-8">Stories of Impact</h2>
+  <h2 className="text-3xl font-bold text-center mb-8">Videos</h2>
   <div className="max-w-6xl mx-auto px-4 grid gap-8 md:grid-cols-2">
     {/* Video 1 */}
     <motion.div
@@ -60,7 +60,7 @@ const AwarenessPage = () => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         />
-        <p>Akruthi Ngo</p>
+        {/* <p className="text-lg">uploaded By:Akruthi Ngo</p> */}
       </div>
     </motion.div>
 

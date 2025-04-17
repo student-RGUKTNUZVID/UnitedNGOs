@@ -115,7 +115,7 @@ export default function Navbar() {
                   Success Stories
                 </NavLink>
                 <NavLink
-                  to="/campaigns"
+                  to="/raise-campaign"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
                   onClick={() => setShowExtraMenu(false)}
                 >
