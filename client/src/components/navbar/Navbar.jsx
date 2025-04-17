@@ -3,13 +3,16 @@ import { useState, useEffect,useRef } from "react";
 import { HiOutlineMenu, HiX } from "react-icons/hi"; // Using react-icons
 import { motion } from "framer-motion";
 import ProfileWidget from "../../pages/profileWidget";
+import axiosInstance from "../../utils/axiosInstance";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showExtraMenu, setShowExtraMenu] = useState(false);
   const [isNGO, setIsNGO] = useState(false);
   const dropdownRef = useRef();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const[user,setUser]=useState(null); // Your backend endpoint
   useEffect(() => {
+    
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowExtraMenu(false);
@@ -26,6 +29,18 @@ export default function Navbar() {
     setIsNGO(userType === "ngo");
   }, []);
   useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await axiosInstance.get('/api/auth/profile'); // Your backend endpoint
+        setUser(res.data.user);
+        //setVolunteer(res.data?.volunteer);
+        //console.log("volunteer dtaa",res.data.volunteer); // assuming res.data is the user object
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+        toast.error("Failed to fetch user profile.");
+      }
+    };
+    fetchProfile();
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
   }, []);
@@ -98,13 +113,22 @@ export default function Navbar() {
                 >
                   Hackathons
                 </NavLink>
-                {isNGO && (
+                {user.role ==='ngo' && (
                   <NavLink
                     to="/register-hackathon"
                     className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
                     onClick={() => setShowExtraMenu(false)}
                   >
                     Register Hackathon
+                  </NavLink>
+                )}
+                 {user.role ==='ngo' && (
+                  <NavLink
+                    to="/upload-project"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
+                    onClick={() => setShowExtraMenu(false)}
+                  >
+                    upload Project
                   </NavLink>
                 )}
                 <NavLink
@@ -121,6 +145,16 @@ export default function Navbar() {
                 >
                   Campaigns
                 </NavLink>
+                {
+                  user.role === 'ngo' &&
+                  <NavLink
+                  to="/upload-campaign"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
+                  onClick={() => setShowExtraMenu(false)}
+                >
+                  upload Campaigns
+                </NavLink>
+                }
                 <NavLink
                   to="/contact"
                   className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
