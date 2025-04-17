@@ -11,7 +11,10 @@ import {getNgoCompletedProjects} from "../controllers/unitedngoController.js"
 import {getNgoOngoingProjects} from "../controllers/unitedngoController.js"
 import {getNgoUpcomingProjects} from "../controllers/unitedngoController.js"
 import {submitHackathon} from "../controllers/unitedngoController.js"
+import {submitReview} from "../controllers/unitedngoController.js"
+//import {submitHackathon} from "../controllers/unitedngoController.js"
 import {submitCampaign,getAllCampaigns,donateToCampaign} from "../controllers/unitedngoController.js"
+import {getReviews} from "../controllers/unitedngoController.js"
 const upload = multer({ storage });
 const router=express.Router();
 
@@ -32,4 +35,6 @@ router.post('/upload-campaign',upload.fields([  { name: "banner", maxCount: 1 },
 { name: "document", maxCount: 1 },]),submitCampaign);
 router.get('/campaigns',getAllCampaigns);
 router.put('/donate-to-campaigns/:id',donateToCampaign);
+router.post('/submit-review',submitReview);
+router.get('/get-reviews',getReviews);
 export default router;

@@ -5,6 +5,10 @@ import { toast } from "react-toastify";
 import axiosInstance from "../utils/axiosInstance";
 import { jwtDecode } from "jwt-decode";
 
+// Decode the token to get userId (if needed)
+import {jwtDecode} from "jwt-decode";
+
+
 const VolunteerForm = ({ onClose }) => {
   const token = localStorage.getItem("token");
   let userId = null;
@@ -52,6 +56,8 @@ const VolunteerForm = ({ onClose }) => {
         skills: formData.skills.split(",").map((skill) => skill.trim()),
         ngoId,
         projectId,
+        ngoId: ngoId,
+        projectId: projectId,
         userId,
       };
 
@@ -59,6 +65,7 @@ const VolunteerForm = ({ onClose }) => {
       if (res.data.success) {
         toast.success("Thank you for volunteering!");
         setTimeout(() => navigate("/upcoming-projects"), 2000);
+        setTimeout(() => navigate("/upcoming-projects"), 2000); // go back
       }
     } catch (err) {
       console.error("Error submitting volunteer form", err);

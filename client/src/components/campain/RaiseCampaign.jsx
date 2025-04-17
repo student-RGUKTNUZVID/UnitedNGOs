@@ -3,6 +3,7 @@ import axiosInstance from "../../utils/axiosInstance"; // Custom axios instance 
 import { FaDonate } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 const RaiseCampaign = () => {
   const [campaigns, setCampaigns] = useState([]);
@@ -24,10 +25,12 @@ const RaiseCampaign = () => {
         title:campaign.title,
         startDate:campaign.startDate,
         endDate:campaign.endDate,
+        targetImpact:campaign.targetImpact,
         description: campaign.description,
         targetAmount: campaign.fundraisingTarget,
         collectedAmount: campaign.collectedAmount,
         logo: campaign.bannerUrl,
+        document:campaign.documentUrl
       }));
       setCampaigns(formatted);
     } catch (err) {
@@ -117,8 +120,8 @@ const RaiseCampaign = () => {
   };
 
   return (
-    <div className="min-h-screen px-6 md:px-20 py-10 bg-white dark:bg-gray-900 mt-16">
-      <h1 className="text-4xl font-bold text-center text-green-700 mb-10">Ongoing Campaigns</h1>
+    <div className="min-h-screen px-6 md:px-20 py-10 bg-white mt-16">
+      <h1 className="text-4xl font-bold text-center text-green-700 mb-10"> Campaigns</h1>
 
       {loading ? (
         <p className="text-center text-gray-500">Loading...</p>
@@ -149,25 +152,30 @@ const RaiseCampaign = () => {
 
   {/* Text Section */}
   <div className="flex-1 flex flex-col justify-start">
-    <h1 className="text-lg font-semibold text-gray-700 dark:text-gray-300 line-clamp-1">
-      {ngo.title}
+    <h1 className="text-2xl font-semibold text-black line-clamp-1">
+    {ngo.title}
     </h1>
-    <h2 className="text-2xl font-bold text-black dark:text-white line-clamp-1">
-      {ngo.name}
+    <h2 className="text-base font-bold text-black line-clamp-1">
+     Organised By: {ngo.name}
     </h2>
-    <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 line-clamp-3">
-      {ngo.description}
-      <br /><a href="/view-more" className="text-green-500">Read More</a>
+    <p className="text-sm text-gray-600 mt-1 line-clamp-3">
+      <span className="text-green-400">Description</span>:{ngo.description}
+      <br /><Link
+  to="/view-more"
+  state={{ ngo }}
+  className="text-green-500 underline"
+>
+  Read More
+</Link>
     </p>
   </div>
 
   {/* Progress Bar */}
   <div className="mt-4">
-  <p className="text-sm font-semibold text-gray-800 dark:text-gray-200 mt-2">
+  <p className="text-sm font-semibold text-gray-800 mt-2">
         Status: <span className={status === "Completed" ? "text-red-600" : "text-green-600"}>{status}</span>
       </p>
-
-    <div className="text-sm font-medium text-gray-800 dark:text-gray-200">
+    <div className="text-sm font-medium text-gray-800">
       Raised: ₹{ngo.collectedAmount} / ₹{ngo.targetAmount}
     </div>
     <div className="w-full bg-gray-300 dark:bg-gray-700 h-3 rounded-full mt-1">

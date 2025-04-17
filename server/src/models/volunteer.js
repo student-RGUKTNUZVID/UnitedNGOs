@@ -27,7 +27,6 @@ const volunteerSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'NGO'
   }],
-
   projects: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'UpcomingProject'

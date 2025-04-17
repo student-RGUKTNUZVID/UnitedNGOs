@@ -6,7 +6,8 @@ const upcomingProjectSchema = new mongoose.Schema({
   startDate: Date,
   endDate: Date,
   ngo: { type: mongoose.Schema.Types.ObjectId, ref: 'NGO', required: true },
-  volunteers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Volunteer' }]
+  volunteers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Volunteer' }],
+  collaborators:[{ type: mongoose.Schema.Types.ObjectId, ref: 'NGOHead' }],
 }, { timestamps: true });
 
 const UpcomingProject = mongoose.model('UpcomingProject', upcomingProjectSchema);

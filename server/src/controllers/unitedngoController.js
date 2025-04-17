@@ -6,6 +6,25 @@ import CompletedProject from "../models/completedProjectModel.js";
 import OngoingProject from "../models/ongoingProjectModel.js";
 import UpcomingProject from "../models/upcomingProjectModel.js";
 import Hackathon from "../models/Hackathon.js";
+import Testimonial from "../models/testimonialModel.js";
+//  const submitQuery=async(req,res)=>{
+//     try {
+//         const { name, email, message } = req.body;
+//         const newMessage = new Contact({ name, email, message });
+//         await newMessage.save();
+//         return res.json({
+//             error:false,
+//             newMessage,
+//             message: "Message received"
+//         });
+//       } catch (error) {
+//         // res.status(500).json({ success: false, error: err.message });
+//         return res.status(400).json({
+//             error:true,
+//             message:"Internal server error"
+//         })
+//       }
+// }
 
 // ------------------- Contact Form Submission -------------------
 const submitQuery = async (req, res) => {
@@ -299,6 +318,47 @@ export {
   donateToCampaign,
   submitHackathon, // ✅ NEW EXPORT
 };
+const submitReview = async (req, res) => {
+  try {
+    const { name, city, state, review, userId } = req.body;
+
+    if (!name || !city || !state || !review || !userId) {
+      return res.status(400).json({ message: "All fields including user ID are required." });
+    }
+
+    const newTestimonial = new Testimonial({
+      name,
+      city,
+      state,
+      review,
+      user: userId, // referencing the user
+    });
+
+    await newTestimonial.save();
+
+    res.status(201).json({ message: "Testimonial submitted successfully!" });
+  } catch (error) {
+    console.error("Error submitting testimonial:", error);
+    res.status(500).json({ message: "Server error. Please try again later." });
+  }
+};
+
+
+const getReviews = async (req, res) => {
+  try {
+    const testimonials = await Testimonial.find()
+      .sort({ createdAt: -1 })
+      .limit(3)
+      .populate("user", "role"); // optionally populate user details
+    res.status(200).json(testimonials);
+  } catch (err) {
+    console.error("Error fetching testimonials:", err);
+    res.status(500).json({ error: "Failed to fetch testimonials" });
+  }
+};
+
+
+export {submitQuery,getReviews,submitReview,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitCampaign,getAllCampaigns,donateToCampaign}
 
 // async function insertOngoingProjectData(){
 //   try{

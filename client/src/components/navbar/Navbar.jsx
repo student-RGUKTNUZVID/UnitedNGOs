@@ -1,31 +1,46 @@
 import { NavLink } from "react-router-dom";
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { HiOutlineMenu, HiX } from "react-icons/hi"; // Using react-icons
 import { motion } from "framer-motion";
 import ProfileWidget from "../../pages/profileWidget";
+import axiosInstance from "../../utils/axiosInstance";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [showExtraMenu, setShowExtraMenu] = useState(false);
   const [isNGO, setIsNGO] = useState(false);
   const dropdownRef = useRef();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const[user,setUser]=useState(null); // Your backend endpoint
   useEffect(() => {
+    
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setShowExtraMenu(false);
       }
-    }; 
+    };
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  
+
   useEffect(() => {
     const userType = localStorage.getItem("userType");
     setIsNGO(userType === "ngo");
   }, []);
   useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await axiosInstance.get('/api/auth/profile'); // Your backend endpoint
+        setUser(res.data.user);
+        //setVolunteer(res.data?.volunteer);
+        //console.log("volunteer dtaa",res.data.volunteer); // assuming res.data is the user object
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+        toast.error("Failed to fetch user profile.");
+      }
+    };
+    fetchProfile();
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token);
   }, []);
@@ -70,60 +85,79 @@ export default function Navbar() {
             </button>
             {showExtraMenu && (
               <motion.div
-               ref={dropdownRef}
+                ref={dropdownRef}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="absolute left-0 top-full bg-green-300 shadow-xl rounded-lg mt-2 py-2 w-[200px] z-[100]"
+                className="absolute left-0 top-full bg-gray-100 shadow-xl rounded-lg mt-2 py-2 w-[200px] z-[100]"
               >
                 <NavLink
                   to="/about"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
                   onClick={() => setShowExtraMenu(false)}
                 >
                   About Us
                 </NavLink>
                 <NavLink
                   to="/awareness"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
                   onClick={() => setShowExtraMenu(false)}
                 >
                   Awareness Sessions
                 </NavLink>
-                
+
                 <NavLink
                   to="/getAllHackthons"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
                   onClick={() => setShowExtraMenu(false)}
                 >
                   Hackathons
                 </NavLink>
-                {isNGO && (
+                {user.role ==='ngo' && (
                   <NavLink
                     to="/register-hackathon"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
                     onClick={() => setShowExtraMenu(false)}
                   >
                     Register Hackathon
                   </NavLink>
                 )}
+                 {user.role ==='ngo' && (
+                  <NavLink
+                    to="/upload-project"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
+                    onClick={() => setShowExtraMenu(false)}
+                  >
+                    upload Project
+                  </NavLink>
+                )}
                 <NavLink
                   to="/success-stories"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
                   onClick={() => setShowExtraMenu(false)}
                 >
                   Success Stories
                 </NavLink>
                 <NavLink
-                  to="/campaigns"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  to="/raise-campaign"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
                   onClick={() => setShowExtraMenu(false)}
                 >
                   Campaigns
                 </NavLink>
+                {
+                  user.role === 'ngo' &&
+                  <NavLink
+                  to="/upload-campaign"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
+                  onClick={() => setShowExtraMenu(false)}
+                >
+                  upload Campaigns
+                </NavLink>
+                }
                 <NavLink
                   to="/contact"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                  className="block px-4 py-2 text-gray-800 hover:bg-gray-400"
                   onClick={() => setShowExtraMenu(false)}
                 >
                   Contact Us
@@ -135,15 +169,15 @@ export default function Navbar() {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex space-x-4 font-poppins pr-4">
-        {isLoggedIn ? (
-        <ProfileWidget />
-      ) : (
-        <NavLink to="/login">
-         <button className="text-black text-[18px] rounded-[40px] font-medium w-[160px] h-[40px] hover:bg-[#00964D] hover:text-white hover:shadow-[0_0_12px_rgba(0,150,77,0.6)] transition-all duration-300">
-              Login/Register
-            </button>
-        </NavLink>
-      )}
+          {isLoggedIn ? (
+            <ProfileWidget />
+          ) : (
+            <NavLink to="/login">
+              <button className="text-black text-[18px] rounded-[40px] font-medium w-[160px] h-[40px] hover:bg-[#00964D] hover:text-white hover:shadow-[0_0_12px_rgba(0,150,77,0.6)] transition-all duration-300">
+                Login/Register
+              </button>
+            </NavLink>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -242,24 +276,24 @@ export default function Navbar() {
                 Success Stories
               </NavLink>
               <NavLink
-                  to="/campaigns"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                  onClick={() => setShowExtraMenu(false)}
-                >
-                  Campaigns
-                </NavLink>
-                <NavLink
-                  to="/contact"
-                  className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                  onClick={() => setShowExtraMenu(false)}
-                >
-                  Contact Us
-                </NavLink>
+                to="/campaigns"
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                onClick={() => setShowExtraMenu(false)}
+              >
+                Campaigns
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                onClick={() => setShowExtraMenu(false)}
+              >
+                Contact Us
+              </NavLink>
             </div>
           )}
 
           {/* Login Button */}
-          
+
           <NavLink to="/login">
             <button className="w-[140px] px-4 py-2 bg-black text-white rounded-[40px] font-medium hover:bg-blue-700">
               Login/Register

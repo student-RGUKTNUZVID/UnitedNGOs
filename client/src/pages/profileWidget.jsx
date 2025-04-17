@@ -43,7 +43,7 @@ const ProfileWidget = () => {
   className="w-13 h-13 bg-green-300 text-white rounded-full flex items-center justify-center focus:outline-none"
   onClick={() => navigate('/profile')}
 >
-  {user.photo ? (
+  {user?.photo ? (
     <img
       src={user.photo}
       alt="Profile"
