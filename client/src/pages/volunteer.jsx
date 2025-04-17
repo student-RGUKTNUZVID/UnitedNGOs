@@ -3,13 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/axiosInstance";
-<<<<<<< HEAD
+
 // Assuming you stored the token after login
 
-
 // Decode the token to get userId (if needed)
-import {jwtDecode} from "jwt-decode";
-
+import { jwtDecode } from "jwt-decode";
 
 const VolunteerForm = ({ onClose }) => {
   const token = localStorage.getItem("token");
