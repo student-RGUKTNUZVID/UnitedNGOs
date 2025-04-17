@@ -121,7 +121,7 @@ const RaiseCampaign = () => {
 
   return (
     <div className="min-h-screen px-6 md:px-20 py-10 bg-white mt-16">
-      <h1 className="text-4xl font-bold text-center text-green-700 mb-10">Ongoing Campaigns</h1>
+      <h1 className="text-4xl font-bold text-center text-green-700 mb-10"> Campaigns</h1>
 
       {loading ? (
         <p className="text-center text-gray-500">Loading...</p>
