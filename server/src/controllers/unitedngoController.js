@@ -6,6 +6,7 @@ import Campaign from "../models/campaignModel.js";
 import CompletedProject from "../models/completedProjectModel.js";
 import OngoingProject from "../models/ongoingProjectModel.js";
 import UpcomingProject from "../models/upcomingProjectModel.js";
+import Testimonial from "../models/testimonialModel.js";
  const submitQuery=async(req,res)=>{
     try {
         const { name, email, message } = req.body;
@@ -245,8 +246,34 @@ const donateToCampaign = async (req, res) => {
   }
 };
 
+const submitReview=async(req,res)=>{
+  try {
+    const { name, city, state, review } = req.body;
 
-export {submitQuery,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitCampaign,getAllCampaigns,donateToCampaign}
+    if (!name || !city || !state || !review) {
+      return res.status(400).json({ message: "All fields are required." });
+    }
+
+    const newTestimonial = new Testimonial({ name, city, state, review });
+    await newTestimonial.save();
+
+    res.status(201).json({ message: "Testimonial submitted successfully!" });
+  } catch (error) {
+    console.error("Error submitting testimonial:", error);
+    res.status(500).json({ message: "Server error. Please try again later." });
+  }
+}
+
+const getReviews=async(req,res)=>{
+  try {
+    const testimonials = await Testimonial.find().sort({ createdAt: -1 }).limit(3);
+    res.status(200).json(testimonials);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch testimonials' });
+  }
+}
+
+export {submitQuery,getReviews,submitReview,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitCampaign,getAllCampaigns,donateToCampaign}
 
 // async function insertOngoingProjectData(){
 //   try{
