@@ -3,14 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/axiosInstance";
-<<<<<<< HEAD
-// Assuming you stored the token after login
-
-
-// Decode the token to get userId (if needed)
-import {jwtDecode} from "jwt-decode";
-=======
->>>>>>> 9111be892d392903f86f4a867dde03b80ae8c727
+import { jwtDecode } from "jwt-decode";
 
 const VolunteerForm = ({ onClose }) => {
   const token = localStorage.getItem("token");
@@ -21,17 +14,19 @@ const VolunteerForm = ({ onClose }) => {
       const decoded = jwtDecode(token);
       console.log(decoded);
       userId = decoded.id;
-      console.log(userId);// Adjust based on your token payload
+      console.log(userId); // Adjust based on your token payload
     } catch (error) {
       console.error("Invalid token", error);
     }
   } else {
     console.warn("Token not found or not a string");
   }
+
   const { state } = useLocation();
   const navigate = useNavigate();
   const projectId = state?.projectId;
   const ngoId = state?.ngoId;
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -47,6 +42,7 @@ const VolunteerForm = ({ onClose }) => {
       [e.target.name]: e.target.value,
     }));
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -54,15 +50,15 @@ const VolunteerForm = ({ onClose }) => {
       const payload = {
         ...formData,
         skills: formData.skills.split(",").map((skill) => skill.trim()),
-        ngoId: ngoId,
-        projectId: projectId,
-        userId
+        ngoId,
+        projectId,
+        userId,
       };
 
       const res = await axiosInstance.post("/api/join-volunteer", payload);
       if (res.data.success) {
         toast.success("Thank you for volunteering!");
-        setTimeout(() => navigate('/upcoming-projects'), 2000); // go back
+        setTimeout(() => navigate("/upcoming-projects"), 2000);
       }
     } catch (err) {
       console.error("Error submitting volunteer form", err);
@@ -71,17 +67,20 @@ const VolunteerForm = ({ onClose }) => {
       setLoading(false);
     }
   };
+
   const handleClose = () => {
-    navigate(-1); // This will navigate one step backward in the history
+    navigate(-1);
     if (onClose) {
-      onClose(); // You can also call onClose if you need to perform additional actions
+      onClose();
     }
   };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-sm">
-        <h2 className="text-2xl font-semibold text-center text-green-600 mb-6">Volunteer Form</h2>
+        <h2 className="text-2xl font-semibold text-center text-green-600 mb-6">
+          Volunteer Form
+        </h2>
         <form className="space-y-4" onSubmit={handleSubmit}>
           <input
             name="name"
