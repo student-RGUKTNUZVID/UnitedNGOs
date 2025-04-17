@@ -246,15 +246,22 @@ const donateToCampaign = async (req, res) => {
   }
 };
 
-const submitReview=async(req,res)=>{
+const submitReview = async (req, res) => {
   try {
-    const { name, city, state, review } = req.body;
+    const { name, city, state, review, userId } = req.body;
 
-    if (!name || !city || !state || !review) {
-      return res.status(400).json({ message: "All fields are required." });
+    if (!name || !city || !state || !review || !userId) {
+      return res.status(400).json({ message: "All fields including user ID are required." });
     }
 
-    const newTestimonial = new Testimonial({ name, city, state, review });
+    const newTestimonial = new Testimonial({
+      name,
+      city,
+      state,
+      review,
+      user: userId, // referencing the user
+    });
+
     await newTestimonial.save();
 
     res.status(201).json({ message: "Testimonial submitted successfully!" });
@@ -262,16 +269,22 @@ const submitReview=async(req,res)=>{
     console.error("Error submitting testimonial:", error);
     res.status(500).json({ message: "Server error. Please try again later." });
   }
-}
+};
 
-const getReviews=async(req,res)=>{
+
+const getReviews = async (req, res) => {
   try {
-    const testimonials = await Testimonial.find().sort({ createdAt: -1 }).limit(3);
+    const testimonials = await Testimonial.find()
+      .sort({ createdAt: -1 })
+      .limit(3)
+      .populate("user", "role"); // optionally populate user details
     res.status(200).json(testimonials);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch testimonials' });
+    console.error("Error fetching testimonials:", err);
+    res.status(500).json({ error: "Failed to fetch testimonials" });
   }
-}
+};
+
 
 export {submitQuery,getReviews,submitReview,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitCampaign,getAllCampaigns,donateToCampaign}
 

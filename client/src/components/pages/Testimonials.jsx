@@ -1,14 +1,29 @@
 import React, { useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
-
+import {jwtDecode} from "jwt-decode";
 const Testimonials = () => {
+  const token = localStorage.getItem("token");
+  let userId = null;
+  if (token && typeof token === "string") {
+    try {
+      const decoded = jwtDecode(token);
+      console.log(decoded);
+      userId = decoded.id;
+      console.log(userId);// Adjust based on your token payload
+    } catch (error) {
+      console.error("Invalid token", error);
+    }
+  } else {
+    console.warn("Token not found or not a string");
+  }
   const [formData, setFormData] = useState({
     name: "",
     city: "",
     state: "",
     review: "",
+    userId: userId || "", // include userId here once
   });
-
+  
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,

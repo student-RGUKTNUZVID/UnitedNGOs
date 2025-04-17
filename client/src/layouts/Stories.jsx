@@ -10,6 +10,7 @@ const TestimonialCarousel = () => {
     const fetchTestimonials = async () => {
       try {
         const res = await axiosInstance.get("/get-reviews");
+        console.log(res.data);
         setTestimonials(res.data);
       } catch (error) {
         console.error("Failed to fetch testimonials", error);
@@ -41,8 +42,9 @@ const TestimonialCarousel = () => {
         <h3 className="text-2xl font-bold text-[#333333] mb-1">
           {testimonials[activeIndex].name}
         </h3>
+
         <p className="text-sm text-[#6b6b6b] mb-4">
-          {testimonials[activeIndex].designation || "Supporter"} |{" "}
+          {testimonials[activeIndex].user?.role || "Supporter"} |{" "}
           {testimonials[activeIndex].city}, {testimonials[activeIndex].state}
         </p>
 
