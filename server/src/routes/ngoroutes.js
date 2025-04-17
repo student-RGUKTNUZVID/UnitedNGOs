@@ -1,8 +1,7 @@
 import express from "express";
 import multer from "multer";
 import {storage} from "../utils/cloudinary.js";
-import { submitQuery} from "../controllers/unitedngoController.js";
-//getAllHackathons, getHackathonById,
+import { getAllHackathons, getHackathonById, submitQuery} from "../controllers/unitedngoController.js";
 import {raiseIssue} from "../controllers/unitedngoController.js"
 import {getNGOs} from "../controllers/unitedngoController.js"
 import {getNGObyId} from "../controllers/unitedngoController.js"
@@ -11,6 +10,7 @@ import {getUpcomingProjects} from "../controllers/unitedngoController.js"
 import {getNgoCompletedProjects} from "../controllers/unitedngoController.js"
 import {getNgoOngoingProjects} from "../controllers/unitedngoController.js"
 import {getNgoUpcomingProjects} from "../controllers/unitedngoController.js"
+import {submitHackathon} from "../controllers/unitedngoController.js"
 import {submitReview} from "../controllers/unitedngoController.js"
 //import {submitHackathon} from "../controllers/unitedngoController.js"
 import {submitCampaign,getAllCampaigns,donateToCampaign} from "../controllers/unitedngoController.js"
@@ -28,9 +28,9 @@ router.get("/upcoming-projects",getUpcomingProjects);
 router.get("/ngo/completed-projects/:id",getNgoCompletedProjects);
 router.get("/ngo/ongoing-projects/:id",getNgoOngoingProjects);
 router.get("/ngo/upcoming-projects/:id",getNgoUpcomingProjects);
-//router.post("/register-hackathon",upload.single("image"),submitHackathon);
-//router.get("/getAllHackathons",getAllHackathons);
-//router.get('/hackathon/:id', getHackathonById);
+router.post("/register-hackathon",upload.single("image"),submitHackathon);
+router.get("/getAllHackathons",getAllHackathons);
+router.get('/hackathon/:id', getHackathonById);
 router.post('/upload-campaign',upload.fields([  { name: "banner", maxCount: 1 },
 { name: "document", maxCount: 1 },]),submitCampaign);
 router.get('/campaigns',getAllCampaigns);

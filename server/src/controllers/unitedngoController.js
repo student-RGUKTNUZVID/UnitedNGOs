@@ -1,4 +1,3 @@
-// require("../models/database");
 import Contact from "../models/contactModel.js";
 import Issue from "../models/issueModel.js";
 import NGO from "../models/ngoModel.js";
@@ -6,39 +5,58 @@ import Campaign from "../models/campaignModel.js";
 import CompletedProject from "../models/completedProjectModel.js";
 import OngoingProject from "../models/ongoingProjectModel.js";
 import UpcomingProject from "../models/upcomingProjectModel.js";
+import Hackathon from "../models/Hackathon.js";
 import Testimonial from "../models/testimonialModel.js";
- const submitQuery=async(req,res)=>{
-    try {
-        const { name, email, message } = req.body;
-        const newMessage = new Contact({ name, email, message });
-        await newMessage.save();
-        return res.json({
-            error:false,
-            newMessage,
-            message: "Message received"
-        });
-      } catch (error) {
-        // res.status(500).json({ success: false, error: err.message });
-        return res.status(400).json({
-            error:true,
-            message:"Internal server error"
-        })
-      }
-}
+//  const submitQuery=async(req,res)=>{
+//     try {
+//         const { name, email, message } = req.body;
+//         const newMessage = new Contact({ name, email, message });
+//         await newMessage.save();
+//         return res.json({
+//             error:false,
+//             newMessage,
+//             message: "Message received"
+//         });
+//       } catch (error) {
+//         // res.status(500).json({ success: false, error: err.message });
+//         return res.status(400).json({
+//             error:true,
+//             message:"Internal server error"
+//         })
+//       }
+// }
 
+// ------------------- Contact Form Submission -------------------
+const submitQuery = async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+    const newMessage = new Contact({ name, email, message });
+    await newMessage.save();
+    return res.json({
+      error: false,
+      newMessage,
+      message: "Message received",
+    });
+  } catch (error) {
+    return res.status(400).json({
+      error: true,
+      message: "Internal server error",
+    });
+  }
+};
 
-const raiseIssue=async(req,res)=>{
+// ------------------- Issue Submission -------------------
+const raiseIssue = async (req, res) => {
   try {
     const { name, email, category, message, location } = req.body;
-    console.log(req.body);
-    const mediaUrls = req.files.map(file => ({
+    const mediaUrls = req.files.map((file) => ({
       public_id: file.filename,
       url: file.path,
-      type: file.mimetype.includes('image')
-        ? 'image'
-        : file.mimetype.includes('video')
-        ? 'video'
-        : 'pdf',
+      type: file.mimetype.includes("image")
+        ? "image"
+        : file.mimetype.includes("video")
+        ? "video"
+        : "pdf",
     }));
 
     const issue = new Issue({
@@ -51,110 +69,103 @@ const raiseIssue=async(req,res)=>{
     });
 
     await issue.save();
-    res.status(201).json({ message: 'Issue submitted successfully!' });
-    console.log("Issue submitted successfully!")
+    res.status(201).json({ message: "Issue submitted successfully!" });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Server Error' });
+    res.status(500).json({ error: "Server Error" });
   }
-}
+};
 
-
-const getNGOs=async(req,res)=>{
+// ------------------- NGO Endpoints -------------------
+const getNGOs = async (req, res) => {
   try {
-    const ngos = await NGO.find(); // Fetches all NGOs
-    res.status(200).json(ngos);    // Sends them as JSON
+    const ngos = await NGO.find();
+    res.status(200).json(ngos);
   } catch (error) {
-    console.error('Error fetching NGOs:', error);
-    res.status(500).json({ message: 'Server error while fetching NGOs' });
+    console.error("Error fetching NGOs:", error);
+    res.status(500).json({ message: "Server error while fetching NGOs" });
   }
-}
+};
 
-const getNGObyId=async(req,res)=>{
-  try{
+const getNGObyId = async (req, res) => {
+  try {
     const { id } = req.params;
     const ngo = await NGO.findById(id);
     if (!ngo) {
       return res.status(404).json({ message: "NGO not found" });
     }
     res.status(200).json(ngo);
-  }catch{
+  } catch (error) {
     console.error("Error fetching NGO by ID:", error);
     res.status(500).json({ message: "Server error" });
   }
-}
+};
 
-const getOngoingProjects=async(req,res)=>{
+// ------------------- Project Fetching -------------------
+const getOngoingProjects = async (req, res) => {
   try {
-    const projects = await OngoingProject.find(); // Fetches all ongoing projects
-    res.status(200).json(projects);    // Sends them as JSON
+    const projects = await OngoingProject.find();
+    res.status(200).json(projects);
   } catch (error) {
-    console.error('Error fetching ongoing projects:', error);
-    res.status(500).json({ message: 'Server error while fetching ongoing projects' });
+    console.error("Error fetching ongoing projects:", error);
+    res.status(500).json({ message: "Server error while fetching ongoing projects" });
   }
-}
+};
 
-const getUpcomingProjects=async(req,res)=>{
+const getUpcomingProjects = async (req, res) => {
   try {
-    const projects = await UpcomingProject.find(); // Fetches all ongoing projects
-    res.status(200).json(projects);    // Sends them as JSON
+    const projects = await UpcomingProject.find();
+    res.status(200).json(projects);
   } catch (error) {
-    console.error('Error fetching upcoming projects:', error);
-    res.status(500).json({ message: 'Server error while fetching upcoming projects' });
+    console.error("Error fetching upcoming projects:", error);
+    res.status(500).json({ message: "Server error while fetching upcoming projects" });
   }
-}
-const getNgoCompletedProjects=async(req,res)=>{
+};
+
+// ------------------- NGO Project Info -------------------
+const getNgoCompletedProjects = async (req, res) => {
   try {
     const { id } = req.params;
-
     const ngo = await NGO.findById(id).populate("projects.completed");
-
     if (!ngo) {
       return res.status(404).json({ message: "NGO not found" });
     }
-
     res.status(200).json({ completed: ngo.projects.completed });
   } catch (error) {
     console.error("Error fetching completed projects:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
-}
+};
 
-const getNgoOngoingProjects=async(req,res)=>{
+const getNgoOngoingProjects = async (req, res) => {
   try {
     const { id } = req.params;
-
     const ngo = await NGO.findById(id).populate("projects.ongoing");
-
     if (!ngo) {
       return res.status(404).json({ message: "NGO not found" });
     }
-
     res.status(200).json({ ongoing: ngo.projects.ongoing });
   } catch (error) {
     console.error("Error fetching ongoing projects:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
-}
+};
 
-const getNgoUpcomingProjects=async(req,res)=>{
+const getNgoUpcomingProjects = async (req, res) => {
   try {
     const { id } = req.params;
-
     const ngo = await NGO.findById(id).populate("projects.upcoming");
-
     if (!ngo) {
       return res.status(404).json({ message: "NGO not found" });
     }
-
-    res.status(200).json({ upcoming: ngo.projects.upcoming});
+    res.status(200).json({ upcoming: ngo.projects.upcoming });
   } catch (error) {
     console.error("Error fetching upcoming projects:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
-}
-// Import your Campaign model
+};
 
+// ------------------- Campaign Submission -------------------
 const submitCampaign = async (req, res) => {
   try {
     const {
@@ -172,7 +183,6 @@ const submitCampaign = async (req, res) => {
       agreedToTerms,
     } = req.body;
 
-    // Make sure files are uploaded
     if (!req.files || !req.files.banner || !req.files.document) {
       return res.status(400).json({ error: "Banner and document are required" });
     }
@@ -194,8 +204,8 @@ const submitCampaign = async (req, res) => {
       contactNumber,
       agreedToTerms,
       collectedAmount: 0,
-      bannerUrl,   // Ensure you're assigning the right field
-      documentUrl, // Same here
+      bannerUrl,
+      documentUrl,
     });
 
     await newCampaign.save();
@@ -206,24 +216,21 @@ const submitCampaign = async (req, res) => {
   }
 };
 
-
-//get all campaign
+// ------------------- Campaign List -------------------
 const getAllCampaigns = async (req, res) => {
   try {
     const campaigns = await Campaign.find().sort({ createdAt: -1 });
     res.status(200).json(campaigns);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch campaigns' });
+    res.status(500).json({ error: "Failed to fetch campaigns" });
   }
 };
-// controllers/campaignController.js (continued)
 
+// ------------------- Campaign Donation Update -------------------
 const donateToCampaign = async (req, res) => {
   try {
     const { id } = req.params;
     const { collectedAmount } = req.body;
-    console.log("Campaign ID:", id);
-    console.log("Received collectedAmount:", collectedAmount);
 
     if (collectedAmount == null || isNaN(collectedAmount)) {
       return res.status(400).json({ message: "Invalid collectedAmount" });
@@ -246,6 +253,71 @@ const donateToCampaign = async (req, res) => {
   }
 };
 
+// ------------------- Hackathon Submission (NEW) -------------------
+const submitHackathon = async (req, res) => {
+  try {
+    const { name, email, projectTitle, description, teamMembers } = req.body;
+
+    // You can expand this to use a Hackathon model and save to DB
+    console.log("Hackathon submission received:", { name, email, projectTitle });
+
+    res.status(201).json({
+      message: "Hackathon submitted successfully!",
+      data: { name, email, projectTitle, description, teamMembers },
+    });
+  } catch (error) {
+    console.error("Error submitting hackathon:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+const getAllHackathons = async (req, res) => {
+  try {
+    // Fetch all hackathons from the database
+    const hackathons = await Hackathon.find(); // You can add filters or pagination if necessary
+
+    // Return the response in the expected format
+    res.status(200).json({ hackathons }); // Ensure the key 'hackathons' is there
+  } catch (err) {
+    console.error('Error fetching hackathons:', err);
+    res.status(500).json({ error: 'Failed to fetch hackathons' });
+  }
+};
+
+// Controller function
+const getHackathonById = async (req, res) => {
+  try {
+    const hackathonId = req.params.id;
+    const hackathon = await Hackathon.findById(hackathonId);
+
+    if (!hackathon) {
+      return res.status(404).json({ message: 'Hackathon not found' });
+    }
+
+    res.status(200).json({ hackathon });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+// ------------------- Export Everything -------------------
+export {
+  submitQuery,
+  getHackathonById,
+  raiseIssue,
+  getAllHackathons,
+  getNGOs,
+  getNGObyId,
+  getOngoingProjects,
+  getUpcomingProjects,
+  getNgoCompletedProjects,
+  getNgoOngoingProjects,
+  getNgoUpcomingProjects,
+  submitCampaign,
+  getAllCampaigns,
+  donateToCampaign,
+  submitHackathon, // ✅ NEW EXPORT
+};
 const submitReview = async (req, res) => {
   try {
     const { name, city, state, review, userId } = req.body;
