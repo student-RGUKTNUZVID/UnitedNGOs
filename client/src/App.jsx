@@ -33,6 +33,7 @@ import AllHackathons from "./pages/AllHackthons";
 import HackathonDetails from "./pages/HackathonDetails";
 import VolunteerForm from "./pages/volunteer";
 import CollaboratorForm from "./pages/collaborator";
+import Testimonials from "./components/pages/Testimonials"
 import UploadCampaign from "./components/campain/UploadCampaign";
 import RaiseCampaign from "./components/campain/RaiseCampaign";
 import ViewMore from "./pages/viewMore";
@@ -67,6 +68,14 @@ function App() {
           element={
             <MainLayout>
               <ContactUs />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/submit-review"
+          element={
+            <MainLayout>
+              <Testimonials />
             </MainLayout>
           }
         />
