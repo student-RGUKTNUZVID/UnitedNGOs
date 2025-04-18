@@ -40,8 +40,9 @@ import ViewMore from "./pages/viewMore";
 import ProtectedRoute from "./layouts/ProtectedRoute";
 import AdminLogin from "./apicalls/AdminLogin";
 import AdminProtectedRoute from "./apicalls/AdminProtected";
-import AdminDashboard from "./apicalls/AdminDashboard";
+import AdminDashboard from "./apicalls/AdminDashBoard";
 import AdminSuccessStoryForm from "./apicalls/AdminSuccessStoryForm";
+import UploadYourProject from "./components/pages/UploadProject";
 // import AdminEditSuccessStory from "./apicalls/AdminEditSuccessStory";
 const DummyNgo = {
   id: "1",
@@ -242,6 +243,14 @@ function App() {
           }
         />
         <Route
+          path="/upload-project"
+          element={
+            <MainLayout>
+          <UploadYourProject />
+            </MainLayout>
+          }
+        />
+        <Route
           path="/raise-campaign"
           element={
             <MainLayout>
@@ -255,18 +264,19 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route
-          path="/admin-dashboard"
-          element={
-            <AdminProtectedRoute>
-              <AdminDashboard />
-            </AdminProtectedRoute>
-          }
-        />
+        path="/admin-dashboard"
+        element={
+          <AdminProtectedRoute>
+            <AdminDashboard />
+          </AdminProtectedRoute>
+        }
+      />
+      <Route path="/profile" element={<MainLayout><ProfilePage /></MainLayout>} />
+          
         <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/register" element={<Register />} />
         <Route path="/donate/:id" element={<DonatePage />} />
         <Route path="/awareness" element={<AwarenessPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/volunteer-form" element={<VolunteerForm />} />
         <Route path="/collaborator-form" element={<CollaboratorForm />} />
         <Route

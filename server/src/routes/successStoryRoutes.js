@@ -14,10 +14,10 @@ const router = express.Router();
 router.post('/', createSuccessStory);
 
 // Get all success stories
-router.get('/', getAllSuccessStories);
+router.get('/success-stories', getAllSuccessStories);
 
 // Get latest success stories (for homepage)
-router.get('/latest', getLatestSuccessStories);
+router.get('/success-stories/latest', getLatestSuccessStories);
 
 // Get a single success story
 router.get('/:id', getSuccessStory);

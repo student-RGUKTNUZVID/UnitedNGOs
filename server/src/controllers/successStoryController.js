@@ -27,6 +27,7 @@ const getAllSuccessStories = async (req, res) => {
   try {
     const stories = await SuccessStory.find()
       .sort({ createdAt: -1 });
+      console.log(stories);
     res.status(200).json(stories);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -39,6 +40,7 @@ const getLatestSuccessStories = async (req, res) => {
     const stories = await SuccessStory.find()
       .sort({ createdAt: -1 })
       .limit(3);
+      console.log(stories);
     res.status(200).json(stories);
   } catch (error) {
     res.status(500).json({ message: error.message });

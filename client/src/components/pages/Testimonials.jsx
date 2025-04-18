@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import {jwtDecode} from "jwt-decode";
+import {toast} from "react-toastify";
+import { useNavigate } from "react-router";
 const Testimonials = () => {
   const token = localStorage.getItem("token");
+  const navigate=useNavigate();
   let userId = null;
   if (token && typeof token === "string") {
     try {
@@ -37,14 +40,15 @@ const handleSubmit = async (e) => {
     const response = await axiosInstance.post("/submit-review", formData); // Replace with your deployed backend URL if needed
 
     if (response.status === 201) {
-      alert("Thank you for your Feedback");
+      toast.success("Thank you for your Feedback");
       setFormData({ name: "", city: "", state: "", review: "" });
+      navigate(-1);
     } else {
-      alert("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
     }
   } catch (error) {
     console.error("Error submitting testimonial:", error);
-    alert("Server error. Please try again later.");
+    toast.error("Server error. Please try again later.");
   }
 };
 
