@@ -1,9 +1,29 @@
 import React from "react";
+import { useState,useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
+import { toast } from "react-toastify";
+
 const ProjectView = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
+
   const project = state?.project;
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const res = await axiosInstance.get('/api/auth/profile'); // Your backend endpoint
+        setUser(res.data.user);
+        //setVolunteer(res.data?.volunteer);
+        //console.log("volunteer dtaa",res.data.volunteer); // assuming res.data is the user object
+      } catch (error) {
+        console.error("Error fetching profile:", error);
+        toast.error("Failed to fetch user profile.");
+      }
+    };
+    fetchProfile();
+  }, []);
   if (!project) {
     return (
       <div className="text-center mt-10">
@@ -17,6 +37,7 @@ const ProjectView = () => {
       </div>
     );
   }
+
   return (
     <div className="max-w-3xl mx-auto p-6  bg-white shadow-lg rounded-xl mt-20">
       <h1 className="text-3xl font-bold text-blue-600 mb-4">{project.title}</h1>
@@ -33,22 +54,24 @@ const ProjectView = () => {
       </div>
 
       <div className="flex gap-4">
-        <button
+       {user?.role !=='ngo' ? <button
           onClick={() => navigate("/volunteer-form", { state: { projectId: project._id,
             ngoId: project.ngo } })}
           className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
         >
           Join as Volunteer
         </button>
-        <button
-          onClick={() => navigate("/collaborator-form", { state: { projectId: project._id } })}
+
+        :<button
+          onClick={() => navigate("/collaborator-form", { state: { projectId: project._id,
+            ngoId: project.ngo } })}
           className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
         >
           Join as Collaborator
         </button>
+}
       </div>
     </div>
   );
 };
-
 export default ProjectView;
