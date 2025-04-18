@@ -52,8 +52,8 @@ const Footer = () => {
             <div className="grid grid-cols-2 gap-4 md:gap-6 justify-items-center md:justify-items-start">
               {[
                 { name: "About us", path: "/about" },
-                { name: "NGOs", path: "#" },
-                { name: "Our Team", path: "#" },
+                { name: "NGOs", path: "/getallngos" },
+                { name: "Our Team", path: "/team" },
                 { name: "Contact us", path: "/contact" },
               ].map((link, index) => {
                 const isActive = location.pathname === link.path;
@@ -80,11 +80,20 @@ const Footer = () => {
 
           {/* Social Media Icons */}
           <div className="flex justify-center md:justify-start gap-11 mt-5">
-            <FaXTwitter className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
-            <FaFacebook className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
-            <FaLinkedin className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
-            <FaInstagram className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
-          </div>
+                <a href="https://x.com/United__NGOs" target="_blank" rel="noopener noreferrer">
+                  <FaXTwitter className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
+                </a>
+                <a href="https://www.facebook.com/United__NGOs" target="_blank" rel="noopener noreferrer">
+                  <FaFacebook className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
+                </a>
+                <a href="https://www.linkedin.com/in/united-ngos-9b7a86360" target="_blank" rel="noopener noreferrer">
+                  <FaLinkedin className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
+                </a>
+                <a href="https://www.instagram.com/united__ngos?igsh=MTUwc2VmOHdsMXhkNA==" target="_blank" rel="noopener noreferrer">
+                  <FaInstagram className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
+                </a>
+              </div>
+
         </div>
       </div>
 

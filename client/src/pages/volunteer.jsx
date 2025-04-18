@@ -1,35 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
 import axiosInstance from "../utils/axiosInstance";
 import { jwtDecode } from "jwt-decode";
 
 // Assuming you stored the token after login
 // Decode the token to get userId (if needed)
+<<<<<<< HEAD
+=======
+// import {jwtDecode} from "jwt-decode";
+
+>>>>>>> c81743befc1e51995ff52efc9531a1faec8f4fbe
 
 const VolunteerForm = ({ onClose }) => {
   const token = localStorage.getItem("token");
-  let userId = null;
-
-  if (token && typeof token === "string") {
-    try {
-      const decoded = jwtDecode(token);
-      console.log(decoded);
-      userId = decoded.id;
-      console.log(userId); // Adjust based on your token payload
-    } catch (error) {
-      console.error("Invalid token", error);
-    }
-  } else {
-    console.warn("Token not found or not a string");
-  }
-
   const { state } = useLocation();
   const navigate = useNavigate();
   const projectId = state?.projectId;
   const ngoId = state?.ngoId;
 
+  const [userId, setUserId] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,6 +28,18 @@ const VolunteerForm = ({ onClose }) => {
   });
 
   const [loading, setLoading] = useState(false);
+
+  // Decode token on mount
+  useEffect(() => {
+    if (token && typeof token === "string") {
+      try {
+        const decoded = jwtDecode(token);
+        setUserId(decoded.id);
+      } catch (error) {
+        console.error("Invalid token", error);
+      }
+    }
+  }, [token]);
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -49,6 +51,7 @@ const VolunteerForm = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
       const payload = {
         ...formData,
@@ -57,12 +60,11 @@ const VolunteerForm = ({ onClose }) => {
         projectId,
         userId,
       };
-
       const res = await axiosInstance.post("/api/join-volunteer", payload);
+
       if (res.data.success) {
         toast.success("Thank you for volunteering!");
         setTimeout(() => navigate("/upcoming-projects"), 2000);
-        setTimeout(() => navigate("/upcoming-projects"), 2000); // go back
       }
     } catch (err) {
       console.error("Error submitting volunteer form", err);
