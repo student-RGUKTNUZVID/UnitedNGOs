@@ -36,6 +36,9 @@ const TestimonialCarousel = () => {
   return (
     <div className="relative w-full p-10 bg-white rounded-lg shadow-lg">
       <div className="text-center mx-auto w-full max-w-[1200px]">
+        <h2 className="text-3xl font-bold text-[#4CAF50] mb-8">
+          Our Testimonials
+        </h2>
         <p className="text-xl text-[#444444] italic mb-6">
           "{testimonials[activeIndex].review}"
         </p>

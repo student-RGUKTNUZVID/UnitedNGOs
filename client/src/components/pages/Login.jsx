@@ -41,7 +41,7 @@ const Login = () => {
         {/* Left Image */}
         <div className="w-1/2 hidden lg:block">
           <img
-            src="/loginpage.jpg"
+            src="login.png"
             alt="Login Visual"
             className="w-full h-full object-cover"
           />

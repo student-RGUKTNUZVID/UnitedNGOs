@@ -3,27 +3,27 @@ const teamMembers = [
   {
     name: "Rupak",
     role: "Full Stack Developer",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    image: "Rupak(Photo).jpg",
   },
   {
     name: "Ganesh",
     role: "Full Stack Developer",
-    image: "https://randomuser.me/api/portraits/men/65.jpg",
+    image: "Ganesh.jpg",
   },
   {
     name: "SaiKumar",
     role: "Full Stack Developer",
-    image: "https://randomuser.me/api/portraits/men/45.jpg",
+    image: "Saikumar(photo).jpg",
   },
   {
     name: "Satya Vamsi",
     role: "Full Stack Developer",
-    image: "https://randomuser.me/api/portraits/men/44.jpg",
+    image: "SatyaVamsi(Photo).jpg",
   },
   {
     name: "Satya Roy",
     role: "UI/UX Designer",
-    image: "https://randomuser.me/api/portraits/men/76.jpg",
+    image: "Satyaroy.jpg",
   },
 ];
 const Team = () => {

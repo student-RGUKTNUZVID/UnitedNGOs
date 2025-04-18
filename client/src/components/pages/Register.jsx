@@ -63,7 +63,7 @@ const Register = () => {
           {/* Image Side */}
           <div className="hidden md:block md:w-1/2 bg-green-100 flex items-center justify-center">
             <img
-              src="https://source.unsplash.com/400x400/?volunteer,people"
+              src="register.png"
               alt="Register"
               className="object-cover w-full h-full"
             />
