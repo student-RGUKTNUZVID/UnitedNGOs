@@ -7,24 +7,8 @@ import OngoingProject from "../models/ongoingProjectModel.js";
 import UpcomingProject from "../models/upcomingProjectModel.js";
 import Hackathon from "../models/Hackathon.js";
 import Testimonial from "../models/testimonialModel.js";
-//  const submitQuery=async(req,res)=>{
-//     try {
-//         const { name, email, message } = req.body;
-//         const newMessage = new Contact({ name, email, message });
-//         await newMessage.save();
-//         return res.json({
-//             error:false,
-//             newMessage,
-//             message: "Message received"
-//         });
-//       } catch (error) {
-//         // res.status(500).json({ success: false, error: err.message });
-//         return res.status(400).json({
-//             error:true,
-//             message:"Internal server error"
-//         })
-//       }
-// }
+import Stats from "../models/stats.js";
+
 
 // ------------------- Contact Form Submission -------------------
 const submitQuery = async (req, res) => {
@@ -341,6 +325,73 @@ const getReviews = async (req, res) => {
   }
 };
 
+const incrementWebsiteViews = async (req, res) => {
+  try {
+    // Assuming only one stats record that holds the total view count
+    let stats = await Stats.findOne();
+
+    if (!stats) {
+      // If no stats document exists, create one with the initial view count
+      stats = new Stats({ views: 0 });
+      await stats.save();
+    }
+
+    // Increment the view count
+    stats.views += 1;
+    await stats.save();
+
+    res.status(200).json({ message: "View count incremented", views: stats.views });
+  } catch (err) {
+    console.error("Error incrementing view count:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// ------------------- Get Website View Count -------------------
+const getWebsiteStats = async (req, res) => {
+  try {
+    // Fetch website stats (views)
+    const stats = await Stats.findOne();
+
+    if (!stats) {
+      return res.status(404).json({ message: "No stats found" });
+    }
+
+    // Fetch all NGOs to count total volunteers and total projects
+    const ngos = await NGO.find()
+      .populate("volunteers") // To count total volunteers
+      .populate("projects.completed") // To count completed projects
+      .populate("projects.ongoing") // To count ongoing projects
+      .populate("projects.upcoming"); // To count upcoming projects
+
+    // Initialize counts for volunteers and projects
+    let totalVolunteers = 0;
+    let totalCompletedProjects = 0;
+    let totalOngoingProjects = 0;
+    let totalUpcomingProjects = 0;
+
+    // Calculate totals for all NGOs
+    ngos.forEach((ngo) => {
+      totalVolunteers += ngo.volunteers.length;
+      totalCompletedProjects += ngo.projects.completed.length;
+      totalOngoingProjects += ngo.projects.ongoing.length;
+      totalUpcomingProjects += ngo.projects.upcoming.length;
+    });
+
+    // Respond with website stats and totals
+    res.status(200).json({
+      views: stats.views,
+      totalVolunteers,
+      totalCompletedProjects,
+      totalOngoingProjects,
+      totalUpcomingProjects,
+    });
+  } catch (err) {
+    console.error("Error fetching website stats:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 export {
   submitQuery,
   getHackathonById,
@@ -356,11 +407,16 @@ export {
   submitCampaign,
   getAllCampaigns,
   donateToCampaign,
-  submitHackathon,
+  submitHackathon, // ✅ NEW EXPORT
+  submitReview,
   getReviews,
-  submitReview // ✅ NEW EXPORT
+  getWebsiteStats,
+  incrementWebsiteViews
+
+
 };
 
+// export {submitQuery,getReviews,submitReview,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitCampaign,getAllCampaigns,donateToCampaign}
 
 // async function insertOngoingProjectData(){
 //   try{

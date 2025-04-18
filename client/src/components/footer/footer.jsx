@@ -80,11 +80,20 @@ const Footer = () => {
 
           {/* Social Media Icons */}
           <div className="flex justify-center md:justify-start gap-11 mt-5">
-            <FaXTwitter className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
-            <FaFacebook className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
-            <FaLinkedin className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
-            <FaInstagram className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
-          </div>
+                <a href="https://x.com/United__NGOs" target="_blank" rel="noopener noreferrer">
+                  <FaXTwitter className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
+                </a>
+                <a href="https://www.facebook.com/United__NGOs" target="_blank" rel="noopener noreferrer">
+                  <FaFacebook className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
+                </a>
+                <a href="https://www.linkedin.com/in/united-ngos-9b7a86360" target="_blank" rel="noopener noreferrer">
+                  <FaLinkedin className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
+                </a>
+                <a href="https://www.instagram.com/united__ngos?igsh=MTUwc2VmOHdsMXhkNA==" target="_blank" rel="noopener noreferrer">
+                  <FaInstagram className="text-3xl hover:text-green-600 transition duration-200 cursor-pointer" />
+                </a>
+              </div>
+
         </div>
       </div>
 

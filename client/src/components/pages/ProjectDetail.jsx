@@ -71,6 +71,18 @@ const ProjectView = () => {
         </button>
 }
       </div>
+      <div className="mt-8 text-center">
+        <button
+          onClick={() =>
+            navigate("/submit-review", {
+              state: { projectId: project._id, ngoId: project.ngo },
+            })
+          }
+          className="bg-green-100 text-green-800 font-semibold px-6 py-2 rounded-lg hover:bg-green-200 transition duration-300"
+        >
+          Submit Your Feedback
+        </button>
+      </div>
     </div>
   );
 };
