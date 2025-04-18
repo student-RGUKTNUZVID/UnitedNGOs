@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
 import ProjectCard from "./ProjectCard";
 import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const Projects = () => {
   const [ongoingProjects, setOngoingProjects] = useState([]);
   const [upcomingProjects, setUpcomingProjects] = useState([]);
-
+  const{state} =useLocation();
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -38,6 +39,7 @@ const Projects = () => {
                 title={project.title}
                 imageURL={project.imageURL}
                 description={project.description}
+                project={project}
               />
             ))}
           </div>
@@ -66,6 +68,7 @@ const Projects = () => {
               title={project.title}
               imageURL={project.imageURL}
               description={project.description}
+              project={project}
             />
           ))}
         </div>

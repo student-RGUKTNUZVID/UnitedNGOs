@@ -30,7 +30,11 @@
 //   };
   
 //   export default ProjectCard;
-const ProjectCard = ({ title, imageURL, description }) => {
+import { useNavigate } from "react-router";
+import { useLocation } from "react-router";
+const ProjectCard = ({ title, imageURL, description ,project}) => {
+    const navigate=useNavigate();
+    const {state}=useLocation();
     return (
       <div className="bg-white border border-green-200 shadow-[8px_8px_0px_rgba(0,0,0,0.1)] rounded-lg p-6 w-[300px] h-[420px] flex flex-col justify-between items-center mb-12">
         
@@ -57,13 +61,13 @@ const ProjectCard = ({ title, imageURL, description }) => {
   
         {/* Button */}
         <div className="h-[30px] mt-0.5">
-          <button className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-sm shadow-md font-poppins font-bold transition">
+          <button className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-sm shadow-md font-poppins font-bold transition"
+           onClick={()=>navigate("/project-view",{state:{project}})}>
             Details
           </button>
         </div>
       </div>
     );
   };
-  
   export default ProjectCard;
   

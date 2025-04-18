@@ -94,21 +94,21 @@ export default function Navbar() {
                 exit={{ opacity: 0, y: -10 }}
                 className="absolute left-0 top-full bg-gray-100 shadow-xl rounded-lg mt-2 py-2 w-[200px] z-[100]"
               >
-                <NavLink to="/about" className="block px-4 py-2 text-gray-800 hover:bg-gray-400" onClick={() => setShowExtraMenu(false)}>About Us</NavLink>
-                <NavLink to="/awareness" className="block px-4 py-2 text-gray-800 hover:bg-gray-400" onClick={() => setShowExtraMenu(false)}>Awareness Sessions</NavLink>
-                <NavLink to="/getAllHackthons" className="block px-4 py-2 text-gray-800 hover:bg-gray-400" onClick={() => setShowExtraMenu(false)}>Hackathons</NavLink>
+                <NavLink to="/about" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>About Us</NavLink>
+                <NavLink to="/awareness" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Awareness Sessions</NavLink>
+                <NavLink to="/getAllHackthons" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Hackathons</NavLink>
                 {user?.role === 'ngo' && (
-                  <NavLink to="/register-hackathon" className="block px-4 py-2 text-gray-800 hover:bg-gray-400" onClick={() => setShowExtraMenu(false)}>Register Hackathon</NavLink>
+                  <NavLink to="/register-hackathon" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Register Hackathon</NavLink>
                 )}
                 {user?.role === 'ngo' && (
-                  <NavLink to="/upload-project" className="block px-4 py-2 text-gray-800 hover:bg-gray-400" onClick={() => setShowExtraMenu(false)}>upload Project</NavLink>
+                  <NavLink to="/upload-project" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>upload Project</NavLink>
                 )}
-                <NavLink to="/success-stories" className="block px-4 py-2 text-gray-800 hover:bg-gray-400" onClick={() => setShowExtraMenu(false)}>Success Stories</NavLink>
-                <NavLink to="/raise-campaign" className="block px-4 py-2 text-gray-800 hover:bg-gray-400" onClick={() => setShowExtraMenu(false)}>Campaigns</NavLink>
+                <NavLink to="/success-stories" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Success Stories</NavLink>
+                <NavLink to="/raise-campaign" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Campaigns</NavLink>
                 {user?.role === 'ngo' && (
-                  <NavLink to="/upload-campaign" className="block px-4 py-2 text-gray-800 hover:bg-gray-400" onClick={() => setShowExtraMenu(false)}>upload Campaigns</NavLink>
+                  <NavLink to="/upload-campaign" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>upload Campaigns</NavLink>
                 )}
-                <NavLink to="/contact" className="block px-4 py-2 text-gray-800 hover:bg-gray-400" onClick={() => setShowExtraMenu(false)}>Contact Us</NavLink>
+                <NavLink to="/contact" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Contact Us</NavLink>
               </motion.div>
             )}
           </div>

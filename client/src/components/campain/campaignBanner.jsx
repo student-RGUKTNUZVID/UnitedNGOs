@@ -5,7 +5,7 @@ import { FaDonate } from "react-icons/fa";
 
 const CampaignBanner = () => {
   return (
-    <div className="bg-gray-100 py-8 px-4 md:px-12">
+    <div className="bg-gray-100 py-8 px-4 md:px-12 mt-16">
       {/* Hero Section */}
       <section className="relative bg-[#FDEEDC] p-6 md:p-10 rounded-lg shadow-lg flex flex-col md:flex-row items-center overflow-hidden">
   {/* Coins - Enhanced with depth effect */}
@@ -36,7 +36,7 @@ const CampaignBanner = () => {
   </div>
 
   {/* Right Image */}
-  <div className="md:w-1/2 mt-6 md:mt-0 relative flex justify-center">
+  <div className="md:w-1/2 mt-16 md:mt-0 relative flex justify-center">
     <div className="relative w-full max-w-xs md:max-w-sm">
       {/* Circular Image */}
       <div className="relative w-full h-[250px] md:h-[450px] md:w-[500px] flex items-center justify-center">

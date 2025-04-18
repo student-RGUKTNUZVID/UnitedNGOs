@@ -56,7 +56,7 @@ const Register = () => {
   return (
     <>
       <Navbar />
-      <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-tr from-green-50 via-white to-green-100 px-4">
+      <div className="relative min-h-screen flex items-center justify-center bg-gradient-to-tr from-green-50 via-white to-green-100 px-4 overflow-hidden mt-10">
         {/* Blobs */}
         <div className="absolute top-[-80px] left-[-80px] w-72 h-72 bg-green-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
         <div className="absolute top-0 right-[-100px] w-72 h-72 bg-teal-300 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-2000"></div>

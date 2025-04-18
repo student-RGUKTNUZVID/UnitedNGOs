@@ -98,7 +98,7 @@ const getOngoingProjects = async (req, res) => {
 
 const getUpcomingProjects = async (req, res) => {
   try {
-    const projects = await UpcomingProject.find();
+    const projects = await UpcomingProject.find() .populate("collaborators", "name email");
     res.status(200).json(projects);
   } catch (error) {
     console.error("Error fetching upcoming projects:", error);

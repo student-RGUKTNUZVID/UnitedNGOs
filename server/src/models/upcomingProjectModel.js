@@ -7,7 +7,7 @@ const upcomingProjectSchema = new mongoose.Schema({
   endDate: Date,
   ngo: { type: mongoose.Schema.Types.ObjectId, ref: 'NGO', required: true },
   volunteers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Volunteer' }],
-  collaborators:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Collaborators' }],
+  collaborators:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Collaborator' }],
 }, { timestamps: true });
 const UpcomingProject = mongoose.model('UpcomingProject', upcomingProjectSchema);
 export default UpcomingProject;

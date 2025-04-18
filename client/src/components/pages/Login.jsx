@@ -36,7 +36,7 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-green-100 via-white to-green-100 font-dmsans">
-      <div className="flex w-full max-w-6xl shadow-xl rounded-xl overflow-hidden border border-green-200">
+      <div className="flex w-full max-w-4xl h-[85vh] shadow-xl rounded-xl overflow-hidden border border-green-200">
         
         {/* Left Image */}
         <div className="w-1/2 hidden lg:block">
@@ -48,8 +48,8 @@ const Login = () => {
         </div>
 
         {/* Right Form */}
-        <div className="w-full lg:w-1/2 bg-white p-10 flex flex-col justify-center">
-          <h2 className="text-3xl font-extrabold text-green-700 text-center mb-6">Welcome Back</h2>
+        <div className="w-full lg:w-1/2 bg-white px-8 py-10 flex flex-col justify-center">
+          <h2 className="text-3xl font-extrabold text-green-700 text-center mb-4 mt-6">Welcome Back</h2>
           <form onSubmit={handleLogin} className="space-y-5">
             <div className="relative">
               <label className="block text-sm font-medium text-green-900 mb-1">Email</label>
@@ -65,7 +65,6 @@ const Login = () => {
                 />
               </div>
             </div>
-
             <div className="relative">
               <label className="block text-sm font-medium text-green-900 mb-1">Password</label>
               <div className="relative">
@@ -110,16 +109,16 @@ const Login = () => {
             Don't have an account?
           </p>
 
-          <div className="mt-4 flex flex-col sm:flex-row justify-center items-center gap-4">
+          <div className="mt-2 flex flex-col sm:flex-row justify-center items-center gap-4">
             <button
               onClick={() => navigate("/register?role=volunteer")}
-              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition"
+              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition mb-8"
             >
               Register as Volunteer
             </button>
             <button
               onClick={() => navigate("/register?role=ngo")}
-              className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition"
+              className="bg-green-700 text-white px-4 py-2 rounded hover:bg-green-800 transition mb-8"
             >
               Register as NGO
             </button>

@@ -73,7 +73,7 @@ function App() {
           }
         />
         <Route
-          path="/upload-your-project"
+          path="/upload-project"
           element={
             <MainLayout>
               <UploadYourProject />
@@ -252,11 +252,11 @@ function App() {
           </AdminProtectedRoute>
         }
       />
+      <Route path="/profile" element={<MainLayout><ProfilePage /></MainLayout>} />
         <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/register" element={<Register />} />
         <Route path="/donate/:id" element={<DonatePage />} />
         <Route path="/awareness" element={<AwarenessPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
         <Route path="/volunteer-form" element={<VolunteerForm />} />
         <Route path="/collaborator-form" element={<CollaboratorForm />} />
 
