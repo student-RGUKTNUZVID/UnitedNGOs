@@ -34,7 +34,7 @@ const NGOCompletedProjects = () => {
     <div className="min-h-screen bg-gray-50 py-10 px-4 mt-16 top-10">
       <h2 className="text-3xl md:text-4xl font-semibold text-center text-gray-800 relative mb-12">
         Completed Projects
-        <span className="block w-24 h-1 bg-blue-500 mx-auto mt-2 rounded-full"></span>
+        <span className="block w-24 h-1 bg-green-500 mx-auto mt-2 rounded-full"></span>
       </h2>
       {loading ? (
         <div className="flex justify-center items-center min-h-[200px]">
@@ -56,7 +56,7 @@ const NGOCompletedProjects = () => {
               </div>
               <div className="mt-6">
                 <button
-                  className="w-full bg-blue-500 text-white font-medium py-2 rounded-xl hover:bg-blue-600 transition duration-300"
+                  className="w-full bg-green-500 text-white font-medium py-2 rounded-xl hover:bg-green-500 transition duration-300"
                   onClick={() =>
                     navigate("/project-view", { state: { project } })
                   }

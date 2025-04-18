@@ -4,7 +4,7 @@ import { HiOutlineMenu, HiX } from "react-icons/hi";
 import { motion } from "framer-motion";
 import ProfileWidget from "../../pages/profileWidget";
 import axiosInstance from "../../utils/axiosInstance";
-import { toast } from "react-hot-toast"; // ✅ FIX: added toast import
+import { toast } from "react-toastify"; // ✅ FIX: added toast import
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +38,7 @@ export default function Navbar() {
         setUser(res.data.user);
       } catch (error) {
         console.error("Error fetching profile:", error);
-        toast.error("Failed to fetch user profile.");
+        toast.error("Registration first then details.");
       }
     };
     fetchProfile();
