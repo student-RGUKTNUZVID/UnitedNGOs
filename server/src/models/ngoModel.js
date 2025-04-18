@@ -49,7 +49,8 @@ const ngoSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'NGOHead',
     unique: true,
-  }
+  },
+  collaborators:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Collaborator' }],
 });
 
 const NGO = mongoose.model('NGO', ngoSchema);
