@@ -9,7 +9,6 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import SearchUnite from "./components/SearchAndUnite";
 import CampaignBanner from "./components/campain/campaignBanner";
-import UploadYourProject from "./components/pages/UploadProject";
 import RaiseYourVoice from "./components/pages/Raise";
 import AuthSuccess from "./apicalls/AuthSuccess";
 import RegisterHackathon from "./components/pages/RegisterHackathon";
@@ -71,14 +70,6 @@ function App() {
           element={
             <MainLayout>
               <ContactUs />
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/upload-your-project"
-          element={
-            <MainLayout>
-              <UploadYourProject />
             </MainLayout>
           }
         />
@@ -281,9 +272,9 @@ function App() {
         <Route
           path="/admin/success-stories/add"
           element={
-            // <AdminProtectedRoute>
+             <AdminProtectedRoute>
             <AdminSuccessStoryForm />
-            // </AdminProtectedRoute>
+             </AdminProtectedRoute>
           }
         />
         {/* <Route

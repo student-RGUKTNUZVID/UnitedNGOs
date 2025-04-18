@@ -6,11 +6,8 @@ import { jwtDecode } from "jwt-decode";
 
 // Assuming you stored the token after login
 // Decode the token to get userId (if needed)
-<<<<<<< HEAD
-=======
 // import {jwtDecode} from "jwt-decode";
 
->>>>>>> c81743befc1e51995ff52efc9531a1faec8f4fbe
 
 const VolunteerForm = ({ onClose }) => {
   const token = localStorage.getItem("token");

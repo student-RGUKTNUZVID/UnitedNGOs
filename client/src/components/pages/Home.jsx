@@ -4,7 +4,7 @@ import Projects from "../../layouts/projects";
 import StatsComponent from "../../layouts/Stats";
 import TestimonialCarousel from "../../layouts/Stories";
 import HeroSection from "../Hero";
-import LatestSuccessStories from "../../layouts/LatestSuccessStories";
+import LatestSuccessStories from "../LatestSuccessStories";
 
 const HomePage = () => {
   return (
