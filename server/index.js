@@ -17,6 +17,7 @@ import userRoute from "./src/routes/auth.js";
 import volunteerRoute from "./src/routes/volunteerRoute.js";
 import ngoRoutes from './src/routes/ngoroutes.js';
 import HackathonModel from './src/models/Hackathon.js';
+import successStoryRoutes from './src/routes/successStoryRoutes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -37,7 +38,7 @@ app.use('/auth', userRoute);
 app.use('/api/auth', userRoute);
 app.use('/', ngoRoutes);
 app.use('/api', volunteerRoute);
-
+app.use('/api', successStoryRoutes);
 // Hackathons Route
 app.get('/getAllHackathons', async (req, res) => {
   try {

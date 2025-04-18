@@ -237,37 +237,33 @@ const donateToCampaign = async (req, res) => {
   }
 };
 
-// ------------------- Hackathon Submission (NEW) -------------------
+// ------------------- Hackathon -------------------
 const submitHackathon = async (req, res) => {
   try {
     const { name, email, projectTitle, description, teamMembers } = req.body;
+    const newHackathon = new Hackathon({ name, email, projectTitle, description, teamMembers });
 
-    // You can expand this to use a Hackathon model and save to DB
-    console.log("Hackathon submission received:", { name, email, projectTitle });
-
+    await newHackathon.save();
     res.status(201).json({
       message: "Hackathon submitted successfully!",
-      data: { name, email, projectTitle, description, teamMembers },
+      data: newHackathon,
     });
   } catch (error) {
     console.error("Error submitting hackathon:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 const getAllHackathons = async (req, res) => {
   try {
-    // Fetch all hackathons from the database
-    const hackathons = await Hackathon.find(); // You can add filters or pagination if necessary
-
-    // Return the response in the expected format
-    res.status(200).json({ hackathons }); // Ensure the key 'hackathons' is there
+    const hackathons = await Hackathon.find();
+    res.status(200).json({ hackathons });
   } catch (err) {
     console.error('Error fetching hackathons:', err);
     res.status(500).json({ error: 'Failed to fetch hackathons' });
   }
 };
 
-// Controller function
 const getHackathonById = async (req, res) => {
   try {
     const hackathonId = req.params.id;
@@ -299,7 +295,7 @@ const submitReview = async (req, res) => {
       city,
       state,
       review,
-      user: userId, // referencing the user
+      user: userId,
     });
 
     await newTestimonial.save();
@@ -311,17 +307,13 @@ const submitReview = async (req, res) => {
   }
 };
 
-
 const getReviews = async (req, res) => {
   try {
-    const testimonials = await Testimonial.find()
-      .sort({ createdAt: -1 })
-      .limit(3)
-      .populate("user", "role"); // optionally populate user details
-    res.status(200).json(testimonials);
-  } catch (err) {
-    console.error("Error fetching testimonials:", err);
-    res.status(500).json({ error: "Failed to fetch testimonials" });
+    const reviews = await Testimonial.find().populate("user", "name email");
+    res.status(200).json(reviews);
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 

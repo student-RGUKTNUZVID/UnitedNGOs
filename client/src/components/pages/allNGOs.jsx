@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import NGOFilters from "./NGOfilters.jsx";
 import axiosInstance from "../../utils/axiosInstance";
 
@@ -411,7 +412,7 @@ const AllNGOsPage = () => {
   });
 
   return (
-    <div className=" border-green-100 mt-20">
+    <div className="border-green-100 mt-20">
       <div
         ref={sectionRef}
         className="p-6 max-w-7xl mx-auto bg-white text-gray-800 min-h-screen relative"
@@ -422,10 +423,12 @@ const AllNGOsPage = () => {
 
         {/* Filters */}
         <div className="flex flex-wrap gap-4 mb-8">
-          <select
+          <motion.select
             value={filters.state}
             onChange={handleStateChange}
             className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
             <option value="">All States</option>
             {Object.keys(stateCities).map((state) => (
@@ -433,13 +436,15 @@ const AllNGOsPage = () => {
                 {state}
               </option>
             ))}
-          </select>
+          </motion.select>
 
-          <select
+          <motion.select
             value={filters.city}
             onChange={(e) => setFilters({ ...filters, city: e.target.value })}
             className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
             disabled={!filters.state}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
             <option value="">All Cities</option>
             {filteredCities.map((city) => (
@@ -447,12 +452,14 @@ const AllNGOsPage = () => {
                 {city}
               </option>
             ))}
-          </select>
+          </motion.select>
 
-          <select
+          <motion.select
             value={filters.theme}
             onChange={(e) => setFilters({ ...filters, theme: e.target.value })}
             className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
             <option value="">All Themes</option>
             {unique("theme").map((theme) => (
@@ -460,7 +467,7 @@ const AllNGOsPage = () => {
                 {theme}
               </option>
             ))}
-          </select>
+          </motion.select>
         </div>
 
         {/* NGO Cards */}
@@ -469,45 +476,83 @@ const AllNGOsPage = () => {
             <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-green-500 border-opacity-50"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
-            {(filteredNGOs.length ? filteredNGOs : ngos.slice(0, 6)).map(
-              (ngo) => (
-                <div
-                  key={ngo._id || ngo.name}
-                  className="mb-5 bg-white rounded-xl shadow-md p-4 border-l-4 border-green-500 transition duration-300 hover:shadow-lg flex flex-col h-full"
+          <AnimatePresence mode="wait">
+            {filteredNGOs.length === 0 ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                className="text-center py-12"
+              >
+                <h3 className="text-2xl font-semibold text-gray-700 mb-4">
+                  No NGOs found for the selected filters
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  Try adjusting your filters or explore other options
+                </p>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => navigate("/")}
+                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
                 >
-                  <img
-                    src={ngo.logoURL}
-                    alt={ngo.name}
-                    className="w-full h-40 object-cover rounded-md"
-                  />
-                  <h2 className="text-xl font-semibold text-green-700 mt-3">
-                    {ngo.name}
-                  </h2>
-                  <p className="text-sm text-gray-700 mb-3 flex-1 line-clamp-3">
-                    {ngo.description}
-                  </p>
-                  <div className="mt-0.5 flex justify-between items-center pt-4">
-                    <button
-                      onClick={() => navigate(`/ngo/${ngo._id}`)}
-                      className="mt-2 inline-block px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition"
-                    >
-                      Read More
-                    </button>
-                  </div>
-                </div>
-              )
+                  Back to Home
+                </motion.button>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6"
+              >
+                {filteredNGOs.map((ngo) => (
+                  <motion.div
+                    key={ngo._id || ngo.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    whileHover={{ scale: 1.02 }}
+                    className="bg-white rounded-xl shadow-md p-4 border-l-4 border-green-500 transition duration-300 hover:shadow-lg flex flex-col h-full"
+                  >
+                    <img
+                      src={ngo.logoURL}
+                      alt={ngo.name}
+                      className="w-full h-40 object-cover rounded-md"
+                    />
+                    <h2 className="text-xl font-semibold text-green-700 mt-3">
+                      {ngo.name}
+                    </h2>
+                    <p className="text-sm text-gray-700 mb-3 flex-1 line-clamp-3">
+                      {ngo.description}
+                    </p>
+                    <div className="mt-0.5 flex justify-between items-center pt-4">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => navigate(`/ngo/${ngo._id}`)}
+                        className="mt-2 inline-block px-4 py-2 bg-green-600 text-white text-sm rounded hover:bg-green-700 transition"
+                      >
+                        Read More
+                      </motion.button>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
             )}
-          </div>
+          </AnimatePresence>
         )}
+
         {showTopBtn && (
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={scrollToTop}
             className="absolute bottom-6 right-6 bg-green-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center text-xl hover:bg-green-700 transition"
             aria-label="Back to Top"
           >
             ↑
-          </button>
+          </motion.button>
         )}
       </div>
     </div>

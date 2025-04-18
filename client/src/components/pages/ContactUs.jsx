@@ -23,7 +23,7 @@ export default function ContactUs() {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
-          const mapUrl = `https://www.google.com/maps?q=${latitude},${longitude}&z=15&output=embed`;
+          const mapUrl = `https://www.google.com/maps?q=16.7911° N, 80.8226° E&z=15&output=embed`;
           setLocationUrl(mapUrl);
         },
         () => {

@@ -9,7 +9,6 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import SearchUnite from "./components/SearchAndUnite";
 import CampaignBanner from "./components/campain/campaignBanner";
-import UploadYourProject from "./components/pages/UploadProject";
 import RaiseYourVoice from "./components/pages/Raise";
 import AuthSuccess from "./apicalls/AuthSuccess";
 import RegisterHackathon from "./components/pages/RegisterHackathon";
@@ -22,7 +21,7 @@ import UpcomingProjects from "./components/pages/UpcomingProjects";
 import NGOCompletedProjects from "./components/pages/NGOCompletedProjects";
 import NGOOngoingProjects from "./components/pages/NGOOngoingProjects";
 import NGOUpcomingProjects from "./components/pages/NGOUpcomingProjects";
-import ProjectView from "./components/pages/ProjectDetail"
+import ProjectView from "./components/pages/ProjectDetail";
 import "react-toastify/dist/ReactToastify.css";
 import CampaignCard from "./components/campain/RaiseCampaign";
 import DonatePage from "./components/pages/Donation";
@@ -34,7 +33,7 @@ import AllHackathons from "./pages/AllHackthons";
 import HackathonDetails from "./pages/HackathonDetails";
 import VolunteerForm from "./pages/volunteer";
 import CollaboratorForm from "./pages/collaborator";
-import Testimonials from "./components/pages/Testimonials"
+import Testimonials from "./components/pages/Testimonials";
 import UploadCampaign from "./components/campain/UploadCampaign";
 import RaiseCampaign from "./components/campain/RaiseCampaign";
 import ViewMore from "./pages/viewMore";
@@ -42,6 +41,9 @@ import ProtectedRoute from "./layouts/ProtectedRoute";
 import AdminLogin from "./apicalls/AdminLogin";
 import AdminProtectedRoute from "./apicalls/AdminProtected";
 import AdminDashboard from "./apicalls/AdminDashBoard";
+import AdminSuccessStoryForm from "./apicalls/AdminSuccessStoryForm";
+import UploadYourProject from "./components/pages/UploadProject";
+// import AdminEditSuccessStory from "./apicalls/AdminEditSuccessStory";
 const DummyNgo = {
   id: "1",
   name: "Helping Hands",
@@ -69,14 +71,6 @@ function App() {
           element={
             <MainLayout>
               <ContactUs />
-            </MainLayout>
-          }
-        />
-        <Route
-          path="/upload-project"
-          element={
-            <MainLayout>
-              <UploadYourProject />
             </MainLayout>
           }
         />
@@ -124,7 +118,7 @@ function App() {
           path="/upload-campaign"
           element={
             <MainLayout>
-              <UploadCampaign/>
+              <UploadCampaign />
             </MainLayout>
           }
         />
@@ -160,31 +154,43 @@ function App() {
             </MainLayout>
           }
         />
-        <Route path="/ngo/:id" element={
-          <MainLayout>
-          <NGODetailPage />
-          </MainLayout>
-          } />
-        <Route path="/ngo/completed-projects/:id" element={
-          <MainLayout>
-          <NGOCompletedProjects/>
-          </MainLayout>
-          } />
-        <Route path="/ngo/ongoing-projects/:id" element={
-          <MainLayout>
-          <NGOOngoingProjects />
-          </MainLayout>
-          } />
-        <Route path="/ngo/upcoming-projects/:id" element={
-          <MainLayout>
-          <NGOUpcomingProjects />
-          </MainLayout>
-          } />
+        <Route
+          path="/ngo/:id"
+          element={
+            <MainLayout>
+              <NGODetailPage />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/ngo/completed-projects/:id"
+          element={
+            <MainLayout>
+              <NGOCompletedProjects />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/ngo/ongoing-projects/:id"
+          element={
+            <MainLayout>
+              <NGOOngoingProjects />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/ngo/upcoming-projects/:id"
+          element={
+            <MainLayout>
+              <NGOUpcomingProjects />
+            </MainLayout>
+          }
+        />
         <Route
           path="/ongoing-projects"
           element={
             <MainLayout>
-              <OngoingProjects/>
+              <OngoingProjects />
             </MainLayout>
           }
         />
@@ -192,7 +198,7 @@ function App() {
           path="/upcoming-projects"
           element={
             <MainLayout>
-              <UpcomingProjects/>
+              <UpcomingProjects />
             </MainLayout>
           }
         />
@@ -200,7 +206,7 @@ function App() {
           path="/team"
           element={
             <MainLayout>
-              <Team/>
+              <Team />
             </MainLayout>
           }
         />
@@ -208,39 +214,52 @@ function App() {
           path="/project-view"
           element={
             <MainLayout>
-              <ProjectView/>
-            </MainLayout>
-          }
-        />
-         <Route
-          path="/view-more"
-          element={
-            <MainLayout>
-             <ViewMore/>
-            </MainLayout>
-          }
-        />
-         <Route
-          path="/getAllHackthons"
-          element={
-            <MainLayout>
-              <AllHackathons/>
+              <ProjectView />
             </MainLayout>
           }
         />
         <Route
-            path="/hackathon/:id"
-            element={
-              <MainLayout>
-                <HackathonDetails />
-              </MainLayout>
-            }
-          />
-          <Route path="/raise-campaign" element={
-           <MainLayout>
-              <ProtectedRoute><RaiseCampaign />
+          path="/view-more"
+          element={
+            <MainLayout>
+              <ViewMore />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/getAllHackthons"
+          element={
+            <MainLayout>
+              <AllHackathons />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/hackathon/:id"
+          element={
+            <MainLayout>
+              <HackathonDetails />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/upload-project"
+          element={
+            <MainLayout>
+          <UploadYourProject />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/raise-campaign"
+          element={
+            <MainLayout>
+              <ProtectedRoute>
+                <RaiseCampaign />
               </ProtectedRoute>
-           </MainLayout>} />
+            </MainLayout>
+          }
+        />
         {/* Routes WITHOUT Navbar and Footer */}
         <Route path="/login" element={<Login />} />
         <Route path="/admin-login" element={<AdminLogin />} />
@@ -253,14 +272,29 @@ function App() {
         }
       />
       <Route path="/profile" element={<MainLayout><ProfilePage /></MainLayout>} />
+          
         <Route path="/auth/success" element={<AuthSuccess />} />
         <Route path="/register" element={<Register />} />
         <Route path="/donate/:id" element={<DonatePage />} />
         <Route path="/awareness" element={<AwarenessPage />} />
         <Route path="/volunteer-form" element={<VolunteerForm />} />
         <Route path="/collaborator-form" element={<CollaboratorForm />} />
-
-      
+        <Route
+          path="/admin/success-stories/add"
+          element={
+             <AdminProtectedRoute>
+            <AdminSuccessStoryForm />
+             </AdminProtectedRoute>
+          }
+        />
+        {/* <Route
+          path="/admin/success-stories/edit/:id"
+          element={
+            <AdminProtectedRoute>
+              <AdminSuccessStoryForm />
+            </AdminProtectedRoute>
+          }
+        /> */}
       </Routes>
     </>
   );

@@ -16,7 +16,7 @@ const SuccessStories = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const response = await axiosInstance.get("/success-stories/all");
+        const response = await axiosInstance.get("/api/success-stories");
         setStories(response.data);
         setLoading(false);
       } catch (error) {

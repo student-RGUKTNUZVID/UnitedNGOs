@@ -1,40 +1,41 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const successStorySchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
+    trim: true
   },
   description: {
     type: String,
-    required: true,
+    required: true
   },
   impact: {
     type: String,
-    required: true,
+    required: true
   },
   duration: {
     type: String,
-    required: true,
+    required: true
   },
   location: {
     type: String,
-    required: true,
+    required: true
   },
   ngo: {
     type: String,
-    required: true,
+    required: true
   },
   image: {
     type: String,
-    required: true,
+    required: true
   },
   createdAt: {
     type: Date,
-    default: Date.now,
-  },
+    default: Date.now
+  }
 });
 
-const SuccessStory = mongoose.model("SuccessStory", successStorySchema);
+const SuccessStory = mongoose.model('SuccessStory', successStorySchema);
 
 export default SuccessStory; 
