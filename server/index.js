@@ -8,7 +8,8 @@ import './src/config/passport.js';
 import db from './src/models/database.js';
 import userRoute from "./src/routes/auth.js";
 import volunteerRoute from "./src/routes/volunteerRoute.js";
-import routes from './src/routes/ngoroutes.js';
+import routes from './src/routes/ngoRoutes.js';
+import successStoryRoutes from './src/routes/successStoryRoutes.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -30,9 +31,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Routes
-app.use('/auth', userRoute);
-app.use('/', routes);
 app.use('/api/auth', userRoute);
+app.use('/api/success-stories', successStoryRoutes);
+app.use('/api', volunteerRoute);
+app.use('/', routes);
 
 //New Route: /getAllHackathons
 app.get('/getAllHackathons', async (req, res) => {
@@ -44,11 +46,7 @@ app.get('/getAllHackathons', async (req, res) => {
     res.status(500).json({ message: 'Failed to fetch hackathons' });
   }
 });
-app.use('/',routes);
-app.use('/api/auth',userRoute);
-app.use('/api',volunteerRoute);
-// Routes
-// app.use('/api/hackathons', hackathonRoutes);
+
 //Razorpay Routes
 const razorpay = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
@@ -61,9 +59,9 @@ app.post("/api/payment/orders", async (req, res) => {
       amount: req.body.amount,
       currency: "INR",
       receipt: `receipt_order_${Date.now()}`,
-  };
-  const order = await razorpay.orders.create(options);
-  res.json(order);
+    };
+    const order = await razorpay.orders.create(options);
+    res.json(order);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

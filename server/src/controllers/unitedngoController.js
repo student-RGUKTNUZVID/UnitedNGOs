@@ -7,24 +7,6 @@ import OngoingProject from "../models/ongoingProjectModel.js";
 import UpcomingProject from "../models/upcomingProjectModel.js";
 import Hackathon from "../models/Hackathon.js";
 import Testimonial from "../models/testimonialModel.js";
-//  const submitQuery=async(req,res)=>{
-//     try {
-//         const { name, email, message } = req.body;
-//         const newMessage = new Contact({ name, email, message });
-//         await newMessage.save();
-//         return res.json({
-//             error:false,
-//             newMessage,
-//             message: "Message received"
-//         });
-//       } catch (error) {
-//         // res.status(500).json({ success: false, error: err.message });
-//         return res.status(400).json({
-//             error:true,
-//             message:"Internal server error"
-//         })
-//       }
-// }
 
 // ------------------- Contact Form Submission -------------------
 const submitQuery = async (req, res) => {
@@ -253,37 +235,33 @@ const donateToCampaign = async (req, res) => {
   }
 };
 
-// ------------------- Hackathon Submission (NEW) -------------------
+// ------------------- Hackathon -------------------
 const submitHackathon = async (req, res) => {
   try {
     const { name, email, projectTitle, description, teamMembers } = req.body;
+    const newHackathon = new Hackathon({ name, email, projectTitle, description, teamMembers });
 
-    // You can expand this to use a Hackathon model and save to DB
-    console.log("Hackathon submission received:", { name, email, projectTitle });
-
+    await newHackathon.save();
     res.status(201).json({
       message: "Hackathon submitted successfully!",
-      data: { name, email, projectTitle, description, teamMembers },
+      data: newHackathon,
     });
   } catch (error) {
     console.error("Error submitting hackathon:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 const getAllHackathons = async (req, res) => {
   try {
-    // Fetch all hackathons from the database
-    const hackathons = await Hackathon.find(); // You can add filters or pagination if necessary
-
-    // Return the response in the expected format
-    res.status(200).json({ hackathons }); // Ensure the key 'hackathons' is there
+    const hackathons = await Hackathon.find();
+    res.status(200).json({ hackathons });
   } catch (err) {
     console.error('Error fetching hackathons:', err);
     res.status(500).json({ error: 'Failed to fetch hackathons' });
   }
 };
 
-// Controller function
 const getHackathonById = async (req, res) => {
   try {
     const hackathonId = req.params.id;
@@ -300,24 +278,7 @@ const getHackathonById = async (req, res) => {
   }
 };
 
-// ------------------- Export Everything -------------------
-export {
-  submitQuery,
-  getHackathonById,
-  raiseIssue,
-  getAllHackathons,
-  getNGOs,
-  getNGObyId,
-  getOngoingProjects,
-  getUpcomingProjects,
-  getNgoCompletedProjects,
-  getNgoOngoingProjects,
-  getNgoUpcomingProjects,
-  submitCampaign,
-  getAllCampaigns,
-  donateToCampaign,
-  submitHackathon, // ✅ NEW EXPORT
-};
+// ------------------- Testimonials -------------------
 const submitReview = async (req, res) => {
   try {
     const { name, city, state, review, userId } = req.body;
@@ -331,7 +292,7 @@ const submitReview = async (req, res) => {
       city,
       state,
       review,
-      user: userId, // referencing the user
+      user: userId,
     });
 
     await newTestimonial.save();
@@ -343,22 +304,37 @@ const submitReview = async (req, res) => {
   }
 };
 
-
 const getReviews = async (req, res) => {
   try {
-    const testimonials = await Testimonial.find()
-      .sort({ createdAt: -1 })
-      .limit(3)
-      .populate("user", "role"); // optionally populate user details
-    res.status(200).json(testimonials);
-  } catch (err) {
-    console.error("Error fetching testimonials:", err);
-    res.status(500).json({ error: "Failed to fetch testimonials" });
+    const reviews = await Testimonial.find().populate("user", "name email");
+    res.status(200).json(reviews);
+  } catch (error) {
+    console.error("Error fetching reviews:", error);
+    res.status(500).json({ message: "Server error" });
   }
 };
 
+// ------------------- Export Everything -------------------
+export {
+  submitQuery,
+  raiseIssue,
+  getNGOs,
+  getNGObyId,
+  getOngoingProjects,
+  getUpcomingProjects,
+  getNgoCompletedProjects,
+  getNgoOngoingProjects,
+  getNgoUpcomingProjects,
+  submitCampaign,
+  getAllCampaigns,
+  donateToCampaign,
+  submitHackathon,
+  getAllHackathons,
+  getHackathonById,
+  submitReview,
+  getReviews,
+};
 
-export {submitQuery,getReviews,submitReview,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitCampaign,getAllCampaigns,donateToCampaign}
 
 // async function insertOngoingProjectData(){
 //   try{

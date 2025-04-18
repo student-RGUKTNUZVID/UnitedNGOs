@@ -7,7 +7,6 @@ import { jwtDecode } from "jwt-decode";
 
 // Assuming you stored the token after login
 // Decode the token to get userId (if needed)
-import { jwtDecode } from "jwt-decode";
 
 const VolunteerForm = ({ onClose }) => {
   const token = localStorage.getItem("token");
@@ -56,8 +55,6 @@ const VolunteerForm = ({ onClose }) => {
         skills: formData.skills.split(",").map((skill) => skill.trim()),
         ngoId,
         projectId,
-        ngoId: ngoId,
-        projectId: projectId,
         userId,
       };
 
