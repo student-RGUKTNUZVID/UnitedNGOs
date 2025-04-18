@@ -29,7 +29,11 @@ const Register = () => {
     e.preventDefault();
     try {
       const res = await axios.post("http://localhost:3000/api/auth/signup", userData);
-      const { token } = res.data;
+      const Loginres = await axios.post('http://localhost:3000/api/auth/login', {
+        email: userData.email,
+        password: userData.password, // assuming it's available
+      });
+      const token = Loginres.data.token;
       localStorage.setItem("token", token);
       toast.success("User registration successful");
       navigate("/");
