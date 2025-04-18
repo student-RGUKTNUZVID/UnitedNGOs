@@ -39,7 +39,7 @@ const UploadYourProject = () => {
       }
       data.append("image", imageFile);
 
-      const res = await axios.post("/api/projects", data, {
+      const res = await axios.post("https://unitedngos-1.onrender.com/api/projects", data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
