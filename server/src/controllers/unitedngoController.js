@@ -301,23 +301,7 @@ const getHackathonById = async (req, res) => {
 };
 
 // ------------------- Export Everything -------------------
-export {
-  submitQuery,
-  getHackathonById,
-  raiseIssue,
-  getAllHackathons,
-  getNGOs,
-  getNGObyId,
-  getOngoingProjects,
-  getUpcomingProjects,
-  getNgoCompletedProjects,
-  getNgoOngoingProjects,
-  getNgoUpcomingProjects,
-  submitCampaign,
-  getAllCampaigns,
-  donateToCampaign,
-  submitHackathon, // ✅ NEW EXPORT
-};
+
 const submitReview = async (req, res) => {
   try {
     const { name, city, state, review, userId } = req.body;
@@ -358,8 +342,25 @@ const getReviews = async (req, res) => {
 };
 
 
-export {submitQuery,getReviews,submitReview,raiseIssue,getNGOs,getNGObyId,getOngoingProjects,getUpcomingProjects,getNgoCompletedProjects,getNgoOngoingProjects,getNgoUpcomingProjects,submitCampaign,getAllCampaigns,donateToCampaign}
-
+export {
+  submitQuery,
+  getHackathonById,
+  raiseIssue,
+  getAllHackathons,
+  getNGOs,
+  getNGObyId,
+  getOngoingProjects,
+  getUpcomingProjects,
+  getNgoCompletedProjects,
+  getNgoOngoingProjects,
+  getNgoUpcomingProjects,
+  submitCampaign,
+  getAllCampaigns,
+  donateToCampaign,
+  submitHackathon,
+  getReviews,
+  submitReview // ✅ NEW EXPORT
+};
 // async function insertOngoingProjectData(){
 //   try{
 //     const projectsnew=await OngoingProject.insertMany([
