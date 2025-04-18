@@ -52,8 +52,8 @@ const Footer = () => {
             <div className="grid grid-cols-2 gap-4 md:gap-6 justify-items-center md:justify-items-start">
               {[
                 { name: "About us", path: "/about" },
-                { name: "NGOs", path: "#" },
-                { name: "Our Team", path: "#" },
+                { name: "NGOs", path: "/getallngos" },
+                { name: "Our Team", path: "/team" },
                 { name: "Contact us", path: "/contact" },
               ].map((link, index) => {
                 const isActive = location.pathname === link.path;
