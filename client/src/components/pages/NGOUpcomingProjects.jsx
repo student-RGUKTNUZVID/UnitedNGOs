@@ -3,7 +3,6 @@ import {useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import {useNavigate,useLocation} from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
-import NGO from "../../../../server/src/models/ngoModel";
 const NGOUpcomingProjects = () => {
     const { id } = useParams();
     const [data,setData]=useState([]);

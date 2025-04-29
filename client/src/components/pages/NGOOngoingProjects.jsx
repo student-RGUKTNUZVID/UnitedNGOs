@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
-import NGO from "../../../../server/src/models/ngoModel";
 import { motion } from "framer-motion";
 
 const NGOOngoingProjects = () => {
