@@ -96,7 +96,7 @@ router.get('/google/callback',
   passport.authenticate('google', { session: false, failureRedirect: '/' }),
   (req, res) => {
     const token = generateToken(req.user._id); // generate JWT
-    res.redirect(`http://localhost:5173/auth/success?token=${token}`);
+    res.redirect(`https://unitedngos-2.onrender.com//auth/success?token=${token}`);
   }
 );
 
