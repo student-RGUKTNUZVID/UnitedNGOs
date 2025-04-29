@@ -11,7 +11,7 @@ const AllHackathons = () => {
   useEffect(() => {
     const fetchHackathons = async () => {
       try {
-        const res = await axios.get('https://unitedngos-1.onrender.com/getAllHackathons');
+        const res = await axios.get('http://localhost:3000/getAllHackathons');
         if (Array.isArray(res?.data?.hackathons)) {
           setHackathons(res.data.hackathons);
           setFilteredHackathons(res.data.hackathons);

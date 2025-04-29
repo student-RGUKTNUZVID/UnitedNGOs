@@ -20,7 +20,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('https://unitedngos-1.onrender.com/api/auth/login', userData);
+      const res = await axios.post('http://localhost:3000/api/auth/login', userData);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', res.data.user);
       toast.success("Login successful");
@@ -31,7 +31,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "https://unitedngos-1.onrender.com/auth/google";
+    window.location.href = "http://localhost:3000/auth/google";
   };
 
   return (

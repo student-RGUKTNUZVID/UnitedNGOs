@@ -48,7 +48,7 @@ const UploadCampaign = () => {
       formPayload.append("banner", formData.banner);
       formPayload.append("document", formData.document);
   
-      const res = await axios.post("https://unitedngos-1.onrender.com/upload-campaign", formPayload, {
+      const res = await axios.post("http://localhost:3000/upload-campaign", formPayload, {
         headers: {
           "Content-Type": "multipart/form-data",
         }});

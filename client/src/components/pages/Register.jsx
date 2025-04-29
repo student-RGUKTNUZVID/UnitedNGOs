@@ -22,14 +22,14 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleGoogleRegister = (role) => {
-    window.location.href = `https://unitedngos-1.onrender.com/auth/google?role=${role}`;
+    window.location.href = `http://localhost:3000/auth/google?role=${role}`;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("https://unitedngos-1.onrender.com/api/auth/signup", userData);
-      const Loginres = await axios.post('https://unitedngos-1.onrender.com/api/auth/login', {
+      const res = await axios.post("http://localhost:3000/api/auth/signup", userData);
+      const Loginres = await axios.post('http://localhost:3000/api/auth/login', {
         email: userData.email,
         password: userData.password, // assuming it's available
       });

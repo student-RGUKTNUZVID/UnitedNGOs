@@ -11,7 +11,7 @@ const HackathonDetails = () => {
   useEffect(() => {
     const fetchHackathon = async () => {
       try {
-        const res = await axios.get(`https://unitedngos-1.onrender.com/hackathon/${id}`);
+        const res = await axios.get(`http://localhost:3000/hackathon/${id}`);
         setHackathon(res.data.hackathon);
       } catch (err) {
         console.error('Error fetching hackathon details:', err);

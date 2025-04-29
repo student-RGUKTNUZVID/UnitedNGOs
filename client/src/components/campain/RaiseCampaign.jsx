@@ -53,7 +53,7 @@ const RaiseCampaign = () => {
 
     try {
       // Step 1: Create Razorpay order
-      const orderRes = await fetch("https://unitedngos-1.onrender.com/api/payment/orders", {
+      const orderRes = await fetch("http://localhost:3000/api/payment/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const RaiseCampaign = () => {
         order_id: orderData.id,
         handler: async function (response) {
           // Step 3: Verify payment
-          const verifyRes = await fetch("https://unitedngos-1.onrender.com/api/payment/verify", {
+          const verifyRes = await fetch("http://localhost:3000/api/payment/verify", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

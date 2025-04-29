@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
 // Replace with your actual backend URL
-const API_BASE_URL = "https://unitedngos-1.onrender.com";
+const API_BASE_URL = "http://localhost:3000";
 
 const StatsComponent = () => {
   const [views, setViews] = useState(0);
