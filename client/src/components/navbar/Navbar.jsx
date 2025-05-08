@@ -173,7 +173,7 @@ export default function Navbar() {
         setTimeout(() => {
           setIsOpen(false);
           setShowExtraMenu(false);
-        }, 50);
+        }, 1000);
       }}
     >
       About Us
@@ -185,7 +185,7 @@ export default function Navbar() {
         setTimeout(() => {
           setIsOpen(false);
           setShowExtraMenu(false);
-        }, 50);
+        },1000);
       }}
     >
       Awareness Sessions
@@ -197,7 +197,7 @@ export default function Navbar() {
         setTimeout(() => {
           setIsOpen(false);
           setShowExtraMenu(false);
-        }, 50);
+        }, 1000);
       }}
     >
       Hackathons
@@ -210,7 +210,7 @@ export default function Navbar() {
           setTimeout(() => {
             setIsOpen(false);
             setShowExtraMenu(false);
-          }, 50);
+          }, 1000);
         }}
       >
         Register Hackathon
@@ -223,7 +223,7 @@ export default function Navbar() {
         setTimeout(() => {
           setIsOpen(false);
           setShowExtraMenu(false);
-        }, 50);
+        },1000);
       }}
     >
       Success Stories
@@ -235,7 +235,7 @@ export default function Navbar() {
         setTimeout(() => {
           setIsOpen(false);
           setShowExtraMenu(false);
-        }, 50);
+        }, 1000);
       }}
     >
       Campaigns
@@ -247,7 +247,7 @@ export default function Navbar() {
         setTimeout(() => {
           setIsOpen(false);
           setShowExtraMenu(false);
-        }, 50);
+        }, 1000);
       }}
     >
       Contact Us
