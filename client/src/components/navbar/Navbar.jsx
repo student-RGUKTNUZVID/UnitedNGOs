@@ -157,23 +157,104 @@ export default function Navbar() {
             </NavLink>
           ))}
 
-          <button onClick={() => setShowExtraMenu(!showExtraMenu)} className="text-white">
-            {showExtraMenu ? "Hide More" : "More Options"}
-          </button>
+<button
+  onClick={() => setShowExtraMenu(!showExtraMenu)}
+  className="text-white"
+>
+  {showExtraMenu ? "Hide More" : "More Options"}
+</button>
 
-          {showExtraMenu && (
-            <div className="flex flex-col space-y-2">
-              <NavLink to="/about" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>About Us</NavLink>
-              <NavLink to="/awareness" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Awareness Sessions</NavLink>
-              <NavLink to="/getAllHackthons" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Hackathons</NavLink>
-              {isNGO && (
-                <NavLink to="/register-hackathon" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Register Hackathon</NavLink>
-              )}
-              <NavLink to="/success-stories" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Success Stories</NavLink>
-              <NavLink to="/campaigns" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Campaigns</NavLink>
-              <NavLink to="/contact" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Contact Us</NavLink>
-            </div>
-          )}
+{showExtraMenu && (
+  <div className="flex flex-col space-y-2">
+    <NavLink
+      to="/about"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+        setTimeout(() => {
+          setIsOpen(false);
+          setShowExtraMenu(false);
+        }, 50);
+      }}
+    >
+      About Us
+    </NavLink>
+    <NavLink
+      to="/awareness"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+        setTimeout(() => {
+          setIsOpen(false);
+          setShowExtraMenu(false);
+        }, 50);
+      }}
+    >
+      Awareness Sessions
+    </NavLink>
+    <NavLink
+      to="/getAllHackthons"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+        setTimeout(() => {
+          setIsOpen(false);
+          setShowExtraMenu(false);
+        }, 50);
+      }}
+    >
+      Hackathons
+    </NavLink>
+    {isNGO && (
+      <NavLink
+        to="/register-hackathon"
+        className="text-white hover:text-gray-400"
+        onClick={() => {
+          setTimeout(() => {
+            setIsOpen(false);
+            setShowExtraMenu(false);
+          }, 50);
+        }}
+      >
+        Register Hackathon
+      </NavLink>
+    )}
+    <NavLink
+      to="/success-stories"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+        setTimeout(() => {
+          setIsOpen(false);
+          setShowExtraMenu(false);
+        }, 50);
+      }}
+    >
+      Success Stories
+    </NavLink>
+    <NavLink
+      to="/campaigns"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+        setTimeout(() => {
+          setIsOpen(false);
+          setShowExtraMenu(false);
+        }, 50);
+      }}
+    >
+      Campaigns
+    </NavLink>
+    <NavLink
+      to="/contact"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+        setTimeout(() => {
+          setIsOpen(false);
+          setShowExtraMenu(false);
+        }, 50);
+      }}
+    >
+      Contact Us
+    </NavLink>
+  </div>
+)}
+
 
           <NavLink to="/login">
             <button className="w-[140px] px-4 py-2 bg-black text-white rounded-[40px] font-medium hover:bg-blue-700">

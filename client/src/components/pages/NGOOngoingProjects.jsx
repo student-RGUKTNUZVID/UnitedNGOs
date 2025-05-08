@@ -38,7 +38,7 @@ const NGOOngoingProjects = () => {
           <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-green-500 border-opacity-50"></div>
         </div>
       ) : (
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto md:w-[300px]">
           {data.map((project, index) => (
             <motion.div
               key={index}
