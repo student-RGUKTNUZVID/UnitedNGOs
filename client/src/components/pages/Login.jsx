@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
+import axiosInstance from "../../utils/axiosInstance";
 
 const Login = () => {
   const [userData, setUserData] = useState({
@@ -20,7 +21,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/login', userData);
+      const res = await axiosInstance.post('/api/auth/login', userData);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', res.data.user);
       toast.success("Login successful");
@@ -31,7 +32,7 @@ const Login = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:3000/auth/google";
+    window.location.href = "https://unitedngos-1.onrender.com/auth/google";
   };
 
   return (

@@ -8,7 +8,8 @@ import { toast } from "react-toastify"; // ✅ FIX: added toast import
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showExtraMenu, setShowExtraMenu] = useState(false);
+  const [showExtraMenuDesktop, setShowExtraMenuDesktop] = useState(false);
+const [showExtraMenuMobile, setShowExtraMenuMobile] = useState(false);
   const [isNGO, setIsNGO] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [user, setUser] = useState(null);
@@ -17,7 +18,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowExtraMenu(false);
+        showExtraMenuDesktop(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -82,11 +83,11 @@ export default function Navbar() {
           <div className="relative overflow-visible z-50">
             <button
               className="text-gray-700 hover:text-[#00964D] transition duration-300"
-              onClick={() => setShowExtraMenu(!showExtraMenu)}
+              onClick={() => setShowExtraMenuDesktop(!showExtraMenuDesktop)}
             >
               More
             </button>
-            {showExtraMenu && (
+            {showExtraMenuDesktop && (
               <motion.div
                 ref={dropdownRef}
                 initial={{ opacity: 0, y: -10 }}
@@ -94,21 +95,21 @@ export default function Navbar() {
                 exit={{ opacity: 0, y: -10 }}
                 className="absolute left-0 top-full bg-gray-100 shadow-xl rounded-lg mt-2 py-2 w-[200px] z-[100]"
               >
-                <NavLink to="/about" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>About Us</NavLink>
-                <NavLink to="/awareness" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Awareness Sessions</NavLink>
-                <NavLink to="/getAllHackthons" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Hackathons</NavLink>
+                <NavLink to="/about" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenuDesktop(false)}>About Us</NavLink>
+                <NavLink to="/awareness" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenuDesktop(false)}>Awareness Sessions</NavLink>
+                <NavLink to="/getAllHackthons" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenuDesktop(false)}>Hackathons</NavLink>
                 {user?.role === 'ngo' && (
-                  <NavLink to="/register-hackathon" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Register Hackathon</NavLink>
+                  <NavLink to="/register-hackathon" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenuDesktop(false)}>Register Hackathon</NavLink>
                 )}
                 {user?.role === 'ngo' && (
-                  <NavLink to="/upload-project" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>upload Project</NavLink>
+                  <NavLink to="/upload-project" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenuDesktop(false)}>upload Project</NavLink>
                 )}
-                <NavLink to="/success-stories" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Success Stories</NavLink>
-                <NavLink to="/raise-campaign" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Campaigns</NavLink>
+                <NavLink to="/success-stories" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenuDesktop(false)}>Success Stories</NavLink>
+                <NavLink to="/raise-campaign" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenuDesktop(false)}>Campaigns</NavLink>
                 {user?.role === 'ngo' && (
-                  <NavLink to="/upload-campaign" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>upload Campaigns</NavLink>
+                  <NavLink to="/upload-campaign" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenuDesktop(false)}>upload Campaigns</NavLink>
                 )}
-                <NavLink to="/contact" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenu(false)}>Contact Us</NavLink>
+                <NavLink to="/contact" className="block px-4 py-2 text-gray-800 hover:bg-green-200" onClick={() => setShowExtraMenuDesktop(false)}>Contact Us</NavLink>
               </motion.div>
             )}
           </div>
@@ -157,23 +158,89 @@ export default function Navbar() {
             </NavLink>
           ))}
 
-          <button onClick={() => setShowExtraMenu(!showExtraMenu)} className="text-white">
-            {showExtraMenu ? "Hide More" : "More Options"}
-          </button>
+<button
+  onClick={() => setShowExtraMenuMobile(!showExtraMenuMobile)}
+  className="text-white"
+>
+  {showExtraMenuMobile ? "Hide More" : "More Options"}
+</button>
 
-          {showExtraMenu && (
-            <div className="flex flex-col space-y-2">
-              <NavLink to="/about" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>About Us</NavLink>
-              <NavLink to="/awareness" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Awareness Sessions</NavLink>
-              <NavLink to="/getAllHackthons" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Hackathons</NavLink>
-              {isNGO && (
-                <NavLink to="/register-hackathon" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Register Hackathon</NavLink>
-              )}
-              <NavLink to="/success-stories" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Success Stories</NavLink>
-              <NavLink to="/campaigns" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Campaigns</NavLink>
-              <NavLink to="/contact" className="text-white hover:text-gray-400" onClick={() => { setIsOpen(false); setShowExtraMenu(false); }}>Contact Us</NavLink>
-            </div>
-          )}
+{showExtraMenuMobile && (
+  <div className="flex flex-col space-y-2">
+    <NavLink
+      to="/about"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+        showExtraMenuMobile(false);
+      }}
+    >
+      About Us
+    </NavLink>
+    <NavLink
+      to="/awareness"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+        
+        showExtraMenuMobile(false);
+      }}
+    >
+      Awareness Sessions
+    </NavLink>
+    <NavLink
+      to="/getAllHackthons"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+        
+        showExtraMenuMobile(false);
+      }}
+    >
+      Hackathons
+    </NavLink>
+    {isNGO && (
+      <NavLink
+        to="/register-hackathon"
+        className="text-white hover:text-gray-400"
+        onClick={() => {
+         
+          showExtraMenuMobile(false);
+        }}
+      >
+        Register Hackathon
+      </NavLink>
+    )}
+    <NavLink
+      to="/success-stories"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+        
+        showExtraMenuMobile(false);
+      }}
+    >
+      Success Stories
+    </NavLink>
+    <NavLink
+      to="/campaigns"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+       
+        showExtraMenuMobile(false);
+      }}
+    >
+      Campaigns
+    </NavLink>
+    <NavLink
+      to="/contact"
+      className="text-white hover:text-gray-400"
+      onClick={() => {
+        
+        showExtraMenuMobile(false);
+      }}
+    >
+      Contact Us
+    </NavLink>
+  </div>
+)}
+
 
           <NavLink to="/login">
             <button className="w-[140px] px-4 py-2 bg-black text-white rounded-[40px] font-medium hover:bg-blue-700">

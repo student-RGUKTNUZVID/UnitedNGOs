@@ -50,7 +50,6 @@ const TestimonialCarousel = () => {
           {testimonials[activeIndex].user?.role || "Supporter"} |{" "}
           {testimonials[activeIndex].city}, {testimonials[activeIndex].state}
         </p>
-
         {/* Dots */}
         <div className="flex justify-center gap-4 mb-6">
           {testimonials.map((_, index) => (

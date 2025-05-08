@@ -65,7 +65,7 @@ const VolunteerForm = ({ onClose }) => {
       }
     } catch (err) {
       console.error("Error submitting volunteer form", err);
-      toast.error("Something went wrong. Please try again.");
+      toast.error(err.message);
     } finally {
       setLoading(false);
     }

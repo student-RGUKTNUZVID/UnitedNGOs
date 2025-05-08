@@ -38,7 +38,7 @@ const OngoingProjects = () => {
             <motion.div
               key={project.id}
               whileHover={{ scale: 1.02 }}
-              className="bg-white w-[250px] h-[300px] md:h-[400px] md:w-[350px] rounded-2xl shadow-lg p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
+              className="bg-white w-[250px] h-[350px] md:h-[400px] md:w-[350px] rounded-2xl shadow-lg p-6 flex flex-col justify-between hover:shadow-xl transition-shadow duration-300"
             >
               <div className="flex justify-center items-center h-auto w-auto rounded-full">
                 <img src="logo.png" alt="project"

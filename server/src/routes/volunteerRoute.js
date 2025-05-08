@@ -12,7 +12,8 @@ router.post('/join-volunteer', async (req, res) => {
     // Check if volunteer already exists by email
     const existingVolunteer = await Volunteer.findOne({ email });
     if (existingVolunteer) {
-      return res.status(400).json({ message: "Volunteer already registered" });
+      return res.status(400).json({ success:false,message: "Volunteer already registered",
+    data:existingVolunteer });
     }
       // Create new volunteer if not already exists
     const newVolunteer = await Volunteer.create({
@@ -34,7 +35,8 @@ router.post('/join-volunteer', async (req, res) => {
       );
 
       if (!updatedProject) {
-        return res.status(404).json({ message: "Project not found" });
+        return res.status(404).json({ 
+          message: "Project not found" });
       }
 
       // Update NGO with volunteer if ngoId is provided
