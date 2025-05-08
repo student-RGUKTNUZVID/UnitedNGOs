@@ -170,10 +170,8 @@ export default function Navbar() {
       to="/about"
       className="text-white hover:text-gray-400"
       onClick={() => {
-        setTimeout(() => {
-          setIsOpen(false);
-          setShowExtraMenu(false);
-        }, 1000);
+        setIsOpen(false);
+        setShowExtraMenu(false);
       }}
     >
       About Us
@@ -182,10 +180,8 @@ export default function Navbar() {
       to="/awareness"
       className="text-white hover:text-gray-400"
       onClick={() => {
-        setTimeout(() => {
-          setIsOpen(false);
-          setShowExtraMenu(false);
-        },1000);
+        setIsOpen(false);
+        setShowExtraMenu(false);
       }}
     >
       Awareness Sessions
@@ -194,10 +190,8 @@ export default function Navbar() {
       to="/getAllHackthons"
       className="text-white hover:text-gray-400"
       onClick={() => {
-        setTimeout(() => {
-          setIsOpen(false);
-          setShowExtraMenu(false);
-        }, 1000);
+        setIsOpen(false);
+        setShowExtraMenu(false);
       }}
     >
       Hackathons
@@ -207,10 +201,8 @@ export default function Navbar() {
         to="/register-hackathon"
         className="text-white hover:text-gray-400"
         onClick={() => {
-          setTimeout(() => {
-            setIsOpen(false);
-            setShowExtraMenu(false);
-          }, 1000);
+          setIsOpen(false);
+          setShowExtraMenu(false);
         }}
       >
         Register Hackathon
@@ -220,10 +212,8 @@ export default function Navbar() {
       to="/success-stories"
       className="text-white hover:text-gray-400"
       onClick={() => {
-        setTimeout(() => {
-          setIsOpen(false);
-          setShowExtraMenu(false);
-        },1000);
+        setIsOpen(false);
+        setShowExtraMenu(false);
       }}
     >
       Success Stories
@@ -232,10 +222,8 @@ export default function Navbar() {
       to="/campaigns"
       className="text-white hover:text-gray-400"
       onClick={() => {
-        setTimeout(() => {
-          setIsOpen(false);
-          setShowExtraMenu(false);
-        }, 1000);
+        setIsOpen(false);
+        setShowExtraMenu(false);
       }}
     >
       Campaigns
@@ -244,10 +232,8 @@ export default function Navbar() {
       to="/contact"
       className="text-white hover:text-gray-400"
       onClick={() => {
-        setTimeout(() => {
-          setIsOpen(false);
-          setShowExtraMenu(false);
-        }, 1000);
+        setIsOpen(false);
+        setShowExtraMenu(false);
       }}
     >
       Contact Us
