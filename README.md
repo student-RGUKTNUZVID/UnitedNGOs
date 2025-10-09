@@ -1,6 +1,6 @@
 ---
 
-# 🌍 UnitedNGOs — Empowering Collaboration for Social Impact
+#  UnitedNGOs — Empowering Collaboration for Social Impact
 
 ![React](https://img.shields.io/badge/React-18.2-blue)
 ![Express](https://img.shields.io/badge/Express-4.18-green)
@@ -11,7 +11,7 @@
 
 ---
 
-## 🚀 **Live Demo**
+##  **Live Demo**
 
 🔗 **[View Live NGO Connect Here](https://unitedngos-3.onrender.com/ )**
 
@@ -24,7 +24,7 @@ This platform aims to create **united action during emergencies**, ensuring fast
 
 ---
 
-## 🧩 Folder Structure
+##  Folder Structure
 
 ```
 NGO-CONNECT/
@@ -54,7 +54,7 @@ NGO-CONNECT/
 
 ---
 
-## ✨ Features
+##  Features
 ```
 
 ✅ **Multi-NGO Registration & Login**
@@ -70,7 +70,7 @@ NGO-CONNECT/
 
 ---
 
-## 📚 Pages Overview
+##  Pages Overview
 
 | Page               | Path / Route     | Description                                                             |
 | :----------------- | :--------------- | :---------------------------------------------------------------------- |
@@ -86,7 +86,7 @@ NGO-CONNECT/
 
 ---
 
-## ⚙️ How It Works (Flow)
+##  How It Works (Flow)
 
 1. **NGO or Volunteer registers** on the platform.
 2. NGOs can **create events, relief drives, or donation campaigns**.
@@ -97,7 +97,7 @@ NGO-CONNECT/
 
 ---
 
-## 📥 Getting Started
+##  Getting Started
 
 ### 1. Clone the Repository
 
@@ -155,19 +155,24 @@ Access it at [http://localhost:5173](http://localhost:5173)
 
 ## 📸 Screenshots
 
-|                                   Home Page                                   |                                 NGO Dashboard                                 |                                  Events Page                                  |
-| :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: |
-| <img width="450" src="https://github.com/user-attachments/assets/example1" /> | <img width="450" src="https://github.com/user-attachments/assets/example2" /> | <img width="450" src="https://github.com/user-attachments/assets/example3" /> |
+|                                                 Home Page                                                 |                                            NGO Success Stories                                            |                                                  All NGOs                                                 |
+| :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
+| <img width="450" src="https://github.com/user-attachments/assets/8bd614be-e3dc-48ac-b94d-7ec26060d140" /> | <img width="450" src="https://github.com/user-attachments/assets/0ba2db77-a1b8-4193-82b0-9844c26534b5" /> | <img width="450" src="https://github.com/user-attachments/assets/798c8925-4be6-45f9-ad86-cdc289400b80" /> |
 
-|                                 Donation Page                                 |                                 Volunteer Page                                |                               Collaboration Page                              |
-| :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: |
-| <img width="450" src="https://github.com/user-attachments/assets/example4" /> | <img width="450" src="https://github.com/user-attachments/assets/example5" /> | <img width="450" src="https://github.com/user-attachments/assets/example6" /> |
+|                                              Ongoing Projects                                             |                                             Awareness Sessions                                            |                                                 Hackathons                                                |
+| :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
+| <img width="450" src="https://github.com/user-attachments/assets/a05b64e2-3010-4321-b85c-d34183497ddd" /> | <img width="450" src="https://github.com/user-attachments/assets/b72819aa-21bd-4a17-a05a-7974c4be862c" /> | <img width="450" src="https://github.com/user-attachments/assets/3a701e60-039b-4ae4-947e-5e5d739bc3d9" /> |
+
+|                                                 Campaigns                                                 |                                                Raise Issue                                                |                                            About & Registration                                           |                                                   Login                                                   |
+| :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------: |
+| <img width="450" src="https://github.com/user-attachments/assets/b46a5665-4de7-4ad4-8213-33c0fc574d72" /> | <img width="450" src="https://github.com/user-attachments/assets/25163ddf-7641-4d13-8890-d10d5777eea2" /> | <img width="450" src="https://github.com/user-attachments/assets/529f3955-f3ce-4bfd-aec5-6d63427102bc" /> | <img width="450" src="https://github.com/user-attachments/assets/6553c4a8-3f05-4ec3-a445-3517f6e0b811" /> |
+
 
 > *(Replace example image links with your uploaded GitHub screenshot URLs)*
 
 ---
 
-## 🧠 Key Learnings
+##  Key Learnings
 
 * Built a **real-world scalable MERN app** integrating NGOs, volunteers, and donation systems.
 * Learned **how to manage multi-user roles** (NGO vs Volunteer).
@@ -177,7 +182,7 @@ Access it at [http://localhost:5173](http://localhost:5173)
 
 ---
 
-> **Made with ❤️ by Saikumar Hanumanthu**
+> **Made with  by Saikumar Hanumanthu**
 
 ---
 
