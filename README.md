@@ -102,8 +102,7 @@ NGO-CONNECT/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/saisonu1156/ngo-connect.git
-```
+git clone https://github.com/student-RGUKTNUZVID/UnitedNGOs.git```
 
 ### 2. Install Dependencies
 
