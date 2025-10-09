@@ -1,6 +1,6 @@
 ---
 
-# 🌍 NGO Connect — Empowering Collaboration for Social Impact
+# 🌍 UnitedNGOs — Empowering Collaboration for Social Impact
 
 ![React](https://img.shields.io/badge/React-18.2-blue)
 ![Express](https://img.shields.io/badge/Express-4.18-green)
