@@ -182,8 +182,4 @@ Access it at [http://localhost:5173](http://localhost:5173)
 
 ---
 
-> **Made with  by Saikumar Hanumanthu**
 
----
-
-Would you like me to include a short **“System Architecture Diagram”** (showing NGO ↔ Volunteer ↔ MongoDB ↔ Server ↔ Frontend flow) in Markdown or image format for this README? It’ll make it visually impressive and interview-ready.
